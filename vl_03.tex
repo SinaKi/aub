@@ -1,0 +1,96 @@
+\subsubsection{Kargers MinCut Algorithmus}
+Zeige, dass die Wahrscheinlichkeit, dass Kargers MinCut Algorithmus das richtige Ergebnis berechnet, mindestens $\frac{1}{n^2}$ ist. Das klingt nicht besonders gut, aber wir können die Erfolgswahrscheinlichkeit beliebig erhöhen durch Wiederholung.
+
+\begin{lstlisting}[mathescape]
+RepMinCut(G,r)
+	bestVal = $\infty$, bestSol = $\emptyset$
+	for i = 1 to r do
+		p = KArgerMinCut(G)
+		if val(P) < bestVal
+			bestVal = val(P)
+			bestSol = P
+		fi
+	od
+	return bestSol
+\end{lstlisting}
+%TODO notizen
+
+Angenommen Kargers MinCut berechnet MinCut mit $WS \geq \frac{1}{n^2}$. Die Wahrscheinlichkeit, dass in jedem der $r$ Versuche \underline{nicht} der MinCut zu finden ist, ist $\big(1-\frac{2}{n(n-1)}\big)^r < \big(e^{-\frac{2}{n(n-1)}}\big)^r$ \\
+%TODO notiz
+oder auch für $r \approx n^2 \log n \Rightarrow $ Fehler $WS \leq \frac{1}{n^c}$.
+\paragraph*{Beweise,} dass die Erfolgswahrscheinlichkeit in der Tat $\geq \frac{2}{n(n-1)}$ ist. Wir fixieren hierzu einen MinCut und zeigen, dass die Wahrscheinlichkeit, nie eine Kante des MinCut zu Kontrahieren $\geq \frac{2}{n(n-1)}$ ist. %TODO Satz korrigieren
+%TODO notiz
+
+\paragraph*{Lemma:} Betrachte einen Multigraph $G(V,E)$ mir einem MinCut mit Wert $k$. Dann gilt: $G$ hat mindestens $\frac{k \cdot n}{2}$ Kanten.
+\paragraph*{Beweis:} Beobachtung: Jeder Knoten hat mindestens Grad $k$. $\Rightarrow$ Anzahl der Kanten $\geq k \cdot \frac{n}{2}$.
+
+\paragraph*{} Sei $E_i \dots$ Ergebnis, dass in i-tem Kantenkontraktionsschritt keine MinCut-Kante erwischt wurde. Wir betrachten einen fixen MinCut mit Wert $k$ (bzw. dessen $k$ Kanten). Die Wahrscheinlichkeit, im ersten Kontraktionsschritt einen MinCut zu erwischen ist $\frac{k}{m} \leq \frac{2}{n} \textcolor{gray}{= \big( m \geq \frac{k \cdot n}{2} \big)} \Rightarrow Pr(E_1) \geq 1-\frac{2}{n}$.
+\paragraph*{} Falls $E_1$ eingetreten ist, existieren vor dem zweiten Schritt midestens $\frac{k \cdot (n-1)}{2}$ Kanten.
+\paragraph*{} $\Rightarrow$ Wahrscheinlichkeit, im zweiten Schritt eine MinCut Kante zu erwischen (unter der Voraussetzung $E_1$ ist eingetreten) ist
+$$ \leq \frac{k}{\frac{k(n-1)}{2}} = \frac{2}{n-1}$$
+$$ \Rightarrow Pr(E_2|E_1) \geq 1 - \frac{2}{n-1} $$
+\paragraph*{} Falls $E_1$ und $E_2$ eingetreten sind, existieren vor dem dritten Schritt mindestens $\frac{k(n-2)}{2}$ Kanten.
+\paragraph*{} $\Rightarrow$ Wahrscheinlichkeit, im dritten Schritt eine MinCut Kante zu erwischen (unter der Voraussetzung, dass $E_1 \& E_2$) eingetreten sind) ist
+$$ \leq \frac{k}{\frac{n(n-2)}{2}} = \frac{2}{n-2} $$
+$$ \Rightarrow Pr(E_3|E_1 \cap E_2) \geq 1 - \frac{2}{n-2} $$
+
+\paragraph*{Allgemein:} Vor dem i-ten Schritt haben wir noch $n-i+1$ Kanten. Falls wir bislang  noch keinen Fehler gemacht haben ($E_1,\dots, E_{n-1}$ sind eingetreten) hat der MinCut noch Größe $k$.
+$$ \Rightarrow \text{ wir haben } \geq k(n-i+1) \text{ Kanten} $$
+$$ \Rightarrow Pr(E_i|\bigcap_{j=1}^{i-1} E_j) \geq 1-\frac{2}{n-i+1} $$
+Uns interessiert $Pr(\bigcap\limits_{i=1}^{n-2} E_i)$
+$$ = Pr(E_1) \cdot Pr(E_2|E_1) \cdot Pr(E_3|E_1 \cap E_2) \cdot Pr(E_4|E_1 \cap E_2 \cap E_3) \cdots \geq \Pi_{i=1}^{n-2} \frac{n-i-1}{n-i+1} $$ %TODO limits von Pi
+$$ = \frac{n-2}{n} \cdot \frac{n-3}{n-1} \cdot \frac{n-4}{n-2} \cdot \frac{n-5}{n-3} \cdot \frac{n-6}{n-4} \cdots \frac{2}{4} \cdot \frac{1}{3} $$
+$$ = \frac{2}{n(n-1)} $$
+
+$\Rightarrow$ Pr(Algorithmus berechnet wirklich MinCut) $\geq \frac{2}{n(n-1)}$
+\paragraph*{}
+ Durch Wiederholung lässt sich die Erfolgswahrscheinlichkeit erhöhen. Wenn wir z.B. $c \cdot \frac{n^2}{2} \log n$ oft wiederholen erhalten wir eine Fehlerwahrscheinlichkeit $\leq \frac{1}{n^c}$ %TODO notiz
+\paragraph*{} Falls die Fehlerwahrscheinlichkeit $\leq \frac{1}{2^n}$ ist, sagen wir 'Der Algorithmus hat eine sehr hohe Erfolgswahrscheinlichkeit'. Hier können wir das für $~ c \cdot \frac{n^2}{2} \cdot n$ Wiederholungen erreichen.
+
+\begin{tabular}{l|l}
+closest Pair & MinCut \\
+\hline
+\hline
+liefert \underline{immer} korrektes Resultat & kann falsches Resultat liefern, abhängig vom Zufall \\
+\hline
+Laufzeit hängt vom Zufall ab & Laufzeit fix \\
+& \\
+\textcolor{blue}{$\Rightarrow$LAS VEGAS ALGORITHMUS} & \textcolor{blue}{$\Rightarrow$ MONTE CARLO ALGORITHMUS} \\
+\end{tabular} 
+%TODO tabelle zentrieren
+
+\paragraph*{Geg.:} LAS VEGAS ALGORITHMUS mit erwarteter Laufzeit $E(T) = f(n)$ ist es möglich daraus einen Monte Carlo Algorithmus zu bauen? Ja, und zwar wie folgt:
+\paragraph*{} Stoppe Las Vegas Algorithmus nach $\alpha \cdot f(n)$ Zeit für Konstantes $\alpha > 1$. Falls Las Vegas Algorithmus bis dahin terminiert hat, ist das Ergebnis nicht korrekt. Algorithmus macht Fehler, wenn Zeit ausgeht. \\
+$\Rightarrow$ müssen Wahrscheinlichkeit berechnen, dass Las Vegas Algorithmus länger als $\alpha \cdot f(n)$ Zeit braucht.
+
+\paragraph*{Markov-Ungleichung} Sei $X$ eine nicht-negative Zufallsvariable mit $E(X) = \gamma$. %TODO gamma?
+Dann gilt: $Pr(X > \alpha \cdot \gamma) \leq \frac{1}{\alpha}$ \\
+$\Rightarrow$ in unserem modifizierten Algorithmus, der Las Vegas Algorithmus nach $\alpha \cdot f(n)$ Zeit abbricht, bekommen wir eine Fehlerwahrscheinlichkeit $\leq \frac{1}{\alpha}$.
+
+\paragraph*{Monte Carlo $\Rightarrow$ Las Vegas} \dots im Allgemeinen nicht möglich.
+\paragraph*{Annahme} Monte Carlo Algorithmus mit fixer Laufzeit $f(n)$ mit Erfolgswahrscheinlichkeit $p(n)$ und zusätzlich einen Checker-Algorithmus C mit Laufzeit $g(n)$, welcher die Korrektheit eines Ergebnisses überprüfen kann. \\
+$\Rightarrow$ daraus ergibt sich folgender Las Vegas Algorithmus:
+\begin{lstlisting}
+lasse A laufen (Kosten: f(n))
+ueberpruefe Ergebnis (Kosten: g(n))
+falls falsch wiederholen
+\end{lstlisting}
+
+Pro Runde haben wir Laufzeit $f(n)+g(n)$. Die erwartete Anzahl Runden ist $\frac{1}{p(n)}$. \\
+$\Rightarrow$ die erwartete Laufzeit dieses Las Vegas Algorithmus ist $\frac{f(n)+g(n)}{p(n)}$.
+
+\section{Quicksort}
+weiterer Las Vegas Algorithmus Quicksort.
+\begin{lstlisting}[mathescape]
+RQS(A[1,\dots,n])
+	waehle p \in \{ 1,\dots,n \}
+	rearrangiere A sodass
+		<A[p] A[p] >A[p]
+\end{lstlisting}
+%TODO klammern
+
+\paragraph*{Anmerkung} Wird $p$ deterministisch sehr simpel wie z.B. $p01,p=\frac{n}{2},\dots$ %TODO abrunden
+gewählt, dann gibt es immer Instanzen die Quicksort zu $~n^2$ Schritten zwingen.
+Wir wählen $p$ zufällig und zeigen, dass die erwartete Laufzeit $O(n \log n)$ ist. Das heißt insbesondere, dass wir keine bösartige Eingabe erzeugen können, die Quicksort immer lang laufen lässt.
+
+%TODO schaun ob sections so passen

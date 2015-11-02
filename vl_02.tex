@@ -1,0 +1,176 @@
+\section{Clostest Pair Problem ($n$ Punkte im $\mathbb{R}^2$)}
+\begin{itemize}
+	\item Deterministisch: $O(n \log n)$ z.B. mittels D\&C
+	\item Randomisiert: erwartete Laufzeit: $O(n)$
+\end{itemize}
+\subsection{Randomisiert incrementeller Algoithmus}
+\begin{itemize}
+	\item bringe die Punktmenge in eine zufällige Reihenfolge $p_1,\dots,p_n$
+	\item invariante
+	\begin{itemize}
+		\item $\delta_i :=$ Minimalabtand zweier Punkte in $\{ p_1,\dots,p_i \}$
+		\item haben immer Gitterstruktur mit Maschenweite $\delta_i$, in welcher $p_1,\dots,p_i$ eingefügt sind
+	\end{itemize}
+	\item wichtigste Operation: Hinzunahme von $p_{i+1}$ unter Aufrechterhaltung der Instanzen:
+	\begin{itemize}
+		\item lokalisieren von $p_{i+1}$ ?? akt. Gitterstruktur | $O(1)$
+		\item Untersuchung der $O(1)$ Punkte in den benachbarten Gitterzellen der Zelle von $p_{i+1}$ auf ?? für neues closest pair | $O(1)$
+	\end{itemize}
+	\item[] Fall A: $\delta_0 = \delta_{i+1} \Rightarrow$ füge $p_{i+1}$ in Gitterstruktur ein | $O(1)$
+	\item[] Fall B: $\delta_i > \delta_{i+1} \Rightarrow$ baue neues Gitter mit Maschenweite $\delta_{i+1}$, füge $p_1,\dots,p_{i+1}$ ein | $O(i)$
+\end{itemize}
+
+Schlechte Punktkonfiguration und Reihenfolge führt zu $\Theta(a^2)$ Laufzeit.
+
+\paragraph*{Idee:} Betrachte Punkte in zufälliger Reihenfolge $\Rightarrow$ Hoffnung, Fall B tritt seltener auf.
+
+Die erwartete Laufzeit des Algorithmus ist
+\[ \text{Laufzeit} = \sum_{i=3}^n \text{Kosten für Einfügen von Punkt } p_i \]
+
+\[\text{Erwartete Laufzeit }= E(\sum_{i=3}^n Kosten für Einfügen von Punkt p_i)\]
+\[ = \sum_{i=3}^n \underbrace{E(\text{Kosten für Einfügen von Punkt} p_i)}_{\text{Fall A: O(1); Fall B: O(i)}} \]
+
+Fall B tritt ein, wenn $\delta_i < \delta_{i-1}$ d.h. wenn durch Hinzufügen von $p_i$ sich die CP-Distanz ändert. $\delta_i < \delta_{i-1}$ kann nur passen, wenn $p_i$ einer der beiden Punkte aus $\{ p_1,p_2,\dots,p_i \}$ ist, welcher das CP definiert. Seien $p_a,p_b$ zwei Punkte aus $\{ p_1,\dots,p_i \}$. Fall B kann nur eintreten, falls $p_i = p_a$ oder $p_i = p_b$.
+Da jeder Punkt aus $\{ p_1,\dots,p_i \}$ mit gleicher Wahrscheinlichkeit der zuletzt hinzugefügt ist, ist diese Wahrscheinlichkeit $\leq \frac{2}{i}$.
+\begin{itemize}
+	\item[$\Rightarrow$] Erwartete Laufzeit für Einfügen von $p_i$ ist $\leq O(1) + \frac{2}{i} \cdot O(i) = O(1)$
+	\item[$\Rightarrow$] erwartete Gesamtlaufzeit $\sum\limits_{i=3}^n O(1) = O(n)$
+\end{itemize}
+
+\paragraph*{\underline{Wichtig:}} Die Laufzeit dieses Algorithmus hängt \underline{nicht} von der Eingabe ab, sie ist immer erwartet $O(n)$, egal wie die Eingabe aussieht.
+
+\paragraph*{Anmerkung zur Gitterstruktur:} Angenommen wir haben Gitterstruktur mit Maschenwert $\delta p(p_x,p_y)$ fällt in Gitterzelle $(\frac{p_x}{\lfloor \delta \rfloor},\frac{p_y}{\lfloor \delta \rfloor})$.
+\paragraph*{Annahme:} Wir haben eine Datenstruktur, welche in $O(1)$ ein Element in Zelle $(i,j)$ hinzufügen und in $O(1)$ den Inhalt einer Zelle zurückgeben kann. Größe der Datenstruktur soll $O(\text{\# der eingefügten Element})$ sein.
+
+Im obigen Algorithmus hängt nur die Laufzeit vom Zufall ab, das Ergebnis ist immer korrekt. So einen Algorithmus nennt man LAS VEGAS ALGORITHMUS.
+
+\subsection{MONTE CARLO ALGORITHMEN}
+\begin{itemize}
+	\item[\dots] Laufzeit abhängig vom Zufall
+	\item[\dots] Korrektheit des Ergebnisses hängt vom Zufall ab
+\end{itemize}
+
+\subsection{Das MinCut-Problem}
+Geg.: ungerichteter, ungewichteter Multigraph $G(V,E)$ mit $|V|=n,|E|=m$. Eine Teilmenge $A \subseteq V$ der Knoten induziert einen sogenannten \underline{Cut}.
+$$ cut(A,G) = \{ e = \{ v,w \} \in E\ \big|\ |\{ v,w \} \cap A | = 1 \} $$
+Der Wert eines cuts ist seine Kardinalität $|cut(A,G)|$
+\paragraph*{Das Mincut-Problem für einen Graph $G(V,E)$:} Finde $A \varsubsetneq V$ mit $|cut(A,G)|$ ist minimal.
+
+
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+        thick,main node/.style={circle,draw,minimum size=1cm,inner sep=0pt]}]
+        
+    \draw[blue] (4.7,-0.5) circle (1.8);
+
+    \node[main node] (1) {b};
+    \node[main node] (2) [below left = 0.7cm and 1.5cm of 1]  {a};
+    \node[main node] (3) [below right = 0.7cm and 1.5cm of 1] {e};
+    \node[main node] (4) [below left = 2.4cm and 0.5cm of 1] {c};
+    \node[main node] (5) [below right = 2.4cm and 0.5cm of 1] {d};
+    \node[main node] (6) [right = 2.5cm of 1] {f};
+    \node[main node] (7) [right = 1.4cm of 6] {h};
+    \node[main node] (8) [below right = 1cm and 0.5cm of 6] {g};
+
+    \path[-]
+    (1) edge node {} (2)
+        edge node {} (3)
+        edge node {} (4)
+        edge node {} (5)
+    (2) edge node {} (4)
+    (3) edge node {} (5)
+    (4) edge node {} (5)
+    (6) edge node {} (1)
+    	edge node {} (7)
+    	edge node {} (8)
+    (7) edge node {} (8);
+\end{tikzpicture}
+MinCut mit Wert 1.
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+        thick,main node/.style={circle,draw,minimum size=1cm,inner sep=0pt]}]
+        
+    \draw[blue] (1.7,-1.4) circle (1);
+
+    \node[main node] (1) {b};
+    \node[main node] (2) [below left = 0.7cm and 1cm of 1]  {a};
+    \node[main node] (3) [below right = 0.7cm and 1cm of 1] {c};
+    
+    \path[-]
+    (1) edge node {} (2);
+\end{tikzpicture}
+MinCut mit Wert 0.
+\end{figure}
+
+\paragraph*{Anmerkung:} Minimalgrad eines Knotens in $G$ ist immer obere Schranke für den Wert des MinCuts.
+\paragraph*{Anwendungen:}
+\begin{itemize}
+	\item Netzwerke und Fehlertoleranz
+	\item Internet, Kommunikationsnetz, \dots
+	\item Strom
+	\item Abwasser
+\end{itemize}
+Wie können wir den MinCut naiv berechnen?
+\paragraph*{Idee:} Teste alle möglichen Partitionen von $V$ $$ \sum_{i=1}^{n-1} {n \choose i} = 2^n - 2 \hspace{1cm}\text{für } n = |V|$$
+Nicht praktikabel, da schon für einen Graphen mit 128 Knoten mehr Partitionen möglich sind als es Atome im Universum gibt.
+
+\subsubsection{Kargers MinCut Algorithmus}
+Randomisierter Algorithmus, der mit Wahrscheinlichkeit $~\frac{1}{n^2}$ das richtige Ergebnis berechnet. Die zentrale Operation des Algorithmus ist die \textbf{Kantentraktion}.
+\begin{enumerate}
+	\item wähle eine Kante $\{ v,w \}$ aus
+	\item ersetzte Knoten $v$ und Knoten $w$ durch Knoten $vw$, der alle Kanten von $v$ und $w$ erbt (ohne Schlingen).
+\end{enumerate}
+
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+        thick,main node/.style={circle,draw,minimum size=1cm,inner sep=0pt]}]
+
+    \node[main node] (1) {v};
+    \node[main node] (2) [right = 2cm of 1] {w};
+    \node[main node] (3) [below = 1cm of 1,minimum size=0.3cm] {};
+    \node[main node] (4) [below left = 0.7cm and 1cm of 1,minimum size=0.3cm] {};
+    \node[main node] (5) [above left = 0.7cm and 1cm of 1,minimum size=0.3cm] {};
+    \node[main node] (6) [above right = 0.7cm and 1cm of 1,minimum size=0.3cm] {};
+    \node[main node] (3) [below = 1cm of 2,minimum size=0.3cm] {};
+    \node[main node] (4) [below right = 0.7cm and 1cm of 2,minimum size=0.3cm] {};
+    \node[main node] (6) [above right = 0.7cm and 1cm of 2,minimum size=0.3cm] {};
+    
+    \path[-]
+    (1) edge node {} (2);
+\end{tikzpicture}
+%TODO kanten (mehrfachkanten)
+
+$$ \Downarrow $$
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+        thick,main node/.style={circle,draw,minimum size=1cm,inner sep=0pt]}]
+
+    \node[main node] (1) {vw};
+    \node[main node] (4) [below left = 1cm and 0.5cm of 1,minimum size=0.3cm] {};
+    \node[main node] (5) [above left = 1cm and 0.5cm of 1,minimum size=0.3cm] {};
+    \node[main node] (4) [below right = 1cm and 0.5cm of 1,minimum size=0.3cm] {};
+    \node[main node] (6) [above right = 1cm and 0.5cm of 1,minimum size=0.3cm] {};
+    \node[main node] (6) [left = 1cm of 1,minimum size=0.3cm] {};
+    \node[main node] (4) [below right = 0.4cm and 1cm of 1.2,minimum size=0.3cm] {};
+    \node[main node] (6) [above right = 0.4cm and 1cm of 1.2,minimum size=0.3cm] {};
+    
+\end{tikzpicture}
+\end{figure}
+%TODO kanten (mehrfachkanten)
+%TODO graphen nebeneinander
+
+\begin{lstlisting}
+for 1 to n-2
+	Kontrahiere zufaellige Kante
+Gib Knotenmenge entsprechend einer der beiden verbleibenden Knoten aus
+\end{lstlisting}
+
+\paragraph*{Annahme:} Es gibt genau einen MonCut und dessen Wert ist $K$.
+\paragraph*{Beobachtung:} Algorithmus berechnet den MinCut $\Leftrightarrow$ in keiner der $n-2$ Kontraktionen wurde eine der $K$ MinCut-Kanten Kontrahiert.
+
+%TODO graphen
