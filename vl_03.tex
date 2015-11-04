@@ -87,9 +87,10 @@ weiterer Las Vegas Algorithmus Quicksort.
 RQS(A[1,\dots,n])
 	waehle p \in \{ 1,\dots,n \}
 	rearrangiere A sodass
-		<A[p] A[p] >A[p]
+		$\underbrace{<A[p]}_{A_L}$ A[p] $\underbrace{>A[p]}_{A_R}$
+		RQS($A_L$)
+		RQS($A_R$)
 \end{lstlisting}
-%TODO klammern
 
 \paragraph*{Anmerkung} Wird $p$ deterministisch sehr simpel wie z.B. $p01,p=\frac{n}{2},\dots$ %TODO abrunden
 gewählt, dann gibt es immer Instanzen die Quicksort zu $~n^2$ Schritten zwingen.
