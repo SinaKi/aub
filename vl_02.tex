@@ -128,7 +128,9 @@ Randomisierter Algorithmus, der mit Wahrscheinlichkeit $~\frac{1}{n^2}$ das rich
 \begin{figure}[!h]
 \centering
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
-        thick,main node/.style={circle,draw,minimum size=1cm,inner sep=0pt]}]
+        thick,main node/.style={circle,draw,minimum size=0.7cm,inner sep=0pt]}]
+
+	\node at (5,0) {$\Rightarrow$};
 
     \node[main node] (1) {v};
     \node[main node] (2) [right = 2cm of 1] {w};
@@ -139,30 +141,21 @@ Randomisierter Algorithmus, der mit Wahrscheinlichkeit $~\frac{1}{n^2}$ das rich
     \node[main node] (3) [below = 1cm of 2,minimum size=0.3cm] {};
     \node[main node] (4) [below right = 0.7cm and 1cm of 2,minimum size=0.3cm] {};
     \node[main node] (6) [above right = 0.7cm and 1cm of 2,minimum size=0.3cm] {};
+
+    \node[main node] (7) [right = 7cm of 1] {vw};
+    \node[main node] (8) [below left = 1cm and 0.5cm of 7,minimum size=0.3cm] {};
+    \node[main node] (9) [above left = 1cm and 0.5cm of 7,minimum size=0.3cm] {};
+    \node[main node] (10) [below right = 1cm and 0.5cm of 7,minimum size=0.3cm] {};
+    \node[main node] (11) [above right = 1cm and 0.5cm of 7,minimum size=0.3cm] {};
+    \node[main node] (12) [left = 1cm of 7,minimum size=0.3cm] {};
+    \node[main node] (13) [below right = 0.4cm and 1cm of 7,minimum size=0.3cm] {};
+    \node[main node] (14) [above right = 0.4cm and 1cm of 7,minimum size=0.3cm] {};
     
     \path[-]
     (1) edge node {} (2);
 \end{tikzpicture}
 %TODO kanten (mehrfachkanten)
-
-$$ \Downarrow $$
-
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
-        thick,main node/.style={circle,draw,minimum size=1cm,inner sep=0pt]}]
-
-    \node[main node] (1) {vw};
-    \node[main node] (4) [below left = 1cm and 0.5cm of 1,minimum size=0.3cm] {};
-    \node[main node] (5) [above left = 1cm and 0.5cm of 1,minimum size=0.3cm] {};
-    \node[main node] (4) [below right = 1cm and 0.5cm of 1,minimum size=0.3cm] {};
-    \node[main node] (6) [above right = 1cm and 0.5cm of 1,minimum size=0.3cm] {};
-    \node[main node] (6) [left = 1cm of 1,minimum size=0.3cm] {};
-    \node[main node] (4) [below right = 0.4cm and 1cm of 1.2,minimum size=0.3cm] {};
-    \node[main node] (6) [above right = 0.4cm and 1cm of 1.2,minimum size=0.3cm] {};
-    
-\end{tikzpicture}
 \end{figure}
-%TODO kanten (mehrfachkanten)
-%TODO graphen nebeneinander
 
 \begin{lstlisting}
 for 1 to n-2
