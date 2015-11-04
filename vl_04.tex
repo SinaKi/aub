@@ -24,7 +24,56 @@ $$= \sum\limits_{i=1}^{n-1} \underbrace{\sum\limits_{j=i+1}^n \frac{2}{j-i+1}}_{
 = O(n \log n) $$ %TODO notiz, ~~ zu etwa,sum
 
 \paragraph*{Jetzt} Berechnung von $P(X_{ij}=1) =: p_{ij}$ Stelle den Ablauf von Quicksort als Rekursion dar, schreibe in die Knoten die jeweiligen Pivotelemente der entsprechenden Rekursion. Wie zählen die Pivotelemente von oben nach unten und von links nach rechts durch. $\Rightarrow$ Wir erhalten eine Permutation $\Pi$ der Eingabeelemente.
-%TODO graph
+
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+        thick,main node/.style={circle,draw,minimum size=0.7cm,inner sep=0pt]}]
+
+    \node[main node] (1) {$p_1$};
+    
+    \node[main node] (2) [below left = 1cm and 1.7cm of 1] {$p_2$};
+    \node[main node] (3) [below right = 1cm and 1.7cm of 1] {$p_3$};
+    
+    \node[main node] (4) [below left = 1cm and 1cm of 2] {$p_4$};
+    \node[main node] (5) [below right = 1cm and 1cm of 2] {$p_5$};
+    \node[main node] (6) [below left = 1cm and 1cm of 3] {$p_6$};
+    \node[main node] (7) [below right = 1cm and 1cm of 3] {$p_7$};
+    
+    \node[main node] (8) [below left = 1cm and 0.7cm of 4] {$p_8$};
+    \node[main node] (9) [below right = 1cm and 0.7cm of 4] {$p_9$};
+    \node[main node] (10) [below left = 1cm and 0.7cm of 7] {$p_{10}$};
+    \node[main node] (11) [below right = 1cm and 0.7cm of 7] {$p_{11}$};
+    
+    \node[main node] (12) [below left = 1cm and 0.2cm of 9] {$p_{12}$};
+    \node[main node] (13) [below right = 1cm and 0.2cm of 9] {$p_{13}$};
+    \node[main node] (14) [below left = 1cm and 0.2cm of 10] {$p_{14}$};
+    \node[main node] (15) [below right = 1cm and 0.2cm of 10] {$p_{15}$};
+    \node[main node] (16) [below left = 1cm and 0.2cm of 11] {$p_{16}$};
+    \node[main node] (17) [below right = 1cm and 0.2cm of 11] {$p_{17}$};
+    
+    \path[-]
+    (1) edge (2)
+    	edge (3)
+    (2) edge (4)
+    	edge (5)
+    (3) edge (6)
+    	edge (7)
+    (4) edge (8)
+    	edge (9)
+    (7) edge (10)
+    	edge (11)
+    (9) edge (12)
+    	edge (13)
+    (10) edge (14)
+    	 edge (15)
+    (11) edge (16)
+    	 edge (17);
+    
+\end{tikzpicture}
+\end{figure}
+
+%TODO graph linie oder beschreibung
 $\Pi = p_1 p_2 p_3 \cdots p_n = s_{20} s_{10} s_{25} s_{5} \cdots$
 \paragraph*{Anmerkung} $\Pi$ ist nicht zufällig gleichverteilt, da manche Permutationen gar nicht vorkommen können. z.B. $\Pi = s_{50} s_{10} s_{20} mit n=100$. Wie schaut $\Pi$ aus, wenn $s_i$ \underline{nicht} mit $s_j$ verglichen wurde? Dann taucht ein Element $s_k$, $i<k<j$ als Pivotelement von $s_i$ und $s_j$ in $\Pi$ auf.\\
 
