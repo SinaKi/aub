@@ -73,16 +73,16 @@ Das Protokoll basiert auf dem Graphisomorphproblem.
     \node[main node] (8) [below left = 0.7cm and 1cm of 5] {A};
 
     \path[-]
-    (1) edge node {} (3)
-        edge node {} (4)
-    (2) edge node {} (4)
-    	edge node {} (3)
-    (3) edge node {} (4)
-    (5) edge node {} (6)
-        edge node {} (7)
-        edge node {} (8)
-    (6) edge node {} (7)
-    	edge node {} (8);
+    (1) edge (3)
+        edge (4)
+    (2) edge (4)
+    	edge (3)
+    (3) edge (4)
+    (5) edge (6)
+        edge (7)
+        edge (8)
+    (6) edge (7)
+    	edge (8);
 \end{tikzpicture}
 \end{figure}
 
@@ -112,9 +112,9 @@ Isomorph, Beweis:
     \node[main node] (6) [below = 0.5cm of 5] {C};
 
     \path[-]
-    (1) edge node {} (2)
-    (4) edge node {} (5)
-    (5) edge node {} (6);
+    (1) edge (2)
+    (4) edge (5)
+    (5) edge (6);
 \end{tikzpicture}
 \end{figure}
 Nicht isomorph, da identische Anzahl Knoten und Kanten notwendig sind für die Existenz einer Isomorphie.
@@ -138,16 +138,16 @@ Nicht isomorph, da identische Anzahl Knoten und Kanten notwendig sind für die E
     \node[main node] (8) [below = 2cm of 5] {D};
     
     \path[-]
-    (1) edge node {} (2)
-    	edge node {} (4)
-    (2) edge node {} (3)
-    (2) edge node {} (4)
-    (3) edge node {} (4)
-    (5) edge node {} (6)
-    	edge node {} (7)
-    (8) edge node {} (6)
-    	edge node {} (7)
-    (6) edge node {} (7);
+    (1) edge (2)
+    	edge (4)
+    (2) edge (3)
+    (2) edge (4)
+    (3) edge (4)
+    (5) edge (6)
+    	edge (7)
+    (8) edge (6)
+    	edge (7)
+    (6) edge (7);
     
 \end{tikzpicture}
 \end{figure}
