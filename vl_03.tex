@@ -47,6 +47,8 @@ $\Rightarrow$ Pr(Algorithmus berechnet wirklich MinCut) $\geq \frac{2}{n(n-1)}$
  Durch Wiederholung lässt sich die Erfolgswahrscheinlichkeit erhöhen. Wenn wir z.B. $c \cdot \frac{n^2}{2} \log n$ oft wiederholen erhalten wir eine Fehlerwahrscheinlichkeit $\leq \frac{1}{n^c}$ %TODO notiz
 \paragraph*{} Falls die Fehlerwahrscheinlichkeit $\leq \frac{1}{2^n}$ ist, sagen wir 'Der Algorithmus hat eine sehr hohe Erfolgswahrscheinlichkeit'. Hier können wir das für $~ c \cdot \frac{n^2}{2} \cdot n$ Wiederholungen erreichen.
 
+\begin{table}
+\centering
 \begin{tabular}{l|l}
 closest Pair & MinCut \\
 \hline
@@ -56,8 +58,8 @@ liefert \underline{immer} korrektes Resultat & kann falsches Resultat liefern, a
 Laufzeit hängt vom Zufall ab & Laufzeit fix \\
 & \\
 \textcolor{blue}{$\Rightarrow$LAS VEGAS ALGORITHMUS} & \textcolor{blue}{$\Rightarrow$ MONTE CARLO ALGORITHMUS} \\
-\end{tabular} 
-%TODO tabelle zentrieren
+\end{tabular}
+\end{table}
 
 \paragraph*{Geg.:} LAS VEGAS ALGORITHMUS mit erwarteter Laufzeit $E(T) = f(n)$ ist es möglich daraus einen Monte Carlo Algorithmus zu bauen? Ja, und zwar wie folgt:
 \paragraph*{} Stoppe Las Vegas Algorithmus nach $\alpha \cdot f(n)$ Zeit für Konstantes $\alpha > 1$. Falls Las Vegas Algorithmus bis dahin terminiert hat, ist das Ergebnis nicht korrekt. Algorithmus macht Fehler, wenn Zeit ausgeht. \\
