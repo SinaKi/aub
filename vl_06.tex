@@ -1,0 +1,54 @@
+\subsection{Skiplisten}
+Eine randomisierte Alternative zu $(2,4)-$,AVL-, Rot-Schwarz-, \dots -Bäume.
+
+\paragraph*{Gegeben} $S = \{ x_1, x_2, \dots, x_n\} ... U$ aus einem total geordneten Universum. %TODO ... zu mengenzeichen
+
+\paragraph*{Ziel} Baue eine Datenstruktur für $S$, sodass man effizient
+\begin{itemize}
+	\item für gegebenes $x \in U$ das maximale Element $x' \in S$ mit $x' \leq x$ bzw. das minimale Element mit $x'' \geq x$
+	\item Elemente hinzufügen kann
+	\item Elemente löschen kann
+\end{itemize}
+
+\paragraph*{Naiv} Sortiere Liste:
+\begin{itemize}
+	\item Suchzeit $~n$ %TODO ~
+	\item $O(1)$ falls Position bekannt, sonst $O(n)$ für Einfügen
+	\item $O(1)$ falls Position bekannt, sonst $O(n)$ für löschen
+\end{itemize}
+Platz: $O(n)$
+
+\paragraph*{Besser} (2,3,4)-Baum:
+\begin{itemize}
+	\item Platz: $O(n)$
+	\item Suchzeit: $O(\log n)$
+	\item Einfügen/Löschen: $O(\log n)$
+\end{itemize}
+%TODO notiz
+
+\paragraph*{Beispiel} %TODO graph
+
+\paragraph*{} Bei Einfügen eines Elements wird zufällig eine 'Turmhöhe' $h$ gewürfelt mit $Pr(h=i)=2^{-(i+1)}$.
+
+\paragraph*{} Verbinde jede Turmetage mit dem nächsten Turm, der auf der gleichen Höhe rechts davon sichtbar ist.
+
+%TODO pseudocode
+
+\paragraph*{Zu zeigen} Erwartete Suchzeit nach einem Element $x \in U$ ist $O(\log n)$.
+
+\paragraph*{Standardbeweis} Definiere Zufallsvariable $x_{i,k} = $ %TODO fallunterscheidung
+$\Rightarrow$ Laufzeit = $\sum\limits_{i=0}^{j-1} \sum\limits_{h \geq 0} x_{i,k}$ falls $x$ Rang $j$ in der Schlüsselmenge hat.
+
+$$\vdots$$
+
+\paragraph*{Alternativer Beweis}
+\subparagraph*{Lemma} Die erwartete Höhe eines Turms über einem Element $x_i$ ist $O(1)$.
+\subparagraph*{Beweis} (in Übung)
+
+\paragraph*{Maximalhöhe eines Turms} Was ist die Maximalhöhe eines vorkommenden Turms?
+\begin{itemize}
+	\item Mit $\overbrace{hoher Wahrscheinlichkeit}$%{$\geq 1 - \frac{1}{n^2}$ für ein $c>0$} %TODO fix overbrace
+	ist ein fixer Turm nicht höher als $~ \log n$ %TODO ~
+	$Pr(h_i \geq k) = 2^{-k} \Rightarrow Pr(h_i = 2 \cdot \log n) = \frac{1}{n^2}$
+	\item Wahrscheinlichkeit, dass \underline{irgendein} Turm Höhe $\geq 2 \log n$ hat, ist $Pr(h_1 \geq 2 \log n \lor h_2 \geq 2 \log n \lor \dots \lor h_n \geq 2 \log n) \leq n \frac{1}{n^2} = \frac{1}{n}$ %TODO notiz
+\end{itemize}
