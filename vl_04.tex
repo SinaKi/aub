@@ -21,7 +21,7 @@ Definiere die Zufallsvariable
 $$= \sum\limits_{i=1}^{n-1} \underbrace{\sum\limits_{j=i+1}^n \frac{2}{j-i+1}}_{\frac{2}{2}+\frac{2}{3}+\frac{2}{4}+\frac{2}{5}+\dots+\frac{2}{n-i+1}} 
 = \sum\limits_{i=1}^{n-1} \sum\limits_{j=2}^{n-i+1} \frac{2}{j}
 = 2 \cdot \sum\limits_{i=1}^{n-1} \underbrace{\sum\limits_{j=2}^{n-i+1} \frac{1}{j}}_{<H_n \approx \log n} 
-= O(n \log n) $$ %TODO notiz
+= O(n \log n) $$
 \marginpar{\textcolor{blue}{\scriptsize$\sum\limits_{i+1} \frac{1}{i} = H_n$}}
 
 \paragraph*{Jetzt} Berechnung von $P(X_{ij}=1) =: p_{ij}$ Stelle den Ablauf von Quicksort als Rekursion dar, schreibe in die Knoten die jeweiligen Pivotelemente der entsprechenden Rekursion. Wie zählen die Pivotelemente von oben nach unten und von links nach rechts durch. $\Rightarrow$ Wir erhalten eine Permutation $\Pi$ der Eingabeelemente.
