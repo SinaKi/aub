@@ -195,7 +195,7 @@ Gib Knotenmenge entsprechend einer der beiden verbleibenden Knoten aus
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
         thick,main node/.style={circle,draw,minimum size=0.7cm,inner sep=0pt]}]
 
-	\node at (6,-0.7) {ac};
+	\node at (6,-0.7) {a-c};
 	\node at (6,-1) {$\Rightarrow$};
 
     \node[main node] (1) {a};
@@ -280,4 +280,93 @@ Gib Knotenmenge entsprechend einer der beiden verbleibenden Knoten aus
 \end{figure}
 Qutput $= \{ e,f \}$ induziert Cut mit Wert 2.
 
-%TODO graphen, notiz
+
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+        thick,main node/.style={circle,draw,minimum size=0.7cm,inner sep=0pt]}]
+
+	\node at (6,-0.7) {a-b};
+	\node at (6,-1) {$\Rightarrow$};
+
+    \node[main node] (1) {a};
+    \node[main node] (2) [below = 1cm of 1] {b};
+    \node[main node] (3) [below right = 0.4cm and 1cm of 1] {c};
+    \node[main node] (4) [right = 1cm of 3] {d};
+    \node[main node] (5) [above right = 0.4cm and 1cm of 4] {e};
+    \node[main node] (6) [below right = 0.4cm and 1cm of 4] {f};
+
+    \node[main node] (7) [right = 5cm of 3] {ab};
+    \node[main node] (8) [right = 0.7cm and 0.7cm of 7] {c};
+    \node[main node] (9) [right = 1cm of 8] {d};
+    \node[main node] (10) [above right = 0.4cm and 1cm of 9] {e};
+    \node[main node] (11) [below right = 0.4cm and 1cm of 9] {f};
+    
+    \path[-]
+    (1) edge (2)
+    	edge (3)
+    (2) edge (3)
+    (3) edge (4)
+    (4) edge (5)
+    	edge (6)
+    (5) edge (6)
+    
+    (7) edge [bend left] (8)
+    	edge [bend right] (8)
+    (8) edge (9)
+    (9) edge (10)
+    	edge (11)
+    (10) edge (11);
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+        thick,main node/.style={circle,draw,minimum size=0.7cm,inner sep=0pt]}]
+
+	\node at (-1,0.3) {e-f};
+	\node at (-1,0) {$\Rightarrow$};
+	\node at (0,1) {\textcolor{blue}{kleinerer MinCut verpasst}};
+	
+	\node at (5.5,0.3) {ab-c};
+	\node at (5.5,0) {$\Rightarrow$};
+
+    \node[main node] (1) {ab};
+    \node[main node] (2) [right = 0.7cm of 1] {c};
+    \node[main node] (3) [right = 0.7cm of 2] {d};
+    \node[main node] (4) [right = 0.7cm of 3] {ef};
+
+    \node[main node] (5) [right = 6cm of 1] {abc};
+    \node[main node] (6) [right = 0.7cm of 5] {d};
+    \node[main node] (7) [right = 1cm of 6] {ef};
+    
+    \path[-]
+    (1) edge [bend left] (2)
+    	edge [bend right] (2)
+    (2)	edge (3)
+    (3) edge [bend left] (4)
+    	edge [bend right] (4)
+    
+    (6) edge (5)
+    	edge [bend left] (7)
+    	edge [bend right] (7);
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+        thick,main node/.style={circle,draw,minimum size=0.7cm,inner sep=0pt]}]
+
+	\node at (-1,0.3) {a-ef};
+	\node at (-1,0) {$\Rightarrow$};
+
+    \node[main node] (1) {abc};
+    \node[main node] (2) [right = 1cm of 1] {def};
+    
+    \path[-]
+    (1) edge (2);
+\end{tikzpicture}
+\end{figure}
+Output $\{ a,b,c \}$ induziert Cut mit Wert 1.
