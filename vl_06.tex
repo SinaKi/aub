@@ -1,7 +1,7 @@
 \subsection{Skiplisten}
 Eine randomisierte Alternative zu $(2,4)-$,AVL-, Rot-Schwarz-, \dots -Bäume.
 
-\paragraph*{Gegeben} $S = \{ x_1, x_2, \dots, x_n\} ... U$ aus einem total geordneten Universum. %TODO ... zu mengenzeichen
+\paragraph*{Gegeben} $S = \{ x_1, x_2, \dots, x_n\} \subseteq U$ aus einem total geordneten Universum.
 
 \paragraph*{Ziel} Baue eine Datenstruktur für $S$, sodass man effizient
 \begin{itemize}
@@ -52,3 +52,47 @@ $$\vdots$$
 	$Pr(h_i \geq k) = 2^{-k} \Rightarrow Pr(h_i = 2 \cdot \log n) = \frac{1}{n^2}$
 	\item Wahrscheinlichkeit, dass \underline{irgendein} Turm Höhe $\geq 2 \log n$ hat, ist $Pr(h_1 \geq 2 \log n \lor h_2 \geq 2 \log n \lor \dots \lor h_n \geq 2 \log n) \leq n \frac{1}{n^2} = \frac{1}{n}$ %TODO notiz
 \end{itemize}
+
+%TODO graph
+
+\paragraph*{} Also sind mit hoher Wahrscheinlichkeit $(\geq 1 - \frac{1}{n})$ alle Türme nicht größer als $2 \log n$.
+
+\paragraph*{Idee für Analyse} Konstruiere Routine, die genau die selben Zellen ($\overbrace{=}$ Turm + Etage) besucht wie Suchroutine, aber einfacher zu analysieren. %TODO ^=
+
+
+\begin{lstlisting}[mathescape]
+v $\leftarrow$ x
+h $\leftarrow$ 0
+while v $\not= - \infty \cap h \not= h_{max}$ do
+	if v.height > h then
+		h $\leftarrow$ h+1
+	else
+		v = v.backward[h]
+od
+\end{lstlisting} %TODO notiz
+
+\paragraph*{} Besucht offensichtlich gleiche Zellen wie die Suche.
+
+\paragraph*{Beobachtung} Wenn man als Männchen, der den obigen Algorithmus ausführen muss, in der Zelle eines Turms sitzt, dann muss man mit der Wahrscheinlichkeit $\frac{1}{2}$ ein Stockwerk hoch gehen und mit der Wahrscheinlichkeit $\frac{1}{2}$ nach links.
+\paragraph*{} $\Rightarrow$ Erwartete Anzahl Linksschritte = erwartete Anzahl Hochschritte
+$\Rightarrow$ Erwartete Anzahl Linksschritte = $O(\log n)$
+$\Rightarrow$ Gesamtlaufzeit der Suche erwartet $O(\log n)$. %TODO anordnung
+
+\section{Das Wörterbuchproblem (Hashing)}
+Gegeben ist ein Universum $U$ (sehr groß) und eine Teilmenge $S \subseteq U$ (eher klein) sowie ein $m \in \mathbb{N}$ ist das Ziel die Bestimmung einer Funktion.
+\begin{itemize}
+	\item[] $h : U \rightarrow \{ 0,1,\dot,m-1 \}$
+	\item[]sodass: $|\{ x \in S | h(x) =i \}| \leq \frac{|S|}{m}$ %TODO äußere | größer machen, aufrunden
+\end{itemize}
+
+\subsection{Beispiel}
+\subsubsection*{Telefonbuch von Stuttgart}
+\paragraph*{Aufgabe} Für gegeben Name + Vorname die entsprechende Telefonnummer finden.
+\begin{itemize}
+	\item $|U|$ = sehr große
+	\item $|S|$ = $500 000$
+	\item Ideal: $m = 500 000$
+\end{itemize}
+Dann speichere $500 000$ Telefonnummern in Array, sodass $h$ für gegebenen Namen + Vornamen genau den Index im Array liefert, wo entsprechende Telefonnummer steht.
+
+\paragraph*{} Falls $h()$ in $O(1)$ ausgewertet werden kann, hat man $O(1)$ Zugriff auf die Information.
