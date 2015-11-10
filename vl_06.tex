@@ -12,7 +12,7 @@ Eine randomisierte Alternative zu $(2,4)-$,AVL-, Rot-Schwarz-, \dots -Bäume.
 
 \paragraph*{Naiv} Sortiere Liste:
 \begin{itemize}
-	\item Suchzeit $~n$ %TODO ~
+	\item Suchzeit $\sim n$
 	\item $O(1)$ falls Position bekannt, sonst $O(n)$ für Einfügen
 	\item $O(1)$ falls Position bekannt, sonst $O(n)$ für löschen
 \end{itemize}
@@ -23,20 +23,38 @@ Platz: $O(n)$
 	\item Platz: $O(n)$
 	\item Suchzeit: $O(\log n)$
 	\item Einfügen/Löschen: $O(\log n)$
+	\item $\Rightarrow$ Deterministisch
 \end{itemize}
-%TODO notiz
 
 \paragraph*{Beispiel} %TODO graph
 
 \paragraph*{} Bei Einfügen eines Elements wird zufällig eine 'Turmhöhe' $h$ gewürfelt mit $Pr(h=i)=2^{-(i+1)}$.
 
-\paragraph*{} Verbinde jede Turmetage mit dem nächsten Turm, der auf der gleichen Höhe rechts davon sichtbar ist.
+\paragraph*{} Verbinde jede Turmetage mit dem nächsten Turm, der auf der gleichen Höhe rechts davon sichtbar ist. Suche nach einem Element $x \in U$.
 
-%TODO pseudocode
+\begin{lstlisting}[mathescape]
+v $\leftarrow$ '$\infty$'-Turm
+h $\leftarrow$ v.height
+
+while $h \geq 0$ do
+	while ($x$ > v.forward[h] $\rightarrow$ key) do
+		v = v.forward[h]
+	od
+	h = h-1
+od
+return v
+\end{lstlisting}
 
 \paragraph*{Zu zeigen} Erwartete Suchzeit nach einem Element $x \in U$ ist $O(\log n)$.
 
-\paragraph*{Standardbeweis} Definiere Zufallsvariable $x_{i,k} = $ %TODO fallunterscheidung
+\paragraph*{Standardbeweis} Definiere Zufallsvariable
+\begin{equation}
+   x_{i,k} = 
+   \begin{cases}
+     1 & \text{falls Suche nach } x \text{ Turm } i \text{ in Höhe } k \text{ besucht} \\
+     0 & sonst
+   \end{cases}
+\end{equation}
 $\Rightarrow$ Laufzeit = $\sum\limits_{i=0}^{j-1} \sum\limits_{h \geq 0} x_{i,k}$ falls $x$ Rang $j$ in der Schlüsselmenge hat.
 
 $$\vdots$$
@@ -47,17 +65,18 @@ $$\vdots$$
 
 \paragraph*{Maximalhöhe eines Turms} Was ist die Maximalhöhe eines vorkommenden Turms?
 \begin{itemize}
-	\item Mit $\overbrace{hoher Wahrscheinlichkeit}$%{$\geq 1 - \frac{1}{n^2}$ für ein $c>0$} %TODO fix overbrace
-	ist ein fixer Turm nicht höher als $~ \log n$ %TODO ~
+	\item Mit $\underbrace{hoher Wahrscheinlichkeit}_{\geq 1 - \frac{1}{n^2} \text{ für ein } c>0}$
+	ist ein fixer Turm nicht höher als $\sim \log n$
 	$Pr(h_i \geq k) = 2^{-k} \Rightarrow Pr(h_i = 2 \cdot \log n) = \frac{1}{n^2}$
-	\item Wahrscheinlichkeit, dass \underline{irgendein} Turm Höhe $\geq 2 \log n$ hat, ist $Pr(h_1 \geq 2 \log n \lor h_2 \geq 2 \log n \lor \dots \lor h_n \geq 2 \log n) \leq n \frac{1}{n^2} = \frac{1}{n}$ %TODO notiz
+	\item Wahrscheinlichkeit, dass \underline{irgendein} Turm Höhe $\geq 2 \log n$ hat, ist $Pr(h_1 \geq 2 \log n \lor h_2 \geq 2 \log n \lor \dots \lor h_n \geq 2 \log n) \leq n \frac{1}{n^2} = \frac{1}{n}$
 \end{itemize}
+\marginpar{\textcolor{blue}{\scriptsize $n \frac{1}{n^2} = \frac{1}{n}$ wegen Unien bound}}
 
 %TODO graph
 
 \paragraph*{} Also sind mit hoher Wahrscheinlichkeit $(\geq 1 - \frac{1}{n})$ alle Türme nicht größer als $2 \log n$.
 
-\paragraph*{Idee für Analyse} Konstruiere Routine, die genau die selben Zellen ($\overbrace{=}$ Turm + Etage) besucht wie Suchroutine, aber einfacher zu analysieren. %TODO ^=
+\paragraph*{Idee für Analyse} Konstruiere Routine, die genau die selben Zellen ($\overset{\wedge}{=}$ Turm + Etage) besucht wie Suchroutine, aber einfacher zu analysieren.
 
 
 \begin{lstlisting}[mathescape]
@@ -69,7 +88,8 @@ while v $\not= - \infty \cap h \not= h_{max}$ do
 	else
 		v = v.backward[h]
 od
-\end{lstlisting} %TODO notiz
+\end{lstlisting}
+\marginpar{\textcolor{blue}{\scriptsize $v.back-ward[h]$ Verweis auf Turm, der auf $v$ in Höhe $h$ zeigt}}
 
 \paragraph*{} Besucht offensichtlich gleiche Zellen wie die Suche.
 
@@ -82,7 +102,7 @@ $\Rightarrow$ Gesamtlaufzeit der Suche erwartet $O(\log n)$. %TODO anordnung
 Gegeben ist ein Universum $U$ (sehr groß) und eine Teilmenge $S \subseteq U$ (eher klein) sowie ein $m \in \mathbb{N}$ ist das Ziel die Bestimmung einer Funktion.
 \begin{itemize}
 	\item[] $h : U \rightarrow \{ 0,1,\dot,m-1 \}$
-	\item[]sodass: $|\{ x \in S | h(x) =i \}| \leq \frac{|S|}{m}$ %TODO äußere | größer machen, aufrunden
+	\item[]sodass: $\big| \{ x \in S | h(x) =i \} \big| \leq \frac{|S|}{m}$ %TODO aufrunden
 \end{itemize}
 
 \subsection{Beispiel}
