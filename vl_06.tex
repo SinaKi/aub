@@ -94,15 +94,19 @@ od
 \paragraph*{} Besucht offensichtlich gleiche Zellen wie die Suche.
 
 \paragraph*{Beobachtung} Wenn man als Männchen, der den obigen Algorithmus ausführen muss, in der Zelle eines Turms sitzt, dann muss man mit der Wahrscheinlichkeit $\frac{1}{2}$ ein Stockwerk hoch gehen und mit der Wahrscheinlichkeit $\frac{1}{2}$ nach links.
-\paragraph*{} $\Rightarrow$ Erwartete Anzahl Linksschritte = erwartete Anzahl Hochschritte
-$\Rightarrow$ Erwartete Anzahl Linksschritte = $O(\log n)$
-$\Rightarrow$ Gesamtlaufzeit der Suche erwartet $O(\log n)$. %TODO anordnung
+\begin{itemize}
+	\item[$\Rightarrow$] Erwartete Anzahl Linksschritte = erwartete Anzahl Hochschritte
+	\begin{itemize}
+		\item[$\Rightarrow$] Erwartete Anzahl Linksschritte = $O(\log n)$
+		\item[$\Rightarrow$] Gesamtlaufzeit der Suche erwartet $O(\log n)$
+	\end{itemize}
+\end{itemize}
 
 \section{Das Wörterbuchproblem (Hashing)}
 Gegeben ist ein Universum $U$ (sehr groß) und eine Teilmenge $S \subseteq U$ (eher klein) sowie ein $m \in \mathbb{N}$ ist das Ziel die Bestimmung einer Funktion.
 \begin{itemize}
 	\item[] $h : U \rightarrow \{ 0,1,\dot,m-1 \}$
-	\item[]sodass: $\big| \{ x \in S | h(x) =i \} \big| \leq \frac{|S|}{m}$ %TODO aufrunden
+	\item[]sodass: $\big| \{ x \in S | h(x) =i \} \big| \leq \lceil\frac{|S|}{m}\rceil $
 \end{itemize}
 
 \subsection{Beispiel}
