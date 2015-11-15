@@ -63,3 +63,21 @@ Wir betrachten Punkte in Reihenfolge $p_1,p_2,\dots,p_n$. Sei $\delta_i$, die Cl
 \paragraph*{Lemma} In einer Gitterzelle liegen $\leq 4$ Punkte. Beweis Flächeninhalt von Punktkreisen.
 
 \paragraph*{} Falls $\delta_i = \delta_{i+1}$, füge $p_{i+1}$ in Gitter ein. Falls $\delta_1 > \delta_{i+1}$, baue Gitter neu auf für neues $\delta_{i+1}$ (kostet $\Theta(i)$). Schlecht!
+
+%TODO bild
+
+\paragraph*{} Bei dieser Konfiguration und Einfügereihenfolge muss nach jedem Schritt das Gitter neu aufgebaut werden. $\Rightarrow$ Laufzeit wieder $\sum\limits_{i=1}^{n-1} \approx n^2$
+
+\paragraph*{Abhilfe} Füge Punkte in zufälliger Reihenfolge ein. D.h. jede Permutation soll gleich Wahrscheinlich $\frac{1}{n!}$ auftreten. %TODO n! richtig?
+
+\paragraph*{Zentrale Aussage} Wahrscheinlichkeit, dass $\delta_i < \delta_{i-1} \leq \frac{2}{i}$.
+
+\paragraph*{Dann} Erwartete Kosten des Einfügens von $p_i \leq \frac{2}{i} \cdot O(i) + O(1) = O(1)$
+\marginpar{\textcolor{blue}{\scriptsize $\frac{2}{i} \cdot O(i)$ Schlechter Fall, dass Gitter neu aufgebaut werden muss}}
+Erwartete Gesamtlaufzeit $E$($\sum\limits_i$ kosten für Einfügen von $p_i$) = $\sum\limits_i^n$ (kosten für Einfügen von $p_i$) = $\sum\limits_i^n O(1) = O(n)$
+
+
+
+
+
+
