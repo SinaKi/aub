@@ -1,0 +1,24 @@
+\section{Das Wörterbuchproblem}
+
+\paragraph*{Geg.} Universum $U$ (sehr groß); Teilmenge $S \subseteq U$ (mittelgroß) mit $|S|=n$; ein $m \in \mathbb{N}$
+
+\paragraph*{Ziel} Finde: $h: U \rightarrow \{ 0,\dots,\dots m-1 \}$ sodass $\forall\ 0 \leq i \leq m\ \big| \{ x \in s | h(x)=i \} \big| \leq \frac{n}{m}$
+
+\paragraph*{Bsp.} $U=\mathbb{N}$; $S=\{ 1,7,23,99 \}$ mit $n=4$ und $m=5$
+
+Eine gute Funktion $h$ für $S$ wäre z.B. $h(x)=x \mod 5$, wobei $h$ die Hashfunktion ist.
+\begin{table}[htb!]
+\centering
+\begin{tabular}{l|l}
+$x$ & $h(x)$ \\ 
+\hline 
+1 & 1 \\ 
+7 & 2 \\ 
+23 & 3 \\ 
+99 & 4 \\ 
+\end{tabular} 
+\end{table}
+
+Die gleiche Hashfunktion ist für ein $S = \{ 12,22,17,32,52 \}$ sehr schlecht. Alle Elemente fallen in eine Kategorie.
+
+\subsection{Anwendungsbeispiele}
