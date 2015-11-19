@@ -28,9 +28,9 @@ Platz: $O(n)$
 
 \paragraph*{Beispiel} %TODO graph
 
-\paragraph*{} Bei Einfügen eines Elements wird zufällig eine 'Turmhöhe' $h$ gewürfelt mit $Pr(h=i)=2^{-(i+1)}$.
+\minisec{} Bei Einfügen eines Elements wird zufällig eine 'Turmhöhe' $h$ gewürfelt mit $Pr(h=i)=2^{-(i+1)}$.
 
-\paragraph*{} Verbinde jede Turmetage mit dem nächsten Turm, der auf der gleichen Höhe rechts davon sichtbar ist. Suche nach einem Element $x \in U$.
+\minisec{} Verbinde jede Turmetage mit dem nächsten Turm, der auf der gleichen Höhe rechts davon sichtbar ist. Suche nach einem Element $x \in U$.
 
 \begin{lstlisting}[mathescape]
 v $\leftarrow$ '$\infty$'-Turm
@@ -74,7 +74,7 @@ $$\vdots$$
 
 %TODO graph
 
-\paragraph*{} Also sind mit hoher Wahrscheinlichkeit $(\geq 1 - \frac{1}{n})$ alle Türme nicht größer als $2 \log n$.
+\minisec{} Also sind mit hoher Wahrscheinlichkeit $(\geq 1 - \frac{1}{n})$ alle Türme nicht größer als $2 \log n$.
 
 \paragraph*{Idee für Analyse} Konstruiere Routine, die genau die selben Zellen ($\overset{\wedge}{=}$ Turm + Etage) besucht wie Suchroutine, aber einfacher zu analysieren.
 
@@ -91,7 +91,7 @@ od
 \end{lstlisting}
 \marginpar{\textcolor{blue}{\scriptsize $v.back-ward[h]$ Verweis auf Turm, der auf $v$ in Höhe $h$ zeigt}}
 
-\paragraph*{} Besucht offensichtlich gleiche Zellen wie die Suche.
+\minisec{} Besucht offensichtlich gleiche Zellen wie die Suche.
 
 \paragraph*{Beobachtung} Wenn man als Männchen, der den obigen Algorithmus ausführen muss, in der Zelle eines Turms sitzt, dann muss man mit der Wahrscheinlichkeit $\frac{1}{2}$ ein Stockwerk hoch gehen und mit der Wahrscheinlichkeit $\frac{1}{2}$ nach links.
 \begin{itemize}
@@ -119,4 +119,4 @@ Gegeben ist ein Universum $U$ (sehr groß) und eine Teilmenge $S \subseteq U$ (e
 \end{itemize}
 Dann speichere $500 000$ Telefonnummern in Array, sodass $h$ für gegebenen Namen + Vornamen genau den Index im Array liefert, wo entsprechende Telefonnummer steht.
 
-\paragraph*{} Falls $h()$ in $O(1)$ ausgewertet werden kann, hat man $O(1)$ Zugriff auf die Information.
+\minisec{} Falls $h()$ in $O(1)$ ausgewertet werden kann, hat man $O(1)$ Zugriff auf die Information.

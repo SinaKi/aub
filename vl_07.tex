@@ -25,17 +25,17 @@ Die gleiche Hashfunktion ist für ein $S = \{ 12,22,17,32,52 \}$ sehr schlecht. 
 \subsection{Anwendungsbeispiele}
 
 \subsubsection{Telefonbuch}
-\paragraph*{} Man möchte für Name + Vornamedie zugehörige Telefonnummer herausfinden.
+\minisec{} Man möchte für Name + Vornamedie zugehörige Telefonnummer herausfinden.
 
-\paragraph*{} $U \overset{\wedge}{=}$ Menge aller Zahlen die irgendeiner Name-Vorname-Kombination entsprechen.
+\minisec{} $U \overset{\wedge}{=}$ Menge aller Zahlen die irgendeiner Name-Vorname-Kombination entsprechen.
 
-\paragraph*{} $S \leq U \overset{\wedge}{=}$ Name-Vorname in Stuttgart. Mit $|n| = 500000$ und $m = 500 000$
+\minisec{} $S \leq U \overset{\wedge}{=}$ Name-Vorname in Stuttgart. Mit $|n| = 500000$ und $m = 500 000$
 
-\paragraph*{} Könnten wir eine Hashfunktion: $h:U \rightarrow \{ 0,\dots m-1 \}$ abbildet mit $\forall 0 \leq i < m ; \big| \{ x\in S | h(x)=i \} \big| \leq \frac{n}{m} = 1$ %TODO ; richtig
+\minisec{} Könnten wir eine Hashfunktion: $h:U \rightarrow \{ 0,\dots m-1 \}$ abbildet mit $\forall 0 \leq i < m ; \big| \{ x\in S | h(x)=i \} \big| \leq \frac{n}{m} = 1$ %TODO ; richtig
 
-\paragraph*{} Das ist Toll!
+\minisec{} Das ist Toll!
 
-\paragraph*{} Wir können ein Array anlegen mit 500000 Einträgen. Die Telefonnummer eines 'Name+Vorname' speichern wir an positiven $h$(Name+Vorname) des Arrays.
+\minisec{} Wir können ein Array anlegen mit 500000 Einträgen. Die Telefonnummer eines 'Name+Vorname' speichern wir an positiven $h$(Name+Vorname) des Arrays.
 
 \subsubsection{Stowasser (Latein-Deutsch Wörterbuch)}
 $U$ \dots Menge aller Wörter. $S$ \dots Menge aller lateinischen Wörter.
@@ -46,7 +46,7 @@ $U$ \dots Menge aller Paare $(i,j)$, $i \in \mathbb{Z}$, $j \in \mathbb{Z}$. $S$
 \subsubsection{Open-Street-Map-Daten}
 Basiert auf Knoten und Kanten. Anzahl der Knoten ungefähr 4-5 Milliarden. $U \dots \mathbb{N}$. $S$ \dots Menge der KnotenIDs im aktuellen Kartenausschnitt.
 
-\paragraph*{} Bei guter Hashfunktion $h$ könnte man in $O(1)$ Informationen mit $S$ assoziieren/auslesen.
+\minisec{} Bei guter Hashfunktion $h$ könnte man in $O(1)$ Informationen mit $S$ assoziieren/auslesen.
 
 \subsubsection{Datenstruktur Beispiel}
 Wir betrachten ein Wörterbuch als abstrakte Datenstruktur. Diese sollte folgende Operationen unterstützen:
