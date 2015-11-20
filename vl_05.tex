@@ -1,10 +1,11 @@
-\minisec{} Interpretiere jeden Anlauf, den Algorithmus berechnen zu lassen als einen Münzwurf mit
+\para{Interpretiere jeden Anlauf, den Algorithmus berechnen zu lassen als einen Münzwurf mit
 \begin{itemize}
 	\item[] Kopf $\overset{\wedge}{=}$ Algorithmus wurde fertig
 	\item[] Zahl $\overset{\wedge}{=}$ Algorithmus wurde nicht fertig
 	\item[$\Rightarrow$] Pr(Kopf) $\geq 1 - \frac{1}{k}$
 	\item[] Pr(Zahl) $\leq \frac{1}{k}$
 \end{itemize}
+}
 
 \paragraph*{Uns interessiert} also, wie oft man eine Münze $(a-\frac{1}{k};\frac{1}{k})$ werfen muss, bis Kopf kommt.
 
@@ -51,7 +52,7 @@ Das Protokoll basiert auf dem Graphisomorphproblem.
 
 \paragraph*{Frage} Sind $G_1$ und $G_2$ isomorph?
 
-\minisec{} $G_1$ und $G_2$ sind isomorph zueinander, falls eine Bijektion $\varphi : V_1 \rightarrow V_2$ existiert, sodass $\forall (u,v) \in E_1 \Leftrightarrow (\varphi(u),\varphi(v)) \in E_2$
+\para{$G_1$ und $G_2$ sind isomorph zueinander, falls eine Bijektion $\varphi : V_1 \rightarrow V_2$ existiert, sodass $\forall (u,v) \in E_1 \Leftrightarrow (\varphi(u),\varphi(v)) \in E_2$}
 
 \subsubsection{Beispiele}
 
@@ -164,7 +165,7 @@ Nicht isomorph, da identische Anzahl Knoten und Kanten notwendig sind für die E
 %TODO graph
 Nicht isomorph, da $G_2$ einen Grad 4 Knoten enthält und $G_1$ nicht.
 
-\minisec{} Bislang gibt es keinen Polynomzeitalgorithmus, der Graphisomorphie entscheidet. NP-Harte ist nicht bekannt.
+\para{Bislang gibt es keinen Polynomzeitalgorithmus, der Graphisomorphie entscheidet. NP-Harte ist nicht bekannt.}
 
 \subsection{Geheimnis der Bank/Alice} Isomorphismus zwischen zwei öffentlichen bekannten Graphen $G_1$ und $G_2$. Bank (Alice) möchte Sie (Bob) davon überzeugen, dass sie $\varphi$ kennt, ohne $\varphi$ zu verraten.
 
@@ -174,7 +175,7 @@ Alice erzeugt z.B. zufällig einen riesigen Graph $G_1$  und durch zufällige Pe
 \subsection{Protokoll}
 Protokoll, durch welches Alice Bob überzeugt, das Geheimnis zu kennen.
 
-\minisec{} Alice permutiert $G_j$ (mit $j \in \{ 1,2 \}$ zufällig) mit einer zufälligen Permutation $\Pi$ zu $H$ (und stellt sicher, dass $H \not= G_1,G_2$) und schickt $H$ zu Bob.
+\para{Alice permutiert $G_j$ (mit $j \in \{ 1,2 \}$ zufällig) mit einer zufälligen Permutation $\Pi$ zu $H$ (und stellt sicher, dass $H \not= G_1,G_2$) und schickt $H$ zu Bob.}
 
 \paragraph*{Bob} Möchte sich davon überzeugen, dass Alice Isomorphie zwischen $G_1$ und $G_2$ kennt, indem er $k \in \{ 1,2 \}$ zufällig wählt und Alice bittet, die Isomorphie zwischen $G_k$ und $H$ offenzulegen.
 
@@ -182,7 +183,7 @@ Protokoll, durch welches Alice Bob überzeugt, das Geheimnis zu kennen.
 
 %TODO graphen
 
-\minisec{} Falls Alice $\varphi$ kennt, kann Sie immer korrekt antworten. Falls Alice $\varphi$ nicht kennt und $H$ aus $G_1$ konstruiert hat, kann Sie Bobs Anfrage nach Isomorphie zwischen $G_1$ und $H$ einfach beantworten, allerdings wird es Alice schwer fallen eine Isomorphie zwischen $G_2$ und $H$ zurückzugeben, es sei denn sie kann das Graphisomorphieproblem lösen.
+\para{Falls Alice $\varphi$ kennt, kann Sie immer korrekt antworten. Falls Alice $\varphi$ nicht kennt und $H$ aus $G_1$ konstruiert hat, kann Sie Bobs Anfrage nach Isomorphie zwischen $G_1$ und $H$ einfach beantworten, allerdings wird es Alice schwer fallen eine Isomorphie zwischen $G_2$ und $H$ zurückzugeben, es sei denn sie kann das Graphisomorphieproblem lösen.}
 
 \paragraph*{Theorem} Alice verrät nichts über $\varphi$.
 

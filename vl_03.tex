@@ -13,11 +13,11 @@ RepMinCut(G,r)
 	od
 	return bestSol
 \end{lstlisting}
-\minisec{} $p$ berechnet den Cut vom Orginalalgorithmus. $val(P)$ ist der Wert aus Cuts.
+\para{$p$ berechnet den Cut vom Orginalalgorithmus. $val(P)$ ist der Wert aus Cuts.}
 
-\minisec{} Angenommen Kargers MinCut berechnet MinCut mit $WS \geq \frac{1}{n^2}$. Die Wahrscheinlichkeit, dass in jedem der $r$ Versuche \underline{nicht} der MinCut zu finden ist, ist $\big(1-\frac{2}{n(n-1)}\big)^r < \big(e^{-\frac{2}{n(n-1)}}\big)^r$ oder auch für $r \approx n^2 \log n \Rightarrow $ Fehler $WS \leq \frac{1}{n^c}$.
+\para{Angenommen Kargers MinCut berechnet MinCut mit $WS \geq \frac{1}{n^2}$. Die Wahrscheinlichkeit, dass in jedem der $r$ Versuche \underline{nicht} der MinCut zu finden ist, ist $\big(1-\frac{2}{n(n-1)}\big)^r < \big(e^{-\frac{2}{n(n-1)}}\big)^r$ oder auch für $r \approx n^2 \log n \Rightarrow $ Fehler $WS \leq \frac{1}{n^c}$.}
 
-\minisec{} $e^{-\frac{2}{n(n-1)}}$ ist die obere Schranke für die WS, dass man jedes Mal Pech hat z.B. $r=\frac{n(n-1)}{2} \Rightarrow$ WS, dass falsch $\leq \frac{1}{e} \approx 0,36$.
+\para{$e^{-\frac{2}{n(n-1)}}$ ist die obere Schranke für die WS, dass man jedes Mal Pech hat z.B. $r=\frac{n(n-1)}{2} \Rightarrow$ WS, dass falsch $\leq \frac{1}{e} \approx 0,36$.}
 
 \paragraph*{Beweise,} dass die Erfolgswahrscheinlichkeit in der Tat $\geq \frac{2}{n(n-1)}$ ist. Wir fixieren hierzu einen MinCut und zeigen, dass die Wahrscheinlichkeit, nie eine Kante des MinCut zu Kontrahieren $\geq \frac{2}{n(n-1)}$ ist.
 Die Wahrscheinlichkeit im ersten Schritt eine MinCut zu bekommen ist $\frac{k}{\#Kanten}$.
@@ -25,15 +25,15 @@ Die Wahrscheinlichkeit im ersten Schritt eine MinCut zu bekommen ist $\frac{k}{\
 \paragraph*{Lemma:} Betrachte einen Multigraph $G(V,E)$ mir einem MinCut mit Wert $k$. Dann gilt: $G$ hat mindestens $\frac{k \cdot n}{2}$ Kanten.
 \paragraph*{Beweis:} Beobachtung: Jeder Knoten hat mindestens Grad $k$. $\Rightarrow$ Anzahl der Kanten $\geq k \cdot \frac{n}{2}$.
 
-\minisec{} Sei $E_i \dots$ Ergebnis, dass in i-tem Kantenkontraktionsschritt keine MinCut-Kante erwischt wurde. Wir betrachten einen fixen MinCut mit Wert $k$ (bzw. dessen $k$ Kanten). Die Wahrscheinlichkeit, im ersten Kontraktionsschritt einen MinCut zu erwischen ist $\frac{k}{m} \leq \frac{2}{n} \textcolor{gray}{= \big( m \geq \frac{k \cdot n}{2} \big)} \Rightarrow Pr(E_1) \geq 1-\frac{2}{n}$.
-\minisec{} Falls $E_1$ eingetreten ist, existieren vor dem zweiten Schritt midestens $\frac{k \cdot (n-1)}{2}$ Kanten.
-\minisec{} $\Rightarrow$ Wahrscheinlichkeit, im zweiten Schritt eine MinCut Kante zu erwischen (unter der Voraussetzung $E_1$ ist eingetreten) ist
+\para{Sei $E_i \dots$ Ergebnis, dass in i-tem Kantenkontraktionsschritt keine MinCut-Kante erwischt wurde. Wir betrachten einen fixen MinCut mit Wert $k$ (bzw. dessen $k$ Kanten). Die Wahrscheinlichkeit, im ersten Kontraktionsschritt einen MinCut zu erwischen ist $\frac{k}{m} \leq \frac{2}{n} \textcolor{gray}{= \big( m \geq \frac{k \cdot n}{2} \big)} \Rightarrow Pr(E_1) \geq 1-\frac{2}{n}$.}
+\para{Falls $E_1$ eingetreten ist, existieren vor dem zweiten Schritt midestens $\frac{k \cdot (n-1)}{2}$ Kanten.}
+\para{$\Rightarrow$ Wahrscheinlichkeit, im zweiten Schritt eine MinCut Kante zu erwischen (unter der Voraussetzung $E_1$ ist eingetreten) ist
 $$ \leq \frac{k}{\frac{k(n-1)}{2}} = \frac{2}{n-1}$$
-$$ \Rightarrow Pr(E_2|E_1) \geq 1 - \frac{2}{n-1} $$
-\minisec{} Falls $E_1$ und $E_2$ eingetreten sind, existieren vor dem dritten Schritt mindestens $\frac{k(n-2)}{2}$ Kanten.
-\minisec{} $\Rightarrow$ Wahrscheinlichkeit, im dritten Schritt eine MinCut Kante zu erwischen (unter der Voraussetzung, dass $E_1 \& E_2$) eingetreten sind) ist
+$$ \Rightarrow Pr(E_2|E_1) \geq 1 - \frac{2}{n-1} $$}
+\para{Falls $E_1$ und $E_2$ eingetreten sind, existieren vor dem dritten Schritt mindestens $\frac{k(n-2)}{2}$ Kanten.}
+\para{$\Rightarrow$ Wahrscheinlichkeit, im dritten Schritt eine MinCut Kante zu erwischen (unter der Voraussetzung, dass $E_1 \& E_2$) eingetreten sind) ist
 $$ \leq \frac{k}{\frac{n(n-2)}{2}} = \frac{2}{n-2} $$
-$$ \Rightarrow Pr(E_3|E_1 \cap E_2) \geq 1 - \frac{2}{n-2} $$
+$$ \Rightarrow Pr(E_3|E_1 \cap E_2) \geq 1 - \frac{2}{n-2} $$}
 
 \paragraph*{Allgemein:} Vor dem i-ten Schritt haben wir noch $n-i+1$ Kanten. Falls wir bislang  noch keinen Fehler gemacht haben ($E_1,\dots, E_{n-1}$ sind eingetreten) hat der MinCut noch Größe $k$.
 $$ \Rightarrow \text{ wir haben } \geq k(n-i+1) \text{ Kanten} $$
@@ -44,8 +44,8 @@ $$ = \frac{n-2}{n} \cdot \frac{n-3}{n-1} \cdot \frac{n-4}{n-2} \cdot \frac{n-5}{
 $$ = \frac{2}{n(n-1)} $$
 
 $\Rightarrow$ Pr(Algorithmus berechnet wirklich MinCut) $\geq \frac{2}{n(n-1)}$
-\minisec{} Durch Wiederholung lässt sich die Erfolgswahrscheinlichkeit erhöhen. Wenn wir z.B. $c \cdot \frac{n^2}{2} \log n$ oft wiederholen erhalten wir eine Fehlerwahrscheinlichkeit $\leq \frac{1}{n^c}$. 'Der Algorithmus hat eine hohe Erfolgswahrscheinlichkeit'.
-\minisec{} Falls die Fehlerwahrscheinlichkeit $\leq \frac{1}{2^n}$ ist, sagen wir 'Der Algorithmus hat eine sehr hohe Erfolgswahrscheinlichkeit'. Hier können wir das für $~ c \cdot \frac{n^2}{2} \cdot n$ Wiederholungen erreichen.
+\para{Durch Wiederholung lässt sich die Erfolgswahrscheinlichkeit erhöhen. Wenn wir z.B. $c \cdot \frac{n^2}{2} \log n$ oft wiederholen erhalten wir eine Fehlerwahrscheinlichkeit $\leq \frac{1}{n^c}$. 'Der Algorithmus hat eine hohe Erfolgswahrscheinlichkeit'.}
+\para{Falls die Fehlerwahrscheinlichkeit $\leq \frac{1}{2^n}$ ist, sagen wir 'Der Algorithmus hat eine sehr hohe Erfolgswahrscheinlichkeit'. Hier können wir das für $~ c \cdot \frac{n^2}{2} \cdot n$ Wiederholungen erreichen.}
 
 \begin{table}
 \centering
