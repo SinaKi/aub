@@ -53,18 +53,21 @@ Wir betrachten ein Wörterbuch als abstrakte Datenstruktur. Diese sollte folgend
 \begin{itemize}
 	\item[] S = MAKESET() \dots leeres Wörterbuch erzeugen
 	\item[] insert(x,S) \dots fügt Item $x$ (Item besteht aus (k,inf)) in $S$ ein bzw. falls Item mit Schlüssel $k$ existiert, ersetze diesen.
+	\marginpar{\textcolor{blue}{\scriptsize z.B. Schlüssel: Name+Vorname; Info: Tel.nr.}}
+	\item[] delete(x,S) \dots löscht Item $x$ aus Wörterbuch
+	\item[] lookup(k,S) \dots gibt Item $x = (k,inf)$ auf, falls vorhanden
+	\marginpar{\textcolor{blue}{\scriptsize $k$ eindeutig}}
 \end{itemize}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Naive Implementierung}
+\begin{enumerate}
+	\item Array/Feld für die Items, Zähler für Anzahl Items in $S$.
+	%TODO bild
+	\begin{itemize}
+		\item[] insert(x,S) \dots überprüfen ob Schlüssel von $x$ schon enthalten, falls ja, überschreiben des entsprechenden Items, falls nein, Item hinten anhängen und Zähler eins hoch. Laufzeit: $\Theta(n)$
+		\item[]  delete(x,S) \dots Item finden, austauschen mit letztem Item, Zähler eins runter. Laufzeit: $\Theta(n)$
+		\item[] %TODO
+	\end{itemize}
+\end{enumerate}
+%TODO
