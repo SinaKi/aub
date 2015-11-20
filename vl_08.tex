@@ -1,0 +1,19 @@
+\paragraph*{Theorem} Es gibt keine 'immer gute' $(\forall S \subseteq U)$ Hashfunktion.
+
+\paragraph*{Bsp.} $U=\{ 0,1,\dots,2^{64}-1 \}$ $S=\{ 3,7,9,10 \}$ $T=$ %TODO T=
+$h(x) = x \mod 5$ Für dieses $S$ ist $h$ sehr gut. Für $S=\{ 6,11,31,46 \}$ aber nicht!
+
+\paragraph*{Problem} Wenn $h(x_1)=h(x_2)$ für $x_1 \not= x_2$.
+
+
+\subsection{Hashing mit Verkettung}
+Jede Tafelposition ist Kopf einer Verketteten Liste. Alle $x \in S$ mit $h(x)=i$ werden in i-ter Liste gespeichert. Platzbedarf: $O(m+n) = O(n+\frac{1}{B})$ mit Belegungsfaktor $B=\frac{n}{m}$. %TODO notiz
+Je kleiner $V$ desto platzineffizienter wird das Wörterbuch (aber dann evtl. einfacher, gute Hashfunktion zu finden).
+
+\paragraph*{Zugriffszeit} (unter Annahme, dass $h()$ in $O(1)$ ausgewertet werden kann)
+\begin{itemize}
+	\item[] Zugriff auf $x \in S$ in O(1 + Position von $x$ in Liste $L_{h(x)}$)
+	\item[] Zugriff auf $x \not\in S$ in O(1 + |$L_{h(x)}$|)
+\end{itemize}
+
+%TODO ab seite 2
