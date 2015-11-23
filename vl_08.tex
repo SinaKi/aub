@@ -16,4 +16,11 @@ Je kleiner $V$ desto platzineffizienter wird das Wörterbuch (aber dann evtl. ei
 	\item[] Zugriff auf $x \not\in S$ in O(1 + |$L_{h(x)}$|)
 \end{itemize}
 
-%TODO ab seite 2
+\paragraph*{Annahme} $h$ verteilt $U$ gleichmäßig über $T$, d.h. $\forall i \big|\underbrace{\{ x \in U | h(x)=i \}}_{U_i}\big| \leq \big|\frac{N}{m}\big|$
+
+\paragraph*{Bsp.} $h(x) = x \mod m$
+
+\paragraph*{Satz} Sei $x$ ein zufälliges Element aus $U-S$ und $n \leq \frac{N}{2}$. Dann ist die erwartete Suchzeit für $x$ $O(1+B)$.
+
+\paragraph*{Beweis} $l_i =$ Anzahl Elemente aus $S$, die in $L_i$ gespeichert werden, $i=0,\dots,m-1$. Es gilt $\sum\limits_{i=0}^{m-1} l_i = n$. Die erwartete Suchzeit ist $\bigg(\sum\limits_{i=0}^{m-1} Pr(h(x)=i) \cdot l_i\bigg)+1$.
+%TODO
