@@ -1,6 +1,6 @@
 \paragraph*{Theorem} Es gibt keine 'immer gute' $(\forall S \subseteq U)$ Hashfunktion.
 
-\paragraph*{Bsp.} $U=\{ 0,1,\dots,2^{64}-1 \}$ $S=\{ 3,7,9,10 \}$ $T=$ %TODO T=
+\paragraph*{Bsp.} $U=\{ 0,1,\dots,2^{64}-1 \}$ $S=\{ 3,7,9,10 \}$ $T=$ %TODO T= diagramm
 $h(x) = x \mod 5$ Für dieses $S$ ist $h$ sehr gut. Für $S=\{ 6,11,31,46 \}$ aber nicht!
 
 \paragraph*{Problem} Wenn $h(x_1)=h(x_2)$ für $x_1 \not= x_2$.
@@ -22,5 +22,24 @@ Je kleiner $V$ desto platzineffizienter wird das Wörterbuch (aber dann evtl. ei
 
 \paragraph*{Satz} Sei $x$ ein zufälliges Element aus $U-S$ und $n \leq \frac{N}{2}$. Dann ist die erwartete Suchzeit für $x$ $O(1+B)$.
 
-\paragraph*{Beweis} $l_i =$ Anzahl Elemente aus $S$, die in $L_i$ gespeichert werden, $i=0,\dots,m-1$. Es gilt $\sum\limits_{i=0}^{m-1} l_i = n$. Die erwartete Suchzeit ist $\bigg(\sum\limits_{i=0}^{m-1} Pr(h(x)=i) \cdot l_i\bigg)+1$.
+\paragraph*{Beweis} $l_i =$ Anzahl Elemente aus $S$, die in $L_i$ gespeichert werden, $i=0,\dots,m-1$. Es gilt $\sum\limits_{i=0}^{m-1} l_i = n$. Die erwartete Suchzeit ist $$\bigg(\sum\limits_{i=0}^{m-1} Pr(h(x)=i) \cdot l_i\bigg)+1$$
+
+\note{$U_i \subseteq U$ = Menge aus $U_i$ welche von $h$ auf $i$ gemappet wird}
+\para{$Pr(h(x)=i) = \frac{|U_i \backslash S|}{|U \backslash S|} \leq \frac{|U_i|}{|U \backslash S|} \leq\lceil \frac{\frac{N}{m}}{\frac{N}{2}} \rceil \leq \frac{\frac{N}{m+1}}{\frac{N}{2}} = \frac{2}{m} + \frac{2}{N} \leq \frac{2}{m} + \frac{1}{n}$}
+
+$$\Rightarrow E = \big( \sum\limits_{i=0}^m Pr(h(x)=i) - l_i \big) + 1 \leq 1+ \sum\limits_{i=0}^{m-1}(\frac{2}{m}+\frac{1}{n}) - l_i = 1+\frac{2}{m} \cdot \underbrace{\sum l_i}_{n} + \frac{1}{n} \underbrace{\sum l_i}_{n}$$ %TODO - oder mal?
+$$= 1+\frac{2n}{m}+1 = 2+\frac{2n}{m} = O(1+\frac{n}{m}) = O(1+B) \hspace{5cm} \Box$$ %TODO B?
+
+\para{Das heißt für zufällige Elemente nicht aus $s$ ist erwartete Zugriffszeit OK.}
+
+\paragraph*{Problem} In der Praxis sind Zugriffe nicht zufällig.
+
+\paragraph*{Satz} Sei $x$ ein zufälliges Element aus $S$. Dann ist die erwartete Zugriffszeit für $x$ $$ O\Bigg(1+\frac{1}{n} - \sum\limits_{i=0}^{m-1}\Big( \frac{l_i(l_i+1)}{2} \Big)\Bigg) $$
+
+\paragraph*{Anmerkung} Satz nicht besonders aussagekräftig, da $\sum l_i = n$ fast nichts aussagt über $\sum \frac{l_i(l_i+1)}{2}$.
+
+\paragraph*{Beweis} Wenn $x$ das $j$-te Element in seiner Liste ist, dann ist die Suchzeit $O(1+j)$. Aber ist die erwartete Suchzeit $$ O\Big(\frac{1}{n} \cdot \sum\limits_{i=0}^{m-1} \sum\limits_{j=1}^{l_i} (1+j)\Big) = O\Big(\frac{1}{n} \cdot \sum\limits_{i=j}^{m-1} \frac{l_i(l_i+1)}{2}\Big) \hspace{4cm} \Box$$
+
+
+
 %TODO
