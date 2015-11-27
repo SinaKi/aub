@@ -61,13 +61,67 @@ Wir betrachten ein Wörterbuch als abstrakte Datenstruktur. Diese sollte folgend
 
 
 \subsection{Naive Implementierung}
-\begin{enumerate}
-	\item Array/Feld für die Items, Zähler für Anzahl Items in $S$.
-	%TODO bild
-	\begin{itemize}
-		\item[] insert(x,S) \dots überprüfen ob Schlüssel von $x$ schon enthalten, falls ja, überschreiben des entsprechenden Items, falls nein, Item hinten anhängen und Zähler eins hoch. Laufzeit: $\Theta(n)$
-		\item[]  delete(x,S) \dots Item finden, austauschen mit letztem Item, Zähler eins runter. Laufzeit: $\Theta(n)$
-		\item[] %TODO
-	\end{itemize}
-\end{enumerate}
-%TODO
+
+\subsubsection*{1. Array/Feld für die Items, Zähler für Anzahl Items in $S$.}
+%TODO bild
+\begin{itemize}
+	\item[] insert(x,S) \dots überprüfen ob Schlüssel von $x$ schon enthalten, falls ja, überschreiben des entsprechenden Items, falls nein, Item hinten anhängen und Zähler eins hoch. Laufzeit: $\Theta(n)$
+	\item[]  delete(x,S) \dots Item finden, austauschen mit letztem Item, Zähler eins runter. Laufzeit: $\Theta(n)$
+	\item[] lookup(k,S) \dots alle Items durchgehen, Item mit passendem Schlüssel zurückgeben. Laufzeit: $O(1)$
+	\item[] MAKESET \dots
+\end{itemize}
+Vorteile: Einfach, Platzsparend
+
+\subsubsection*{2. Verkettete Liste (einfach oder doppelt)}
+ \dots ähnlich, aber braucht nicht unbedingt zusammenhängenden Speicher
+ 
+\subsubsection*{3. Direkte Adressierung}
+\paragraph*{Annahme} Schlüsseluniversum endlich, $[0,\dots,k-1]$. Wir spendieren ein Array der Größe $k$. An Position $i$ des Arrays steht das Item mit Schlüssel $i$ (falls vorhanden) oder Sonderwert 'NIL' falls keiner vorhanden. Insert/Delete/lookup haben alle Zeitverbrauch $O(1)$.
+
+\paragraph*{Problem} Platzverbrauch \textasciitilde Größe des Schlüsseluniversums.
+\note{z.B. bei der Verketteten Liste war der Platzverbrauch \textasciitilde \# zu verwendende Elemente}
+
+\paragraph*{Ziel} Datenstruktur für Wörterbuch, welche
+\begin{itemize}
+	\item O(1) Zugriffszeit für insert/delete/lookup hat
+	\item O(n) Platzverbrauch garantiert
+\end{itemize}
+
+\para{Idealerweise hätten wir gerne für ein gegebenes $S \subseteq U = \{ 0,\dots,2^{64}-1 \}$ mit $|S|=n$ eine Hashfunktion $h$, welche $S$ injektiv auf $\{ 0,\dots,n-1 \}$ abbildet, d.h. $\forall x,y \in S: h(x) \not= h(y)$.}
+
+
+\para{Mit einem solchen $h$ könnten wir $S$ wie folgt verwalten.}
+\begin{itemize}
+	\item lege Array mit $n$, Einträgen für die Items an
+	\item Item mit Schlüssel $x$ wird an Position $h(x)$ gespeichert. (an keiner Stelle werden $>1$ Items gespeichert)
+	\item lookup(x,S): Schaue an Position $h(x)$ nach
+\end{itemize}
+
+\paragraph*{Vorteil}
+\begin{itemize}
+	\item Zugriffszeit $O(1)$
+	\item Größe $O(|S|)$
+\end{itemize}
+
+\para{$U$ \dots Schlüsseluniversum}
+
+\para{$T[0,\dots,t-1]$ \dots Feld, auch Hashtafel genannt}
+
+\para{$S \subseteq U$ \dots Teilmenge von Schlüsseluniversum, welche gehasht werden soll}
+
+\paragraph*{Gesucht} $h:U \rightarrow [0,\dots,t-1]$
+
+\para{$c_x^h(S) := \{ y \in S | h(y) = h(x) \}$ \dots die Menge an elementen in $S$, die von $h$ auf den selben Hashfeldeintrag gemappt werden wie $x$}
+
+\para{Idealerweise $|c_x^h(S) \leq 1|$ ($\Rightarrow h$ injektiv für $S$). Falls $t<|S|$, hätte man gerne $|c_x^h(S)| \leq \lceil\frac{|S|}{t}\rceil$}
+
+\paragraph*{Frage} Gibt es eine Superhashfunktion $h^*$, welche für jedes $S \subseteq U$ garantiert, dass $$ |c_x^h(S)| \leq \lceil \frac{|S|}{t} \rceil $$
+
+\paragraph*{Bsp.} $U=\mathbb{N}$; $S=\{ 20,13,6,18,28,313 \}$; $t=5$; $h(x)= x \mod 5$. Für $S=\{ 11,33,22,19,5 \}$ wäre dieses $h$ perfekt. Für $S=\{ 16,51,26,31,1 \}$ ist dieses $h$ Katastrophal.
+%TODO hashtabelle
+
+\paragraph*{Satz} Seien $U,t$ und $h$ gegeben, $|U|=h$. Dann gilt es für alle $n$ mit $1 \leq \frac{h}{t}$ ein $S \subseteq U$ mit $|S|=n$ (schreibe auch $S \in {U \choose n} $) mit  $$ |c_x^h(S)| = n \forall x \in S, $$ d.h., alle Elemente aus $S$ werden in den gleichen Hashtafeleintrag gehasht.
+
+\paragraph*{Beweis} Nach Schubfachprinzip existiert ein $i$ mit $0 \leq i < t$ sodass $$ |\underbrace{h^{-1}(i)}_{\{ x \in U | h(x)=i \}}| \geq \frac{|U|}{t} $$ $\Rightarrow \frac{|U|}{t} = \frac{h}{t} \geq n$. Wähle $S$ aus ${h^{-1}(i) \choose n}$ \hspace{8cm} $\Box$
+
+\para{$\Rightarrow$ Es gibt also keine Superhashfunktion die für jedes $S$ gut ist; man sollte also die Hashfunktion $h$ randomisiert oder unter Berücksichtigung von $S$ bestimmen}
