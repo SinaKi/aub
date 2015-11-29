@@ -1,0 +1,96 @@
+\paragraph*{Bisher} Wenn wir $h$ aus einer geeigneten Familie von c-universellen Hashfunktion zufällig wählen, \dots %TODO ... ?
+
+\paragraph*{O(1)} (bei Platzverbrauch O(n))
+
+\paragraph*{egal} wie S aussieht
+
+\paragraph*{Jetzt} Garantiere worst-case Zugriffszeit von O(1) bei Platz O(n).
+
+
+\subsection{Perfektes Hashing}
+\paragraph*{Ziel} Möchte $h$ finden mit $h(x) \not= h(y) \forall x,y \in S, x \not= y$ und $h$ bildet in eine Hashtafel der Größe $O(|S|)$ ab.
+
+\subsubsection{1. Versuch: einstufiges perfektes Hashing}
+$$ c_y(h) = |\{ x,y \} \in {5 \choose 2} : h(x) = h(y)| $$ \dots \# der Kollisionen für $S$ unter $h$.
+$$ c_S(h) = 0 \Leftrightarrow h|S \text{ injektiv} $$ $H$ \dots c-universelle Familie von Hashfunktion:
+$$ h:U \rightarrow \{ 0,\dots,n-1 \} $$ Sei $h \in H$ zufällig gewählt
+
+\paragraph*{Satz} Für zufälliges $h \in H$ gilt $$ E\big(c_y(h)\big) \leq {n \choose 2} \cdot \frac{c}{m} $$ wobei $E\big(c_y(h)\big)$ die erwartete Anzahl Kollisionen sind, die zufällig $h \in H$ auf $S$ produziert.
+
+\paragraph*{Beweis} Definition 
+\note{* $\leq \frac{c}{m}$, da nur ein $\frac{c}{m}$ Anteil der Hashfunktion in $H$ für fixe $x,y$ auf den gleichen Hashfeldeintrag mappen darf (per Definition von c-universalität)}
+$\delta_n(x,y) = \begin{cases} 1 & \text{falls } h(x)=h(y) \\ 0 & \text{sonst} \end{cases}$
+$$ c_S(h)=\sum\limits_{\{ x,y \} \in {5 \choose 2}} \delta_n(x,y) $$
+$$ E(c_S(h) = \sum\limits_{\{x,y\} \in {5 \choose 2}} E(\delta_n(x,y)) = \sum\limits_{\{x,y\} \in {5 \choose 2}} \underbrace{Pr(\delta_n(x,y)=1)}_{*} \leq \sum\limits_{\{x,y\} \in {5 \choose 2}} \frac{c}{m} = {n \choose 2} \frac{c}{m} \hspace{1cm} \Box$$
+
+\paragraph*{Korollar} Für $m>c \cdot {n \choose 2}$ gibt es ein $h \in H$ mit $h|S$ injektiv.
+
+\paragraph*{Beweis} Durch Einsetzen folgt $$ E(c_S(h)) < {n \choose 2} \frac{c}{c {n \choose 2}} = 1 $$
+\note{Probalilistische Methode}
+Also $E(c_S(h)) < 1$. Da $c_S(h)$ nur ganzzahlige Werte annimmt, muss es mindestens ein $h \in H$ geben mit $c_S(h)=0$ [andernfalls wäre $E(c_S(h)) \geq 1$].
+
+\para{Dieses Korollar ist leider nicht besonders Konstruktiv, auf den ersten Blick bleibt einem nichts anderes übrig, als alle $h \in H$ zu testen, um ein $h$ mit $h|S$ injektiv zu finden. Laufzeit dafür wäre $O(|H| \cdot n+m)$.}
+
+\para{Bislang zwei Nachteile:}
+\begin{itemize}
+	\item Platzbedarf $m \approx n^2$, damit so eine Funktion überhaupt sicher existiert
+	\item die gewünschte Hashfunktion finden eher schwierig
+\end{itemize}
+
+\paragraph*{Korollar} Falls $m>2 \cdot {n \choose 2}$, können wir in erwartet $O(n+m)$ Zeit ein $h \in H$ finden mit $h|S$ injektiv.
+
+\paragraph*{Beweis} $E(c_S(h)) \leq {n \choose 2} \cdot \frac{c}{m} \leq \frac{1}{2}$.
+\framebox[1.1\width]{Markov Ungleichung $Pr(X \geq c) \leq \frac{E(X)}{c}$ für nicht-negative Zufallsvariable $X$.}
+$$ \Rightarrow Pr(c_s(h)) \geq 1 \leq \frac{\frac{1}{2}}{1} = \frac{1}{2}$$
+$$ \Rightarrow Pr(c_s(h)=0) \geq \frac{1}{2}$$
+Wir können somit in $=(n+m)$ erwartet ein $h$ mit $h|S$ injektiv finden:
+\begin{itemize}
+	\item wähle $h \in H$ zufällig
+	\item falls $h|S$ injektiv $\rightarrow$ fertig
+	\item[] sonst von vorn beginnen
+\end{itemize}
+
+\paragraph*{Intuitiv} Für groß genuge $n^2$ Hashtafeln gibt es injektive $h$ für $S$ bzw. für noch ein wenig größere kann man solche auch effizient finden.
+
+\para{Leider ist diese Konstruktion nicht so gut, da sie eine Hashtafel der Größe $\sim n^2$ voraussetzt. Hätten jedoch gerne Platz $O(n)$.}
+
+
+\subsection{Zweistufiges Perfektes Hashing}
+%TODO bild
+
+\paragraph*{Korollar} Falls $m > \frac{m-1}{2} \cdot c$, dann existiert $h \in H$ mit $c_S(h) \leq n$.
+
+\paragraph*{Beweis} $E(c_S(h)) \leq {n \choose 2} \cdot \frac{c}{m} < \frac{1}{2} \cdot \frac{n(n-1)}{\frac{n-1}{2}} = n \hspace{2cm} \Box$
+
+\para{Wieder nur Existenzbeweis, Konstruktion aber möglich durch leicht größere Hashtafel.}
+
+\paragraph*{Korollar} Falls $m>(n-1)\cdot c$, gilt für mindestens die Hälfte der $h \in H : c_S(h) \leq n$
+
+\paragraph*{Beweis} Wie oben.
+
+\para{$\Rightarrow$ Wir können in erwartet $O(n+m)$ Zeit ein $h$ finden mit $c_S(h) \leq n$ und wir brauchen Hashtafel der Größe $O(n)$.}
+
+\para{Sei $B_i(h)={h|S}^{-1}(i) = \{ x \in S | h(x)=i \}$ \dots Inhalt des Hasheimers, der alle $x \in S$ bekommt mit $h(x)=i$. $S_i(h) = |B_i(n)|$}
+
+\paragraph*{Es gilt} $c_S(h) = \sum\limits_i {S_i(h) \choose 2}$. Wir haben $h$ so gewählt, dass $c_S(h) \leq n$.
+$\Rightarrow$ es gilt auch $\sum\limits_i {S_i(h) \choose 2} \leq n$
+
+\para{Für jeden Hasheimer $B_i(h)$ erzeugen wir eine Sekundärhashfunktion und -tafel der Größe $$ m_i>2 \cdot {S_i(h) \choose 2} $$ welche den Inhalt von $B_i(h)$ injektiv in $T_i$ hasht.}
+
+\para{Der Platzverbrauch als auch die notwendige Zeit zur Konstruktion ist $$ O(2 \cdot c \cdot {S_i(h) \choose 2}) $$}
+
+\para{Die Größe der Sekundär Hashtabellen (und deren Konstruktionszeit) ist $$ \sum\limits_{i=0}^{m-1} 2c \cdot {S_i(h) \choose 2} = 2c \cdot \underbrace{\sum\limits_{i=0}^{m-1} {S_i(h) \choose 2}}_{\leq n} \leq 2cn = O(n)$$}
+
+
+\subsubsection{Algorithmus zur Konstruktion einer zweistufigen perfekten Hashfunktion}
+
+\paragraph*{Annahme} $S \subseteq U, |S|=n$, können c-universelle Familie von Hashfunktionen $h: U \rightarrow [0,\dots,m-1]$ sampeln.
+
+\begin{enumerate}
+	\item Finde $h : U \rightarrow \{ 0,\dots,c(n-1) \}$ welches auf $S \leq n$ Kollisionen produziert [geht in erwartet $O(n)$ Zeit]. \note{Primäres Hashing}
+	\item Bestimme für $i=0,\dots,c(n-1)$; $B_i(h)= \{ x \in S | h(x)=i \}$
+	\item Für jedes $i=0,\dots,c(n-1)$ mit $|B_i(h)|>1$ finde $h_i : U \rightarrow [0,\dots,{S_i(h) \choose 2} \cdot (c-1)]$ welches injektiv ist für $B_i(h)$ [das geht in $O({S_(h) \choose 2})$ pro Eimer $i$]
+\end{enumerate}
+
+\paragraph*{Zugriff auf ein $x \in S$} Wende $h$ auf $x$ an: $h(x)=i$ (falls $|B_i(h)| \leq 1 \Rightarrow$ fertig). Wende $h_i$ auf $x$ an: $h_i(x) \rightarrow$ Hashtafeleintrag, der $\leq 1$ Elemente enthält. $\Rightarrow$ Zugriffszeit $O(1)$
+
