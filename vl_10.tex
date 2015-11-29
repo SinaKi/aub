@@ -1,0 +1,22 @@
+\section{Kürzeste Wege via Constraction Hierachies}
+
+\paragraph*{Problem} Gegeben ist ein gerichteter Graph $G(V,E)$ mit Knotenmenge $V$, Kantenmenge $E$ und Kostenfunktion $c:E \rightarrow \mathbb{R}^+$.
+
+\paragraph*{Bsp.}
+\begin{itemize}
+	\item[$V$] \dots alle Straßenkreuze in Deutschland
+	\item[$E$] \dots alle Straßenabschnitte dazwischen
+	\item[$c$] \dots Reisezeit, wenn man mit Auto fährt
+\end{itemize}
+
+\paragraph*{Anfrage} besteht aus $s,t \in V$
+
+\paragraph*{Ziel} Finde Pfad $\Pi = v_0v_1v_2 \cdots v_{k-1}$ mit $s=v_0, t=v_{k-1}$ und $\sum\limits_{i=0}^{k-1} \cdot c(v_i,v_{i+1})$ ist minimal über alle Pfade von $s$ nach $t$.
+
+\paragraph*{Standardlösung} Dijkstras Algorithmus $|V|=n,|E|=m$. Praktisch braucht Dijkstra in einer guten Implementierung ca. $3s$ für eine Pfadberechnung im Deutschlandgraph $(n=20 Mio., m= 40 Mio.)$ (auf Desktoprechner). $O((m+n) \cdot \log n)$ \} Implementierung mit minimalem Heap.
+
+\paragraph*{Idee} Führe Vorverarbeitung des Graph durch (die kann ruhig einige Minuten dauern), sodass mit vorberechneter Info folgende s-t Queries viel schneller beantwortet werden können.
+
+\subsection{Grobidee}
+
+%TODO
