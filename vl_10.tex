@@ -18,5 +18,41 @@
 \paragraph*{Idee} Führe Vorverarbeitung des Graph durch (die kann ruhig einige Minuten dauern), sodass mit vorberechneter Info folgende s-t Queries viel schneller beantwortet werden können.
 
 \subsection{Grobidee}
+\paragraph*{Vorverarbeitung} \note{Augmentierung : Vergrößerung} Augmentierung des Graphen $G$ um einige zusätzliche Kanten $E'$ - Sogenannte Shortcuts, welche kürzeste Pfade in $G$ darstellen.
+\begin{itemize}
+	\item Eine 'Ordnung' der Knoten, also eine Funktion; Level: $V \rightarrow \{ 0,1,\dots,|V|-1 \}$ bijektiv
+	\item Ausgabe der Vorverarbeitung ist $G'(V,E \lor E',c')$ sowie Level $c'(e)=c(e)$ falls $e \in E$, andernfalls $c'(e) =$ Kosten des Pfades, den $e$ repräsentiert
+\end{itemize}
 
-%TODO
+\paragraph*{Anfrage (s,t)}
+\begin{itemize}
+	\item starte Dijkstra von $s$; schaue jedoch nur Kante $(v,w)$ an, mit $level(v)<level(w)$
+	\item starte Dijkstra von $t$ auf den reverse Kanten; betrachte dabei nur Kanten $(v,w)$ mit $level(v)>level(w)$
+	\item kürzester Pfad wird bestimmt von einem Knoten, der von $s$ und $t$ gesattled [für den Dijkstra von $s$ und nach $t$ während der beiden Dijkstras berechnet wurden] wurde und dessen summierte Distanzen von $s$ und nach $t$ minimal sind.
+\end{itemize}
+
+\paragraph*{Vorbereitung im Detail} Zentrale Operation der Vorverarbeitung %TODO bild
+
+\paragraph*{Ziel} löschen/Kontraktion eines Knoten $v$, sodass die Distanzen aller übrigen Knoten sich nicht verändern (im neuen Graph der $v$ nicht mehr hat). Bei Kontraktion von $v$ werden Kanten zwischen den Nachbarn so eingefügt, dass kürzeste-Wege-Distanzen der übrigen Knoten nicht geändert werden.
+
+\paragraph*{Implementierung}
+\begin{itemize}
+	\item Dijkstra von jedem Knoten $u$ mit $(u,v) \in E$ der alle Knoten $w$ mit $(v,w)$ settled
+	\item Shortcut $(u,w)$ wird gesetzt falls der einzige kürzeste Weg über $v$ gehen muss (mit Kante $c(u,v)+c(v,w)$).
+\end{itemize}
+
+\subsection{Der Algorithmus}
+\begin{lstlisting}[mathescape]
+counter = 0
+while |V| > 1 do
+	select some node $v \in V$ and contract
+	level(v) := couter + t;
+od
+return level() und Graph mit allen hizugefuegten shortcuts
+\end{lstlisting}
+
+\paragraph*{Korrektheit} Wir müssen beweisen, dass Query-Routine in der Tat dem kürzesten Pfad (bzw. eine Darstellung davon mit shortcuts) berechnet: Zur Vereinfachung nehmen wir an, dass kürzeste Wege eindeutig sind. Betrachte kürzeste Wege $abcdefgh$ von $a$ nach $h$ und die entsprechenden Level der Knoten: $$ b<g<a<f<h<d<c<e $$ %TODO bild
+
+\para{Das heißt, jeder kürzeste Graph hat im augmentierten Graph eine Darstellung der folgenden Form und wird daher gefunden.} %TODO bild
+
+\para{Das Ergebnis einer Anfrage ist ein Pfad der zum Teil aus Shortcuts besteht; diese können jedoch rekursiv entpackt werden, wenn jeder Shortcut weis, welche Ursprungskanten er ersetzt hat.}
