@@ -14,4 +14,24 @@
 
 \paragraph*{Bsp.} Eingabe: 110 (die Zahl 6); Ausgabe: 010 (die Zahl 2) oder 011 (die Zahl 3)
 
+\note{bin() Binärkodierung}\note{$\{ 0,1 \}^*$ endliches Wort}
+\para{Das Problem samt Lösungen entspricht der Relation $R \subseteq \{ 0,1 \}^* x \{ 0,1 \}$ mit $R=\{ (x,y) \in \{ 0,1 \}^* x \{ 0,1 \}^* | x = bin(q), y=bin(q); p,q \in \mathbb{N}, q \geq 2, p$ prim, $p$ teilt $q \}$. Relation, da für gegebene Eingabe mehrere Ergebnisse möglich sind.} %TODO x zu dem kreuz ändern
+
+
+\subsection*{Problem 1.2 (Multiplikation)}
+\paragraph*{Eingabe} zwei binär kodierte Zahlen $a,b \in \mathbb{N}$.
+\paragraph*{Ausgabe} binär kodierte zahl $c \in \mathbb{N}$ mit $c=a \cdot b$.
+
+\para{Um die Zahl $a$ und $b$ in der Eingabe unterscheiden zu können, führen wir ein Trennsymbol ein, also $\sum = \{ 0,1,\# \}$. Die kodierte Eingabe ist dann $bin(a)\#bin(b)$ die kodierte Ausgabe ist $f(bin(a)\#bin(b))=bin(c)$}
+
+\para{Wir werden uns im folgenden meistens mit Ja/Nein-Fragen beschäftigen, sogenannte Entscheidungsprobleme. Diese haben die Form $$ f:\sum\limits^* \rightarrow \{ 0,1 \} $$ wobei wir '0' als NEIN interpretieren, '1' als JA. $ L=f^{-1}(1) \subseteq \sum^* $ \dots Menge der Eingaben, die mit 1 beantwortet werden. $L$ nennen wir auch eine Sprache.}
+
+\subsection*{Problem 1.3 (Graphzusammenhang)}
+\paragraph*{Eingabe} Kodierung eines Graphen $G(V,E)$ (gerichtet).
+\paragraph*{Ausgabe} Das Zeichen 1, falls $G$ zusammenhängend, ansonsten 0. Graphen könnte man kodieren als $$ \underbrace{bin(n)}_{\# Knoten = |V|}\# \underbrace{010 \dots}_{\substack{|V| \cdot |V| \text{ bits entsprechend} \\ \text{der Adjazenzmatrix von } G} } $$ %TODO matrix
+
+\para{Es sind natürlich nicht alle Wörter über $\sum\limits^*$ eine gültige Kodierung eines Graphen. Sei $\mathcal{G}$ die Menge aller Graphen, $\mathcal{G}_z \subseteq \mathcal{G}$ die Menge aller zusammenhängenden Graphen, und $code(G)$ für $G \in \mathcal{G}$ die Kodierung eines Graphen. Dann ist die entsprechende Sprache $$ L=\{ w \in \{ 0,1,\# \}^* | \exists G(V,E) \in \mathcal{G}_z, w=code(G) \} $$ Die Sprache $L$ enthält alle Eingaben, die einen zusammenhängenden Graphen kodieren.}
+
+\para{Das Komplement von $L$ ist definiert als $$ \overline{L} := \sum\limits^* \textbackslash L $$ $\overline{L}$ enthält Eingaben, die keiner korrekten Kodierung eines Graphen entsprechen oder Graphen, welche nicht zusammenhängend sind.}
+
 %TODO
