@@ -34,4 +34,23 @@
 
 \para{Das Komplement von $L$ ist definiert als $$ \overline{L} := \sum\limits^* \textbackslash L $$ $\overline{L}$ enthält Eingaben, die keiner korrekten Kodierung eines Graphen entsprechen oder Graphen, welche nicht zusammenhängend sind.}
 
+
+\section{Rechnermodelle}
+
+\subsection{Turingmaschine (TM)}
+Eine Turingmaschine arbeitet auf einem beidseitig unendlichen Speicherband, %TODO bild
+welches aus Zellen besteht. Jede Zelle enthält ein Element des sogenannten Bandalphabets $\Gamma$, z.B. $\Gamma=\{ 0,1,B \}$. Des Weiteren hat eine Turingmaschine einen Schreib-/Lesekopf, der über das Band wandern kann und jeweils den Inhalt der Zelle, über der er steht, lesen und schreiben kann. Daneben besitzt eine Turingmaschine auch noch eine Zustand $q \in Q$ aus einer endlichen Zustandsmenge $Q$.
+
+\para{Per Konvention befindet sich TM am Anfang einer Rechnung im Anfangszustand $q_0 \in Q$, auf dem Band steht -- startend mit der Zelle, auf die der Schreib-/Lesekopf zeigt -- von links nach rechts die Eingabe, alle anderen Zellen enthalten das Leerzeichen ($B$).}
+
+\para{Das Eingabealphabet $\sum \subseteq \Gamma \backslash \{B\}$. Die Arbeitsweise der Turingmaschine wird durch eine Übergangsrelation: $$ \delta : (Q \backslash \{ \overline{q}\} \times \Gamma \times Q \times \Delta \times \{ R,L,N \}) $$ ausgedrückt. Hierbei ist $\overline{q} \in Q$ ein besonderer Zustand, der Stoppzustand.}
+\begin{itemize}
+	\item[] $Q \backslash \{ \overline{q}\}$: Zustand
+	\item[] $\Gamma$: gelesenes Zeichen / zu schreibendes Zeichen
+	\item[] $Q$: neuer Zustand
+	\item[] $\{ R,L,N \}$: Kopfbewegung
+\end{itemize}
+
+\para{Falls für geg. Zustand und Zeichen unter dem Schreib-/Lesekopf nur eine Aktion möglich ist, reden wir von einer Übergangsfunktion. $$ \delta : (Q \backslash \{ \overline{q}\}) \times \Gamma \rightarrow Q \times \Gamma \times \{R,L,N\} $$ $\delta(q,a)=(q',a',d)$ bedeutet: wenn die Turingmaschine im Zustand $q$ Zeichen $a'$ an diese Stelle, bewege Kopf nach $s \in \{L,R,N\}$ und nimm Zustand $a'$ ein.} %TODO satz verbessern
+
 %TODO
