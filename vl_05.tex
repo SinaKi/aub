@@ -35,14 +35,14 @@ also $Pr(X > 2n \log^2 n)  \leq \frac{1}{n}$
 \section{Zero-knowledge-Proof}
 \paragraph*{Anwendung} Online-Banking. Sie gehen auf die Webseite Ihrer Bank; Wie können Sie sicher sein, auf deren Webseite zu sein und nicht auf dem MockUp Ihres WG-Genossen, der ihre TAN abgreifen will?
 
-\paragraph*{Ansatz} Die Bank soll Ihnen beweisen, dass Sie ein Geheimnis kennt, welches nur die Bank (uns Sie) kennen kann, allerdings ohne das Geheimnis zu verraten.
+\paragraph*{Ansatz} Die Bank soll Ihnen beweisen, dass Sie ein Geheimnis kennt, welches nur die Bank (und Sie) kennen kann, allerdings ohne das Geheimnis zu verraten.
 
 \paragraph*{In Cryptosprache} Alice möchte Bob beweisen, dass Sie ein Geheimnis kennt, ohne dass Bob etwas über das Geheimnis lernt (Zero-knowledge-Proof).
 
 \subsection{Gewünschte Eigenschaften des Protokolls}
 \begin{itemize}
 	\item Falls Alice das Geheimnis nicht kennt, wird Sie mit hoher Wahrscheinlichkeit von Bob ertappt.
-	\item Alice gibt nichtr preis, was Bob nicht sowiso schon weiß.
+	\item Alice gibt nicht preis, was Bob nicht sowieso schon weiß.
 \end{itemize}
 Das Protokoll basiert auf dem Graphisomorphproblem.
 

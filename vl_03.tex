@@ -22,7 +22,7 @@ RepMinCut(G,r)
 \paragraph*{Beweise,} dass die Erfolgswahrscheinlichkeit in der Tat $\geq \frac{2}{n(n-1)}$ ist. Wir fixieren hierzu einen MinCut und zeigen, dass die Wahrscheinlichkeit, nie eine Kante des MinCut zu Kontrahieren $\geq \frac{2}{n(n-1)}$ ist.
 Die Wahrscheinlichkeit im ersten Schritt eine MinCut zu bekommen ist $\frac{k}{\#Kanten}$.
 
-\paragraph*{Lemma:} Betrachte einen Multigraph $G(V,E)$ mir einem MinCut mit Wert $k$. Dann gilt: $G$ hat mindestens $\frac{k \cdot n}{2}$ Kanten.
+\paragraph*{Lemma:} Betrachte einen Multigraph $G(V,E)$ mit einem MinCut mit Wert $k$. Dann gilt: $G$ hat mindestens $\frac{k \cdot n}{2}$ Kanten.
 \paragraph*{Beweis:} Beobachtung: Jeder Knoten hat mindestens Grad $k$. $\Rightarrow$ Anzahl der Kanten $\geq k \cdot \frac{n}{2}$.
 
 \para{Sei $E_i \dots$ Ergebnis, dass in i-tem Kantenkontraktionsschritt keine MinCut-Kante erwischt wurde. Wir betrachten einen fixen MinCut mit Wert $k$ (bzw. dessen $k$ Kanten). Die Wahrscheinlichkeit, im ersten Kontraktionsschritt einen MinCut zu erwischen ist $\frac{k}{m} \leq \frac{2}{n} \textcolor{gray}{= \big( m \geq \frac{k \cdot n}{2} \big)} \Rightarrow Pr(E_1) \geq 1-\frac{2}{n}$.}
@@ -69,7 +69,8 @@ $\Rightarrow$ müssen Wahrscheinlichkeit berechnen, dass Las Vegas Algorithmus l
 Dann gilt: $Pr(X > \alpha \cdot \gamma) \leq \frac{1}{\alpha}$ \\
 $\Rightarrow$ in unserem modifizierten Algorithmus, der Las Vegas Algorithmus nach $\alpha \cdot f(n)$ Zeit abbricht, bekommen wir eine Fehlerwahrscheinlichkeit $\leq \frac{1}{\alpha}$.
 
-\paragraph*{Monte Carlo $\Rightarrow$ Las Vegas} \dots im Allgemeinen nicht möglich.
+\paragraph*{Las Vegas $\Rightarrow$ Monte Carlo} \dots immer möglich.
+\paragraph*{Monte Carlo $\Rightarrow$ Las Vegas} \dots im Allgemeinen nicht möglich. Nur mit Hilfsmitteln.
 \paragraph*{Annahme} Monte Carlo Algorithmus mit fixer Laufzeit $f(n)$ mit Erfolgswahrscheinlichkeit $p(n)$ und zusätzlich einen Checker-Algorithmus C mit Laufzeit $g(n)$, welcher die Korrektheit eines Ergebnisses überprüfen kann. \\
 $\Rightarrow$ daraus ergibt sich folgender Las Vegas Algorithmus:
 \begin{lstlisting}
@@ -84,8 +85,8 @@ $\Rightarrow$ die erwartete Laufzeit dieses Las Vegas Algorithmus ist $\frac{f(n
 \section{Quicksort}
 weiterer Las Vegas Algorithmus Quicksort.
 \begin{lstlisting}[mathescape]
-RQS(A[1,\dots,n])
-	waehle p \in \{ 1,\dots,n \}
+RQS(A[1,$\dots$,n])
+	waehle p $\in$ $\{$ 1,$\dots$,n $\}$
 	rearrangiere A sodass
 		$\underbrace{<A[p]}_{A_L}$ A[p] $\underbrace{>A[p]}_{A_R}$
 		RQS($A_L$)
