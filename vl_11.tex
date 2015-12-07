@@ -53,4 +53,26 @@ welches aus Zellen besteht. Jede Zelle enthält ein Element des sogenannten Band
 
 \para{Falls für geg. Zustand und Zeichen unter dem Schreib-/Lesekopf nur eine Aktion möglich ist, reden wir von einer Übergangsfunktion. $$ \delta : (Q \backslash \{ \overline{q}\}) \times \Gamma \rightarrow Q \times \Gamma \times \{R,L,N\} $$ $\delta(q,a)=(q',a',d)$ bedeutet: wenn die Turingmaschine im Zustand $q$ Zeichen $a'$ an diese Stelle, bewege Kopf nach $s \in \{L,R,N\}$ und nimm Zustand $a'$ ein.} %TODO satz verbessern
 
+\para{Eine Turingmaschine führt so lange Rechenschritte aus, bis Stoppzustand $\overline{q}$ erreicht wird.}
+
+\paragraph*{Bsp.} Übergangsfunktion $\delta$ %TODO tabelle
+
+\paragraph*{Zusammenfassung} Eine Turingmaschine wird definiert durch
+\begin{itemize}
+	\item endliche Zustandsmenge $Q$
+	\item endliches Eingabealphabet $\sum \supseteq \{ 0,1 \}$
+	\item endliches Bandalphabet $\Gamma \supset \sum$
+	\item $B \in \Gamma\backslash\sum$ (Leerzeichen)
+	\item $q_0 \in Q$ (Anfangszeichen)
+	\item $\overline{q} \in Q$ (Stoppzustand)
+	\item Übergangsfunktion $\delta : (Q \backslash \{ \overline{q} \}) \times \Gamma \rightarrow Q \times \Gamma \times \{ R,L,N \}$
+\end{itemize}
+
+\para{Eine Turingmaschine ist also durch ein 7-Tupel ($Q,\sum,\Gamma,B,q_0,\overline{q},\delta$) definiert. Eine Konfiguration einer Turingmaschine ist ein Schnappschuss den Rechnung, zu einem bestimmten Zeitpunkt und beschreibt vollständig alle Details, die notwendig sind, um die Rechnung fortzusetzen, d.h. Bandinhalt, Zustand, Kopfposition. Formel:
+\begin{itemize}
+	\item Konfiguration ist ein String $\alpha q \beta$ mit $q \in Q$, $\alpha,\beta \in \gamma^*$ welche bedeutet, dass auf Band $\alpha\beta$ steht (eingerahmt von Blanks), Zustand $q$ ist und LS-Kopf auf erstem Zeichen von $B$ steht.
+	\item $\alpha'q'\beta'$, ist direkte Nachfolgeonfiguration $\alpha q \beta$, falls $\alpha'q'\beta'$ in einem Rechenschritt aus $\alpha q \beta$ entsteht, wir schreiben $\alpha q \beta \vdash$ %TODO
+\end{itemize}
+}
+
 %TODO
