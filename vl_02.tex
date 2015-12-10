@@ -8,13 +8,13 @@
 	\item bringe die Punktmenge in eine zufällige Reihenfolge $p_1,\dots,p_n$
 	\item invariante
 	\begin{itemize}
-		\item $\delta_i :=$ Minimalabtand zweier Punkte in $\{ p_1,\dots,p_i \}$
+		\item $\delta_i :=$ Minimalabstand zweier Punkte in $\{ p_1,\dots,p_i \}$
 		\item haben immer Gitterstruktur mit Maschenweite $\delta_i$, in welcher $p_1,\dots,p_i$ eingefügt sind
 	\end{itemize}
 	\item wichtigste Operation: Hinzunahme von $p_{i+1}$ unter Aufrechterhaltung der Instanzen:
 	\begin{itemize}
-		\item lokalisieren von $p_{i+1}$ ?? akt. Gitterstruktur | $O(1)$
-		\item Untersuchung der $O(1)$ Punkte in den benachbarten Gitterzellen der Zelle von $p_{i+1}$ auf ?? für neues closest pair | $O(1)$
+		\item lokalisieren von $p_{i+1}$ ?? akt. Gitterstruktur | $O(1)$ %TODO ??
+		\item Untersuchung der $O(1)$ Punkte in den benachbarten Gitterzellen der Zelle von $p_{i+1}$ auf ?? für neues closest pair | $O(1)$ %TODO ??
 	\end{itemize}
 	\item[] Fall A: $\delta_0 = \delta_{i+1} \Rightarrow$ füge $p_{i+1}$ in Gitterstruktur ein | $O(1)$
 	\item[] Fall B: $\delta_i > \delta_{i+1} \Rightarrow$ baue neues Gitter mit Maschenweite $\delta_{i+1}$, füge $p_1,\dots,p_{i+1}$ ein | $O(i)$
@@ -50,7 +50,7 @@ Im obigen Algorithmus hängt nur die Laufzeit vom Zufall ab, das Ergebnis ist im
 	\item[\dots] Korrektheit des Ergebnisses hängt vom Zufall ab
 \end{itemize}
 
-\subsection{Das MinCut-Problem}
+\section{Das MinCut-Problem}
 Geg.: ungerichteter, ungewichteter Multigraph $G(V,E)$ mit $|V|=n,|E|=m$. Eine Teilmenge $A \subseteq V$ der Knoten induziert einen sogenannten \underline{Cut}.
 $$ cut(A,G) = \{ e = \{ v,w \} \in E\ \big|\ |\{ v,w \} \cap A | = 1 \} $$
 Der Wert eines cuts ist seine Kardinalität $|cut(A,G)|$
@@ -118,7 +118,7 @@ Wie können wir den MinCut naiv berechnen?
 \paragraph*{Idee:} Teste alle möglichen Partitionen von $V$ $$ \sum_{i=1}^{n-1} {n \choose i} = 2^n - 2 \hspace{1cm}\text{für } n = |V|$$
 Nicht praktikabel, da schon für einen Graphen mit 128 Knoten mehr Partitionen möglich sind als es Atome im Universum gibt.
 
-\subsubsection{Kargers MinCut Algorithmus}
+\subsection{Kargers MinCut Algorithmus}
 Randomisierter Algorithmus, der mit Wahrscheinlichkeit $~\frac{1}{n^2}$ das richtige Ergebnis berechnet. Die zentrale Operation des Algorithmus ist die \textbf{Kantentraktion}.
 \begin{enumerate}
 	\item wähle eine Kante $\{ v,w \}$ aus
