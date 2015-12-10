@@ -1,0 +1,85 @@
+\paragraph*{Def.} Eine Funktion $f:\sum^* \rightarrow\sum^* \cup \{ \perp \}$ heißt Turing-berechenbar, wenn es eine Turingmaschine $M$ gibt mit $f=f_M$.
+
+\para{Insbesondere schließt das 'Funktionen' ein, die für manche Eingaben keine wohldefinierte Ausgabe haben bzw. auf $\perp$ abgebildet werden.}
+
+\para{Im Spezialfall, dass $f:\sum^* \rightarrow \{ 0,1 \}$, d.h. wir haben ein Entscheidungsproblem, sagen wir, dass eine Turingmaschine eine Eingabe $w \in \sum^*$ akzeptiert, wenn dieser terminiert wird die Ausgabe mit einer $1$ beginnt. Die Turingmaschine verwirft eine Eingabe $w \in \sum^*$, falls sie terminiert, aber die Ausgabe nicht mit einer $1$ beginnt.}
+
+\paragraph*{Def.} Eine $L \subseteq \sum^*$ heißt Turing-entscheidbar, wenn es eine Turingmaschine gibt, die auf allen Eingaben stoppt und die Eingabe $w$ akzeptiert falls $w \in L$ und die Eingabe $w$ verwirft falls $w \not\in L$.
+
+\paragraph*{Bsp. für Turingmaschine} $L=\{ w0|w \in \{ 0,1 \}^* \}$ 'alle 01-Strings, die auf 0 enden.' Eine Turingmaschine die $L$ entscheidet: $$ M=\{ \{q_0,q_1,\overline{q}\}, \{0,1\}, \{0,1,B\}, B, q_1, \overline{q}, \delta \} $$
+\begin{description}
+	\item[] $\{q_0,q_1,\overline{q}\}$ Zustände
+	\item[] $\{0,1\}$ Eingabealphabet
+	\item[] $\{0,1,B\}$ Bandalphabet
+	\item[] $B$ Blank-Symbol
+	\item[] $q_1$ Startzustand
+	\item[] $\overline{q}$ Stoppzustand
+	\item[] $\delta$ Übergangsfunktion
+\end{description}
+
+\begin{table}[htb!]
+\centering
+\begin{tabular}{c|c c c}
+$\delta$ & 0 & 1 & B \\
+\hline 
+$q_0$ & $(q_0,0,R)$ & $(q_1,1,R)$ & $(\overline{q},1,N)$ \\
+$q_1$ & $(q_0,0,R)$ & $(q_1,1,R)$ & $(\overline{q},0,N)$ \\
+\end{tabular}
+\end{table}
+
+\paragraph*{Bsp. für Berechnung auf Eingabe $w=01010$} $$q_1 01010 \vdash 0q_0 1010 \vdash 01q_1 010 \vdash 010q_0 10 \vdash 0101q_1 0 \vdash 01010q_0 \vdash 01010\overline{q}1$$
+
+\paragraph*{Zweites Bsp.} $L=\{ 0^n1^n | n \geq 1 \}$; $Q=\{ q_0,\dots,q_6 \}$, $\sum=\{0,1\}$, $\Gamma=\{0,1,B\}$
+
+\paragraph*{Plan} 2 Phasen
+\begin{enumerate}
+	\item Check ob Eingabe die Form $0^i1^j$ hat für $i \geq 0$, $j \geq 1$
+	\item teste, ob $i0j$ ist
+\end{enumerate}
+Übergangsfunktion zunächst für 1. Phase, welche Zustände $q_0$ und $q_1$ benutzt und im Erfolgsfall in $q_2$ wechselt.
+
+\begin{table}[htb!]
+\centering
+\begin{tabular}{c|c c c}
+$\delta$ & 0 & 1 & B \\
+\hline 
+$q_0$ & $(q_0,0,R)$ & $(q_1,1,R)$ & $(\overline{q},0,N)$ \\
+$q_1$ & $(\overline{q},0,N)$ & $(q_1,1,R)$ & $(q_2,B,L)$ \\
+\end{tabular}
+\end{table}
+
+\para{2. Phase überprüft, dass \# 0en = \# 1en. Sie startet in Zustand $q_2$.}
+
+\begin{table}[htb!]
+\centering
+\begin{tabular}{c|c c c}
+$\delta$ & 0 & 1 & B \\
+\hline
+$q_2$ & $(\overline{q},0,N)$ & $(q_3,B,L)$ & $(\overline{q},B,N)$ \\
+$q_3$ & $(q_3,0,L)$ & $(q_3,1,L)$ & $(q_4,B,R)$ \\
+$q_4$ & $(q_5,B,R)$ & $(\overline{q},0,N)$ & $(\overline{q},0,N)$ \\
+$q_5$ & $(q_6,0,R)$ & $(q_6,1,R)$ & $(\overline{q},1,N)$ \\
+$q_6$ & $(q_6,0,R)$ & $(q_6,1,R)$ & $(q_2,B,L)$ \\
+\end{tabular}
+\end{table}
+
+\paragraph*{Idee der 2. Phase} lösche abwechselnd rechteste 1 und linkeste 0. Falls ds in leerem String resultiert $\Rightarrow$ Akzeptiere, sonst verwerfen.
+
+\paragraph*{Bedeutung der Zustände}
+\begin{itemize}
+	\item[$q_2$] Kopf steht auf dem rechtesten nicht-Blank; falls 1, lösche es, und gehe in $q_3$. Sonst verwerfen.
+	\item[$q_3$] Bewege Kopf auf linkestes nicht-Blank, dann wechsel nach $q_4$.
+	\item[$q_4$] Falls Zeichen 0, ersetze durch Blank und gehe zu $q_5$, sonst verwerfen.
+	\item[$q_5$] Linkeste 0 und rechteste 1 gelöscht, falls Restwort leer akzeptiere,sonst gehe zu $q_6$.
+	\item[$q_6$] Laufe zum rechtesten Nicht-Blank und dann $q_2$.
+\end{itemize}
+
+\para{Die 'Programmierung' einer Turingmaschine ist recht mühsam über die Übergangsfunktionen.}
+
+\paragraph*{Einige Tricks}
+\begin{itemize}
+	\item eine konstante Anzahl an Variablen mit jeweils konstant vielen möglichen Werten (Bsp. Boolvariablen) können in Turingmaschine ausgedrückt werden durch Erweiterung des Zustandsraums. $$ Q'=Q \times \{0,1\} \hspace{0.5cm}\text{(für eine Bool-Variable)}$$ $$ Q'=Q \times \{ 0,1,2,\dots,4 \} \hspace{0.5cm}\text{(für einen Zähler, der nur Werte 0,\dots,k annimmt, k konstant)} $$
+	\item eine $k$-spurige Turingmaschine kann durch eine einspurige Turingmaschine mit erweitertem Bandalphabet simuliert werden. Das ist beispielsweise nützlich beim addieren von zwei Zahlen: kopiere $bin(a)\#bin(b)$ auf Band $1+2$ wie folgt $$ \dots B \dots B010110111BB \dots \} bin(a) $$ $$ \dots BBB1011010B \dots \} bin(b) $$
+	\item konstant viele Variablen können wir durch Konstant viele zusätzliche Bänder simulieren; Arrays ebenso (Wert eines Arrays auf einem Band)
+	\item Unterprogramme werden in typischen Programmiersprachen via Stackframes realisiert; einen entsprechenden Stack können wir auf einem Band anlegen
+\end{itemize}
