@@ -14,7 +14,7 @@ Definiere die Zufallsvariable
 \paragraph*{Offensichtlich gilt} Anzahl der Vergleiche im Quicksort-Run = Gesamtlaufzeit ist $\sum\limits_{i<j} X_{ij}$.
 
 \paragraph*{Uns interessiert} $$E(\sum\limits_{i<j} X_{ij})
-= \sum\limits_{i<j} X_{ij} 
+=\footnote{linearität der Erwartungswerts} \sum\limits_{i<j} X_{ij} 
 = \sum\limits_{i<j}(Pr(x_{ij}=0) \cdot 0 + Pr(X_{ij}=1) \cdot 1) 
 = \sum\limits_{i<j} \underbrace{Pr(X_{ij}=1)}_{\frac{2}{j-i+1}} 
 = \sum\limits_{i<j} \frac{2}{j-i+1}$$
