@@ -23,3 +23,27 @@ Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv
 	\item die Menge der Wörter über $\{0,1\}^*$ jedes Wort über $\{0,1\}$ kann als Binärzahl aufgefasst werden (mit signifikantem Bit hinten) $01111_2=30_{10}$
 	\item die Menge der Turingmaschinen ist abzählbar, da sie eine Teilmenge aller Wörter über $\{0,1\}$ ist (wenn z.B. Kodiert wie für universelle TM-Gödelnr.)
 \end{itemize}
+
+\paragraph*{Satz} Die Menge $P(\mathbb{N})$\footnote{Menge aller Teilmengen aus $\mathbb{N}$} ist überabzählbar.
+
+\paragraph*{Beweis} Annahme $P(\mathbb{N})$ sei abzählbar, sei dabei $s_i$ die i-te Teilmenge gemäß dieser Nummerierung. Definiere folgende Matrix($A_{i,j}$) mit $i\in\mathbb{N},j\in\mathbb{N}$ mit $$ A_{i,j} = \begin{cases}1&\text{falls } j\in s_i \\ 0 & \text{sonst}\end{cases} $$ \note{i: Zeile; j: Spalte}
+%TODO bild
+
+\para{} Basierend auf dieser Matrix definieren wir diene Teilmenge $S_{DIAG}=\{ i\in\mathbb{N}|A_{i,j}=1 \}$. Das Komplement davon ist $$ \overline{S_{DIAG}}=\{i\in\mathbb{N}|A_{i,j}=0\} $$ Auch $\overline{S_{DIAG}}$ sollte in der Menge der Teilmengen auftreten. Angenommen $\overline{S_{DIAG}} = S_K$. Betrachte die Fälle
+\begin{enumerate}
+	\item Falls $A_{K,K}=1 \Rightarrow K \in S_L = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\}$ %TODO blitzpfeil
+	\item Falls $A_{K,K}=0 \Rightarrow K \not\in S_K = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\}$ %TODO blitzpfeil
+\end{enumerate}
+
+\paragraph*{Beobachtung} Die Menge $\{0,1\}^*$ hat dieselbe Mächtigkeit wie $\mathbb{N}$, somit hat die Menge aller Sprachen über $\{0,1\}$ die selbe Mächtigkeit wie $P(\mathbb{N})$.
+
+\para{} An dieser Stelle ist eigentlich schon klar, dass man nicht jede Sprache mit einer Turingmaschine entscheiden kann, da es überabzählbar viele Sprachen gibt, aber nur abzählbar viele Turingmaschinen.
+
+\paragraph*{Konkretes Bsp.} für eine nicht-entscheidbare Sprache. Sei $w_i$ das i-te Wort in der Aufzählung aller Wörter über $\{0,1\}$. Sei $M_i$ die i-te Turingmaschine in der Aufzählung aller Turingmaschinen. Betrachte folgende Sprache $$ \text{Diagonalsprache } D=\{ w\in\{0,1\}^*|w=w_i \text{ und } M_i \text{ akzeptiert } w \text{ nicht} \} $$ Also ein $w$ ist in der Sprache $D$ genau dann wenn $w$ das i-te Wort ist und von der i-ten Turingmaschine nicht akzeptiert wird.
+
+\para{} Wie vorher könnte man diese Sprache mit Hilfe einer Matrix darstellen %TODO matrix
+$$ A_{i,j} = \begin{cases}1&\text{falls } M_i\ w_i \text{ akzeptiert} \\ 0 & \text{sonst}\end{cases} $$
+
+\paragraph*{Satz} $D$ ist nicht Turing-entscheidbar.
+
+\paragraph*{Beweis} Angenommen, es gibt eine Turingmaschine $M_j$, die $D$ entscheidet. Wir wenden $M_j$ auf das j-te Wort $w_j$ an.
