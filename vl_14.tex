@@ -1,0 +1,25 @@
+\subsection{Vergleich zwischen TM und RAM}
+
+\paragraph*{Behauptung} RAM und Turingmaschine sind gleichmächtig.
+
+\para{} Offensichtlich ist RAM mindestens so mächtig wie die Turingmaschine. Nicht ganz so offensichtlich ist, dass die Turingmaschine mindestens so mächtig ist wie die RAM.
+
+\paragraph*{Satz} Jede $t(n)$ zeitbeschränkte RAM kann durch eine $O(q(n+t(n)))$-zeitbeschränkte Turingmaschine simuliert werden für ein Polynom $q()$.
+
+\paragraph*{Uns interessiert nun die Frage} Was kann man (mit Rechnern von Heute) berechnen, was ist prinzipiell nicht berechenbar?
+
+\para{} Wir werden dazu über die Turingmaschine argumentieren, von denen wir uns überzeugt haben, dass sie gleichmächtig wie Registermaschinen (und 'echte' aktuelle Rechner) sind.
+
+\section{Church-Turing-These}
+
+Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv berechenbaren Funktionen überein.
+
+\subsection{Berechen-/Entscheidbarkeit}
+\paragraph*{Def} Eine Menge $M$ heißt abzählbar, wenn es eine surjektive Funktion $c_\mathbb{N}\rightarrow M$ gibt. Nicht abzählbare Mengen heißen überabzählbar.
+
+\paragraph*{Bsp.} für abzählbare Mengen
+\begin{itemize}
+	\item die Menge $\mathbb{Z}$ $$ c(i)= \begin{cases}\frac{i}{2} & \text{falls i gerade}\\ \frac{-(i+1)}{2} & \text{falls i ungerade}\end{cases} $$ %TODO bild
+	\item die Menge der Wörter über $\{0,1\}^*$ jedes Wort über $\{0,1\}$ kann als Binärzahl aufgefasst werden (mit signifikantem Bit hinten) $01111_2=30_{10}$
+	\item die Menge der Turingmaschinen ist abzählbar, da sie eine Teilmenge aller Wörter über $\{0,1\}$ ist (wenn z.B. Kodiert wie für universelle TM-Gödelnr.)
+\end{itemize}
