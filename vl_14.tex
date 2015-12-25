@@ -31,8 +31,8 @@ Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv
 
 \para{} Basierend auf dieser Matrix definieren wir diene Teilmenge $S_{DIAG}=\{ i\in\mathbb{N}|A_{i,j}=1 \}$. Das Komplement davon ist $$ \overline{S_{DIAG}}=\{i\in\mathbb{N}|A_{i,j}=0\} $$ Auch $\overline{S_{DIAG}}$ sollte in der Menge der Teilmengen auftreten. Angenommen $\overline{S_{DIAG}} = S_K$. Betrachte die Fälle
 \begin{enumerate}
-	\item Falls $A_{K,K}=1 \Rightarrow K \in S_L = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\}$ %TODO blitzpfeil
-	\item Falls $A_{K,K}=0 \Rightarrow K \not\in S_K = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\}$ %TODO blitzpfeil
+	\item Falls $A_{K,K}=1 \Rightarrow K \in S_L = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\} \lightning$ 
+	\item Falls $A_{K,K}=0 \Rightarrow K \not\in S_K = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\} \lightning$
 \end{enumerate}
 
 \paragraph*{Beobachtung} Die Menge $\{0,1\}^*$ hat dieselbe Mächtigkeit wie $\mathbb{N}$, somit hat die Menge aller Sprachen über $\{0,1\}$ die selbe Mächtigkeit wie $P(\mathbb{N})$.
@@ -47,3 +47,37 @@ $$ A_{i,j} = \begin{cases}1&\text{falls } M_i\ w_i \text{ akzeptiert} \\ 0 & \te
 \paragraph*{Satz} $D$ ist nicht Turing-entscheidbar.
 
 \paragraph*{Beweis} Angenommen, es gibt eine Turingmaschine $M_j$, die $D$ entscheidet. Wir wenden $M_j$ auf das j-te Wort $w_j$ an.
+\begin{description}
+	\item[Fall 1] Falls $w_j \in D$, muss $M_j$ $w_j$ akzeptieren $\Rightarrow A_{j,j}=1 \lightning$ $A_{j,j}=0$ gemäß Definition von $D$.
+	\item[Fall 2] Falls $w_j \not\in D$, damit $M_j$ $w_j$ nicht akzeptieren $\Rightarrow A_{j,j}=0 \lightning$ $A_{j,j}=1$ gemäß Definition von $D$. $\Box$
+\end{description}
+
+\paragraph*{Lemma} Sei $L$ eine unentscheidbare Sprache. Dann ist auch $\overline{L}$ -- das Komplement von $L$ -- nicht entscheidbar.
+
+\paragraph*{Beweis} Annahme, es gibt eine Turingmaschine $M_{\overline{L}}$, welche $\overline{L}$ entscheidet, d.h. auf jede Eingabe $w$ hält und genau dann akzeptiert, falls $w \in \overline{L}$. Wir konstruieren eine Turingmaschine $M$, welche $L$ entscheidet (und $M_{\overline{L}}$ als Unterprogramm benutzt). Maschine $M$ startet $M_{\overline{L}}$ auf $w$. Falls $M_{\overline{L}}$ akzeptiert, verwirft $M$, falls $M_{\overline{L}}$ verwirft, akzeptiert $M$. $M$ entscheidet somit $L lightning$ zu Annahme, dass $L$ unentscheidbar. $\Box$
+
+
+\section{Das Halteproblem}
+Entscheidung, ob ein Programm auf eine bestimmte Eingabe terminiert. Formal: $$ H=\{ <M>w|M \text{ hält auf Eingabe } w \} $$
+
+\paragraph*{Satz} Das Halteproblem $H$ ist nicht entscheidbar.
+
+\paragraph*{Beweis} Für Widerspruchsbeweis nehme an, dass die Turingmaschine $M_H$ $H$ entscheidet. Wir zeigen, dass wir mit $M_H$ als Unterprogramm eine Turingmaschine $M_{\overline{D}}$ konstruieren könnten welche $\overline{D}$ entscheidet. Das ist aber unmöglich, daher kann es $M_H$ nicht geben.
+
+\begin{itemize}
+	\item[$M_{\overline{D}}$:] \begin{enumerate}
+		\item Für $w$ berechne $i$, sodass $w_i=w$
+		\item Berechne die i-te  Turingmaschine $<M_i>$ \note{$<?>$ Kodierung von ?}
+		\item Starte $M_H$ mit Eingabe $<M_i>w$
+		\item Falls $M_H$ akzeptiert, so simuliere das Verhalten von $M_i$ auf $w$ (mit universeller Turingmaschine) und übernehme das Ergebnis.
+		\item Falls $M_H$ verwirft, verwirf Eingabe.
+	\end{enumerate}
+\end{itemize}
+
+\paragraph*{Zur Korrektheit dieser Konstruktion} Sei $w=w_i$
+\begin{itemize}
+	\item[$w\in\overline{D}$] $\Rightarrow M_H$ akzeptiert $<M_i>w$ und $M_i$ akzeptiert $w$
+	\item[] $\Rightarrow M_{\overline{D}}$ akzeptiert $w$
+	\item[$w\not\in\overline{D}$] $\Rightarrow M_H$ verwirft $<M_i>w$ oder $M_i$ verwirft $w$
+	\item[] $\Rightarrow M_{\overline{D}}$ verwirft $w$ \hspace{1cm} $\Box$
+\end{itemize}
