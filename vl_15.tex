@@ -1,0 +1,44 @@
+\paragraph*{Beweisidee} Angenommen wir hätten eine Turingmaschine $M_H$, die das Halteproblem entscheidet, könnte $\overline{D}$ entscheiden (und das wissen wir, geht nicht). $M_H$ wird im Beweis als 'Unterprogramm' einer Turingmaschine aufgerufen welche $\overline{D}$ angeblich entscheidet.
+
+\para{} Jetzt betrachten wir das spezielle Halteproblem, d.h. gegeben eine Kodierung einer Turingmaschine $M$ %TODO ?
+hält $M$ auf dem leeren Wort? Die zu entscheidende Sprache ist somit $$ H_E = \{ <M> | M \text{ hält auf Ergebnis }  E \} $$
+
+\paragraph*{Satz} Das spezielle Halteproblem $H_E$ ist nicht Turing-entscheidbar.
+
+\paragraph*{Beweis} Angenommen wir hätten eine Turingmaschine $M_E$ welche $H_E$ entscheidet. Wir bauen eine Turingmaschine $M_H$, welche $H$ entscheidet und dabei $M_E$ als Unterprogramm benutzt. Da es $M_H$ nicht geben kann, kann es $M_S$ auch nicht geben. $M_H$ arbeitet wie folgt auf Eingabe $<M>w$:
+\begin{enumerate}
+	\item Falls $<M>$ keine gültige TM-Kodierung, verwerfe
+	\item Andernfalls konstruiere eine Kodierung einer Turingmaschine $M_w^*$ mit folgenden Eigenschaften:
+	\begin{itemize}
+		\item Falls $M_w^*$ mit der leeren Eingabe startet schreibt sie $w$ aufs Band und simuliert die Turingmaschine $M$ auf $w$
+		\item ansonsten macht sie, was sie will
+	\end{itemize}
+	\item Frage die Turingmaschine $M_\epsilon$ ob die Turingmaschine $M_w^*$ auf leerer Eingabe terminiert; übernehme Antwort von $M_\epsilon$
+\end{enumerate}
+
+\para{} Diese Konstruktion ist korrekt, da
+%TODO korrektheit
+
+
+\section{Der Satz von RICE}
+
+Turingmaschinen berechnen partielle Funktionen, da sie nicht auf jeder Eingabe halten, d.h. man könnte schreiben $$ f_M\{0,1\}^* \rightarrow \{0,1\}^*\cup\{\perp\} $$ Hierbei steht $\{\perp\}$ für 'nicht definiert' und bedeutet, dass die Maschine nicht terminiert. Für Entscheidungsprobleme haben wir $$ f_M=\{0,1\}^* \rightarrow \{0,1\}\cup\{\perp\}$$ Hierbei steht $'0'$ für akzeptieren und $'1'$ für verwerfen. $$ R=\{  f_M:\{0,\}^* \rightarrow \{0,1\}^*\cup\{\perp\}|M \text{ ist eine Turingmaschine}\} $$ \dots also die Menge der von Turingmaschinen berechenbaren Funktionen.
+
+\paragraph*{Satz} Sei $S$ eine Teilmenge von $R$ mit $\emptyset\not=S\not=R$. Dann ist die Sprache $L(S)=\{<M>|M$ berechnet eine Funktion aus $S\}$ nicht Turing-entscheidbar.
+
+\paragraph*{Beweis} Wieder mittels Unterprogrammtechnik. Aus einer angeblichen Turingmaschine $M_{L(S)}$, die $L(S)$ entscheidet konstruieren wir eine Turingmaschine $M_\epsilon$, welche das spezielle Halteproblem $H_\epsilon$ entscheidet, das stünde im Widerspruch zur Unentscheidbarkeit von $H_\epsilon$. Sei $u$ die überall undefinierte Funktion. Für gegebenes $S$ gibt es zwei Fälle.
+\begin{itemize}
+	\item[1)] $u \not\in S$. Sei $f \not= u$ eine Funktion aus $S$ (existiert, da sonst $S$ leer). Die Turingmaschine $M_E$ funktioniert wie folgt:
+	\begin{enumerate}
+		\item Falls Eingabe keine Turingmaschine kodiert, verwerfe
+		\item Konstruiere eine Turingmaschine $M^*$ mit folgenden Eigenschaften:
+		\begin{enumerate}
+			\item ignoriere Eingabe $x$. Simuliere das Verhalten von $M$ bei Eingabe $\epsilon$ auf einer separaten Spur
+			\item Berechne $f(x)$, d.h. Simuliere $M_f$ auf Eingabe $x$.
+		\end{enumerate}
+		\item Benutze $M_{L(S)}$ als Unterprogramm um zu entscheiden, ob $M^*$ eine Funktion aus $S$ berechnet.
+	\end{enumerate}
+	%TODO
+\end{itemize}
+
+%TODO
