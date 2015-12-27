@@ -38,7 +38,35 @@ Turingmaschinen berechnen partielle Funktionen, da sie nicht auf jeder Eingabe h
 		\end{enumerate}
 		\item Benutze $M_{L(S)}$ als Unterprogramm um zu entscheiden, ob $M^*$ eine Funktion aus $S$ berechnet.
 	\end{enumerate}
-	%TODO
+	\item[] Korrektheit folgt, da für Eingaben der Form $w=<M>$ gilt:
+	\begin{itemize}
+		\item[$w\in  H_\epsilon$] $\Rightarrow M$ hält auf $\epsilon$
+		\item[] $\Rightarrow M^*$ berechnet $f$
+		\item[] $\Rightarrow <M^*> \in L(S)$
+		\item[] $\Rightarrow M_{L(S)}$ akzeptiert $<M^*>$
+		\item[] $\Rightarrow M_\epsilon$ akzeptiert $w$
+		\item[$w\not\in  H_\epsilon$] $\Rightarrow M$ hält nicht auf $\epsilon$
+		\item[] $\Rightarrow M^*$ berechnet $u$
+		\item[] $\Rightarrow <M^*> \in L(S)$
+		\item[] $\Rightarrow M_{L(S)}$ verwirft $<M^*>$
+		\item[] $\Rightarrow M_\epsilon$ verwirft $w$
+	\end{itemize}
+	\item[2)] $u \in S$. Dann wähle $f$ aus $R \backslash S \not= \emptyset$ und invertiere Akzeptanzverhalten. $\Box$
 \end{itemize}
+
+\para{} Der Satz von RICE schließt bspw. aus, dass es Compiler gibt, die apriori Terminierung und Korrektheit von Programmen entscheiden können.
+
+
+\section{Semi-Entscheidbarkeit und Rekursive Aufzählbarkeit}
+
+\paragraph*{Def.} Eine Sprache $L$ wird von einer Turingmaschine $M$ entschieden, wenn $M$ auf jeder Eingabe hält und genau die Wörter aus $L$ akzeptiert.
+
+\note{Eine Sprache ist entscheidbar, wenn es eine Turingmaschine $M$ gibt, welche $L$ entscheidet.}
+
+\paragraph*{Def.} Eine Sprache $L$ wird von einer Turingmaschine $M$ erkannt, wenn $M$ jedes Wort aus $L$ akzeptiert und kein Wort aus $\mathcal{E}^*\backslash L$ akzeptiert. Auf Eingabe nicht aus $L$ muss $M$ nicht halten.
+
+\paragraph*{Def.} Eine Sprache heißt semi-entscheidbar, falls es eine Turingmaschine $M$ gibt, welche $L$ erkennt.
+
+\paragraph*{Bsp.} $H_\epsilon$ ist nicht entscheidbar, aber semi-entscheidbar.
 
 %TODO
