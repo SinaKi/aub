@@ -69,4 +69,26 @@ Turingmaschinen berechnen partielle Funktionen, da sie nicht auf jeder Eingabe h
 
 \paragraph*{Bsp.} $H_\epsilon$ ist nicht entscheidbar, aber semi-entscheidbar.
 
-%TODO
+\subsection{Alternative Charakterisierung der Semi-entscheidbaren Sprachen.}
+
+Ein Aufzähler einer Sprache $L$ ist eine spezielle Turingmaschine $M$, welche einen 'Drucker' hat, d.h. ein Ausgabeband auf dem der Kopf nur nach rechts bewegt werden kann. Ein Aufzähler gibt (gestartet auf leerem Band) alle Worte aus $L$ auf dem Drucker aus, also
+\begin{itemize}
+	\item der Aufzähler gibt nur Wörter aus $L$ aus
+	\item jedes Wort aus $L$ wird irgendwann gedruckt
+\end{itemize}
+
+\paragraph*{Def.} Ein Sprache $L$ heißt rekursiv aufzählbar, wenn es einen Aufzähler für $L$ gibt.
+
+\paragraph*{Satz} Eine Sprache $L$ ist genau dann Semi-entscheidbar, wenn $L$ rekursiv aufzählbar ist.
+
+\paragraph*{Beweis} 
+\begin{itemize}
+	\item[$\Leftarrow'$] Annahme, wir haben einen Aufzähler für $L$ und konstruieren eine Turingmaschine, welche $L$ erkennt. $M$ lässt den Drucker immer ein Wort ausdrucken und akzeptiert das erkennende Wort das dem ausgedruckten entspricht. Andernfalls lasse nächstes Wort ausdrucken.
+	\item[$'\Rightarrow'$] Annahme, wir haben eine Turingmaschine $M$, welche $L$ erkennt, wir bauen daraus eine Turingmaschine $M'$, welche $L$ aufzählt. Seien $w_1,w_2,w_3,\dots$ die Wörter aus $\sum^*$ in kanonischer Reihenfolge. Der Aufzähler arbeitet wie folgt:
+	\begin{itemize}
+		\item[] Für $I=1,2,3,\dots$
+		\item simuliere $i$ Schritte des Erkenners $M$ auf allen Wörtern $w_1,w_2,\dots,w_i$
+		\item falls Wort dabei akzeptiert wird, drucke es aus
+	\end{itemize}
+	\item[] Falls das Wort $w_K \subset L$ und der Erkenner $t_K$ Schritte zum akzeptieren bracht, wird das Wort in der $max(K,t_K)$-ten Runde gedruckt (und danach auch immer). $\Box$
+\end{itemize}
