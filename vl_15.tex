@@ -1,6 +1,6 @@
 \paragraph*{Beweisidee} Angenommen wir hätten eine Turingmaschine $M_H$, die das Halteproblem entscheidet, könnte $\overline{D}$ entscheiden (und das wissen wir, geht nicht). $M_H$ wird im Beweis als 'Unterprogramm' einer Turingmaschine aufgerufen welche $\overline{D}$ angeblich entscheidet.
 
-\para{} Jetzt betrachten wir das spezielle Halteproblem, d.h. gegeben eine Kodierung einer Turingmaschine $M$ %TODO ?
+\para{} Jetzt betrachten wir das spezielle Halteproblem, d.h. gegeben eine Kodierung einer Turingmaschine $M$
 hält $M$ auf dem leeren Wort? Die zu entscheidende Sprache ist somit $$ H_E = \{ <M> | M \text{ hält auf Ergebnis }  E \} $$
 
 \paragraph*{Satz} Das spezielle Halteproblem $H_E$ ist nicht Turing-entscheidbar.
@@ -16,8 +16,20 @@ hält $M$ auf dem leeren Wort? Die zu entscheidende Sprache ist somit $$ H_E = \
 	\item Frage die Turingmaschine $M_\epsilon$ ob die Turingmaschine $M_w^*$ auf leerer Eingabe terminiert; übernehme Antwort von $M_\epsilon$
 \end{enumerate}
 
-\para{} Diese Konstruktion ist korrekt, da
-%TODO korrektheit
+\para{} Diese Konstruktion ist korrekt, da \note{$<?>$ ist die Kodierung von ?}
+\begin{itemize}
+	\item[$<M>$] $w \in H$
+	\item[$\Rightarrow$] $M$ hält auf $w$
+	\item[$\Rightarrow$] $M_\epsilon^*$ hält auf $\epsilon$
+	\item[$\Rightarrow$] $M_\epsilon$ akzeptiert $<M_\epsilon^*>$
+	\item[$\Rightarrow$] $M_H$ akzeptiert $<M>w$
+	
+	\item[$<M>$] $w \not\in H$
+	\item[$\Rightarrow$] $<M>$ hält nicht auf $w$
+	\item[$\Rightarrow$] $M_\epsilon^*$ hält nicht auf $\epsilon$
+	\item[$\Rightarrow$] $M_\epsilon$ verwirft $M_\epsilon^*$
+	\item[$\Rightarrow$] $M_H$ akzeptiert $<M>w$ \hspace{1cm} $\Box$
+\end{itemize}
 
 
 \section{Der Satz von RICE}
