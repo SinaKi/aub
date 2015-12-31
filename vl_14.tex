@@ -41,8 +41,21 @@ Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv
 
 \paragraph*{Konkretes Bsp.} für eine nicht-entscheidbare Sprache. Sei $w_i$ das i-te Wort in der Aufzählung aller Wörter über $\{0,1\}$. Sei $M_i$ die i-te Turingmaschine in der Aufzählung aller Turingmaschinen. Betrachte folgende Sprache $$ \text{Diagonalsprache } D=\{ w\in\{0,1\}^*|w=w_i \text{ und } M_i \text{ akzeptiert } w \text{ nicht} \} $$ Also ein $w$ ist in der Sprache $D$ genau dann wenn $w$ das i-te Wort ist und von der i-ten Turingmaschine nicht akzeptiert wird.
 
-\para{} Wie vorher könnte man diese Sprache mit Hilfe einer Matrix darstellen %TODO matrix
+\para{} Wie vorher könnte man diese Sprache mit Hilfe einer Matrix darstellen
+\begin{table}[htb!]
+\centering
+\begin{tabular}{c|c c c c c c}
+ & $w_0$ & $w_1$ & $w_2$ & $w_3$ & \dots & \\
+\hline
+$M_0$ & 0 & 1 & 1 & 1 & 0 & 1 \\
+$M_1$ & 1 & 1 & 0 & 0 & 1 &  \\
+$M_2$ & 0 & $A_{i,j}$ & 1 & 0 &  &  \\
+\vdots & 1 & 0 & 1 & 0 &  &  \\
+ & 1 & 1 & 0 & 1 &  &  \\
+\end{tabular}
+\end{table}
 $$ A_{i,j} = \begin{cases}1&\text{falls } M_i\ w_i \text{ akzeptiert} \\ 0 & \text{sonst}\end{cases} $$
+$$ D=\{ w_i | A_{ii}=0 \}$$
 
 \paragraph*{Satz} $D$ ist nicht Turing-entscheidbar.
 
