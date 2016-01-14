@@ -1,0 +1,116 @@
+\paragraph*{Heute}
+\begin{itemize}
+	\item Eigenschaften von entscheidbaren bzw. semi-entscheidbaren Sprachen
+	\item Begriff der Reduktion
+\end{itemize}
+
+Seien $L_1,L_2$ Sprachen.
+\paragraph*{Satz}
+\begin{enumerate}
+	\item Falls $L_1$ und $L_2$ entscheidbar sind, so ist auch die Sprache $L_1 \cap L_2$ entscheidbar.
+	\item Falls $L_1$ und $L_2$ semi-entscheidbar sind, so ist auch die Sprache $L_1 \cap L_2$  semi-entscheidbar.
+\end{enumerate}
+
+\paragraph*{Beweis}
+\begin{enumerate}
+	\item Seien $M_1$ und $M_2$ Turingmaschinen, welche $L_1$ und $L_2$ entscheiden. Wir konstruieren TM $M$, welche $L=L_1\cap L_2$ entscheidet, wie folgt:
+	\begin{itemize}
+		\item auf Eingabe $w$ starte $M_1$ auf $w$
+		\item falls Ergebnis NEIN, gib NEIN zurück
+		\item falls Ergebnis JA, starte $M_2$ auf $w$ und gib das Ergebnis zurück
+	\end{itemize}
+	\item Analog, ersetze nur 'entscheidbar' durch 'semi-entscheidbar'. $\Box$
+\end{enumerate}
+
+\paragraph*{Satz}
+\begin{enumerate}
+	\item Falls $L_1$ und $L_2$ entscheidbar sind, so ist auch $L=L_1 \cup L_2$ entscheidbar.
+	\item Falls $L_1$ und $L_2$ semi-entscheidbar sind, ist auch $L=L_1 \cup L_2$ semi-entscheidbar
+\end{enumerate}
+
+\paragraph*{Beweis}
+\begin{enumerate}
+	\item Analog zu vorherigem Satz; führe $M_1$ auf $w$ und dann $M_2$ auf $w$. Akzeptiere genau dann, wenn $M_1$ oder $M_2$ akzeptiert haben.
+	\item Problem: Hintereinanderausführung von $M_1$ und $M_2$ nicht gut, da z.b. für $w\not\in M_1,w\in M_2$ keine Terminierung. Lösung: Simuliere $M_1$ und $M_2$ parallel auf Eingabe $w$ aus. Maschine $M_i$ habe Zustandsmenge $Q_i$ und Übergangsfunktion: $\delta_i$.
+\end{enumerate}
+Definiere TM $M$ mit folgender Übergangsfunktion $\delta$ (operierend auf 2-Band-Turingmaschine). Seien $q_1 \in Q_1, q_2 \in Q_2$ (nicht-Endzustände), $a_1,a_2 \in \Gamma$
+$$ \delta_1(q_1,a_1)=(q_1',b_1,k_1) \text{ für } q_1' \in Q_1,b_1 \in \Gamma,k_1\in\{L,R,N\} $$
+$$ \delta_2(q_2,a_2)=(q_2',b_2,k_2) \text{ für } q_2' \in Q_2,b_2\in\Gamma,k_2\in\{L,R,N\} $$
+$$ \delta((q_1,q_2),(a_1,a_2))=((q_1',q_2'),(b_1,b_2),(k_1,k_2) $$ %TODO notizen
+Diese neue Turingmaschine $M$ akzeptiert, sobald $M_1$ (auf Band 1) oder $M_2$ (auf Band 2) akzeptiert. $\Box$
+
+\paragraph*{Satz} Wenn eine Sprache $L$ entscheidbar ist, so ist auch $\overline{L}$ entscheidbar.
+
+\paragraph*{Beweis} Sei $M$ eine Turingmaschine, die $L$ entscheidet. Wir konstruieren $M_{\overline{L}}$ durch Investierung der Ausgabe von $M_L$. $\Box$
+
+\paragraph*{Satz} Die Menge der semi-entscheidbaren Sprachen ist nicht unter Komplementbildung abgeschlossen.
+
+\paragraph*{Beweis} Das Halteproblem ist ein Beispiel dafür, dass $H$ semi-entscheidbar, aber $\overline{H}$ nicht semi-entscheidbar (da sonst $H$ entscheidbar wäre, siehe gleich). $\Box$
+
+\paragraph{Lemma} Sind $L \subset \sum^*$ und $\overline{L}=\sum^*\backslash L$ semi-entscheidbar, so ist $L$ entscheidbar.
+
+\paragraph*{Beweis} Seien $M$ und $\overline{M}$ Turingmaschinen, welche $L$ bzw. $\overline{L}$ akzeptieren/erkennen. Die folgende Turingmaschine $M°'$ entscheidet $L$ durch Parallelsimulation von $M$ und $\overline{M}$ auf Eingabe $w$:
+\begin{itemize}
+	\item $M'$akzeptiert, sobald $M$ akzeptiert
+	\item $M'$ verwirft, sobald $\overline{M}$ akzeptiert
+\end{itemize}
+Da entweder $w\in L$ oder $w\in \overline{L}$ muss eines von beiden irgendwann (in endlicher Zeit) passieren. $\Box$
+
+\paragraph*{Korollar} Eine Sprache $L$ ist genau dann nicht entscheidbar, wenn mindestens eine Sprache $L$ und $\overline{L}$ nitch semi-entscheidbar sind.
+
+
+\section{Die Technik der Reduktion}
+
+\paragraph*{Def.} Seien $L_1$ und $L_2$ Sprachen über $\sum$. Dann heißt $L_1$ auf $L_2$ reduzierbar -- $L_1 \leq L_2$ --, wenn es eine berechenbare Funktion. $$ f: \sum^* \rightarrow \sum^* $$ gibt mit $\forall x \in \sum^*$ $$ x_1 \in L_1 \Leftrightarrow f(x_1) \in L_2 $$
+
+\paragraph*{Intuitiv} '$L_1$ bezüglich Berechenbarkeit nicht schwieriger als $L_2$.'
+
+\paragraph*{Lemma} Falls $L_1 \leq L_2$ und $L_2$ [semi-]entscheidbar ist, so ist auch $L_1$ [semi-]entscheidbar.
+
+\paragraph*{Beweis} Wir konstruieren eine Turingmaschine $M_1$, die $L_1$ entscheidet [erkennt] mit Hilfe einer Turingmaschine $M_2$, welche $L_2$ entscheidet [erkennt].
+\begin{itemize}
+	\item $M_1$ berechnet $f(x)$ aus Eingabe $x$
+	\item und simuliert dann $M_2$ auf Eingabe $f(x)$ und übernimmt Akzeptanzverhalten
+\end{itemize}
+$M_1$ ist korrekt, da
+\begin{itemize}
+	\item[] $M_1$ akzeptiert $x$
+	\begin{itemize}
+		\item[$\Leftrightarrow$] $M_2$ akzeptiert $f(x)$
+		\item[$\Leftrightarrow$] $f(x) \in L_2$
+		\item[$\Leftrightarrow$] $x \in L_1$ $\Box$
+	\end{itemize}
+\end{itemize}
+
+\paragraph*{Beispiele für Nutzung der Reduktion,} Sprache $$ H_{all} = \{ <M>|M \text{hält auf allen Eingaben} \} $$ das 'allgemeine Halteproblem'.
+
+\para{} Wir zeigen, dass weder $H_{all}$ noch $\overline{H_{all}}$ semi-entscheidbar sind. Bislang war bei allen unentscheidbaren Problemen eins von $L$ und $\overline{L}$ immerhin semi-entscheidbar.
+
+\paragraph*{Satz} Die Sprache $\overline{H_{all}}$ ist nicht semi-entscheidbar.
+
+\paragraph*{Beweis} Idee: Wir suchen uns eine Sprache, von der wir wissen, dass sie \textbf{nicht} semi-entscheidbar ist und zeigen dann $L \leq H_{all}$.
+
+\para{} Sprache $L$, welche nicht semi-entscheidbar ist: $L=\overline{H_\epsilon}$ (falls $\overline{H_\epsilon}$ semi-entscheidbar wäre, wäre $H_\epsilon$ entscheidbar !). %TODO blitz bei !
+Wir berechnen eine Funktion $f$, welche die JA-Instanzen von $H_\epsilon$ auf JA-Instanzen von $H_{all}$ abbildet und NEIN-Instanzen von $M_\epsilon$ auf NEIN-Instanzen von $H_{all}$ abbildet, wie folgt:
+
+\para{} Sei $w$ eine Eingabe für $H_\epsilon$
+\begin{itemize}
+	\item falls $w$ keine gültige Kodierung einer Turingmaschine, setze $f(w)=w$
+	\item falls $w=<M>$ einer Turingmaschine $M$, dann setze $f(w)=<M_\epsilon^*>$ für eine Turingmaschine $M_\epsilon^*$ mit folgender Eigenschaft: $$ M_\epsilon^* \text{ ignoriert die Eingabe und simuliert } M \text{ mit der Eingabe} \epsilon $$
+\end{itemize}
+Berechenbarkeit von $f$ klar, Korrektheit muss noch gezeigt werden. Falls $w$ keine gültige Kodierung einer Turingmaschine, $w \not\in H_\epsilon \Rightarrow f(w)=w \not\in H_{all}$. Sei nun $w=<M>$ eine gültige Kodierung einer Turingmaschine, dann gilt $f(w)=<M_\epsilon^*>$.
+\begin{itemize}
+	\item[] $w \in H_\epsilon$
+	\begin{itemize}
+		\item[$\Rightarrow$] $M$ hält auf leerer Eingabe $\epsilon$
+		\item[$\Rightarrow$] $M_\epsilon^*$ hält auf jeder Eingabe
+		\item[$\Rightarrow$] $f(w)=<M_\epsilon^*> \in H_{all}$
+	\end{itemize}
+	\item[] $w \not\in H_\epsilon$
+	\begin{itemize}
+		\item[$\Rightarrow$] $M$ hält nicht auf leerer Eingabe $\epsilon$
+		\item[$\Rightarrow$] $M^*$ hält auf keiner Eingabe
+		\item[$\Rightarrow$] $f(w)=<M_\epsilon^*> \in H_{all}$
+	\end{itemize}
+\end{itemize}
+Also gilt $w \in H_\epsilon \Leftrightarrow f(w) \in H_{all}$, also ist Funktion $f$ korrekt konstruiert und es gilt $L \leq H_{all}$ $\Box$ %TODO notiz
