@@ -36,7 +36,14 @@ Seien $L_1,L_2$ Sprachen.
 Definiere TM $M$ mit folgender Übergangsfunktion $\delta$ (operierend auf 2-Band-Turingmaschine). Seien $q_1 \in Q_1, q_2 \in Q_2$ (nicht-Endzustände), $a_1,a_2 \in \Gamma$
 $$ \delta_1(q_1,a_1)=(q_1',b_1,k_1) \text{ für } q_1' \in Q_1,b_1 \in \Gamma,k_1\in\{L,R,N\} $$
 $$ \delta_2(q_2,a_2)=(q_2',b_2,k_2) \text{ für } q_2' \in Q_2,b_2\in\Gamma,k_2\in\{L,R,N\} $$
-$$ \delta((q_1,q_2),(a_1,a_2))=((q_1',q_2'),(b_1,b_2),(k_1,k_2) $$ %TODO notizen
+$$ \delta(
+	\underbrace{(q_1,q_2)}_{\substack{\text{ein Zustand} \\ \text{der neuen} \\ \text{TM } M}},
+	(a_1,a_2))=\Big(
+	\underbrace{(q_1',q_2')}_{\substack{\text{neuer} \\ \text{Zustand}}},
+	\underbrace{(b_1,b_2)}_{\substack{\text{2 Zeichen} \\ \text{die auf die} \\ \text{Bänder ge-} \\ \text{schrieben} \\ \text{werden}}},
+	\underbrace{(k_1,k_2)}_{\substack{\text{Beide Kopf-} \\ \text{bewegungen} \\ \text{der Bänder}}}
+	\Big) $$
+
 Diese neue Turingmaschine $M$ akzeptiert, sobald $M_1$ (auf Band 1) oder $M_2$ (auf Band 2) akzeptiert. $\Box$
 
 \paragraph*{Satz} Wenn eine Sprache $L$ entscheidbar ist, so ist auch $\overline{L}$ entscheidbar.
