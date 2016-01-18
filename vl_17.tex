@@ -1,0 +1,71 @@
+\paragraph*{Satz} Die Sprache $H_{all}$ ist nicht semi-entscheidbar.
+
+\paragraph*{Beweis} Wir suchen wieder 'schwere' (d.h. nicht semi-entscheidbare Sprache $L$ und zeigen $L \leq H_{all}$). Wie beim letzten Satz wählen wir $L=\overline{H_\epsilon}$ und konstruieren eine Funktion $f$, welche JA-Instanzen von $H_\epsilon$ auf JA-Instanzen von $H_{all}$ und NEIN-Instanzen von $\overline{H_\epsilon}$ auf NEIN-Instanzen von $H_{all}$ abbildet.
+Sei $w$ eine Eingabe für $\overline{H_\epsilon}$
+\begin{itemize}
+	\item falls $w$ keine Turingmaschine kodiert, ist $w \in \overline{H_\epsilon}$. Daher bildet $f$ solche $w$ auf irgendein fixes $w' \in H_{all}$ ab.
+	\item falls $w=<M>$ für eine Turingmaschine $M$, so berechnet $f$ die Kodierung $<M_M'>$ einer Turingmaschine' $M_M'$, welche wie folgt funktioniert auf Eingabe $x$:
+	\begin{itemize}
+		\item[] Falls Eingabe $|x|=i$ (Eingabe ist $i$ lang), simuliert $M_M'$ die ersten $i$ Schritte von $M$ auf der leeren Eingabe $\epsilon$. Wenn $M$ innerhalb dieser $i$ Schritte hält, geht $M_M'$ in eine Endlosschleife, ansonsten hält $M_M'$.
+	\end{itemize}
+\end{itemize}
+$f$ ist offensichtlich berechenbar, zu zeigen, ist noch die Korrektheit.
+\exam{min. eine Reduktion in Klausur}
+\begin{itemize}
+	\item $w \in \overline{H_\epsilon}$
+	\begin{itemize}
+		\item[$\Rightarrow$] $M$ hält nicht auf Eingabe $\epsilon$
+		\item[$\Rightarrow$] $\lnot\exists i : M$ hält innerhalb $i$ Schritten auf $\epsilon$
+		\item[$\Rightarrow$] $\forall i : M_M'$ hält auf allen Eingaben der Länge $i$
+		\item[$\Rightarrow$] $f(w)=>M_M'>\ \in H_{all}$
+	\end{itemize}
+	\item $w \not\in \overline{H_\epsilon}$
+	\begin{itemize}
+		\item[$\Rightarrow$] $M$ hält auf Eingabe $\epsilon$
+		\item[$\Rightarrow$] $\exists i : M$, hält innerhalb von $i$ Schritten auf $\epsilon$
+		\item[$\Rightarrow$] $\exists i : M_M'$ hält nicht auf Eingabe der Länge $i$
+		\item[$\Rightarrow$] $f(w)=<M_M'>\ \not \in H_{all}$
+	\end{itemize}
+\end{itemize}
+Also gilt $w \in \overline{H_\epsilon} \Leftrightarrow f(w) \in H_{all}$.
+
+\para{} Es gibt noch jede Menge weitere unentscheidbare Probleme, z.B.
+
+\paragraph*{10. Hilbertsches Problem} Geg. ganzzahliges Polynom -- hat dieses Polynom eine ganzzahlige Nullstelle?
+
+
+\subsection{Das Postsche Korrespondenzproblem}
+
+\exam{evt. Klausurfrage: ist es unentscheidbar wenn man die Dominos/Karten hätte (nicht $\infty$ viele)}
+
+Wir haben eine Menge von Dominos; jedes davon ist mit Wörtern über einem Alphabet $\Sigma$ beschrieben, eins oben, eins unten. Für eine Menge $K$ von Dominos, z.B. $$ K=\Bigg\{ \Bigg[\frac{b}{ca}\Bigg], \Bigg[\frac{a}{ab}\Bigg], \Bigg[\frac{ca}{a}\Bigg], \Bigg[\frac{abc}{c}\Bigg] \Bigg\} $$ besteht die Aufgabe darin, eine nicht leere Folge von diesen Dominos zu ermitteln (mit Wiederholungen), sodass sich oben und unten dasselbe Wort ergibt. Für obiges Beispiel $$ \Bigg[\frac{a}{ab}\Bigg]_2 \Bigg[\frac{b}{ca}\Bigg]_1 \Bigg[\frac{ca}{a}\Bigg]_3 \Bigg[\frac{a}{ab}\Bigg]_2 \Bigg[\frac{abc}{c}\Bigg]_4 \cong \frac{abcaaabc}{abcaaabc} $$
+Es gibt natürlich auch Dominos, für die es keine solche Folge gibt, z.B. hat diese Dominomenge $$ K=\Bigg\{ \Bigg[\frac{abc}{ca}\Bigg], \Bigg[\frac{abca}{abc}\Bigg], \Bigg[\frac{abc}{bc}\Bigg] \Bigg\} $$ keine solche Folge, da der obere String immer länger sein wird, als der untere -- egal bei welcher Folge.
+
+\paragraph*{Def. Postsches Korrespondenzproblem (PKP)} Eine Instanz des PKP besteht aus einer Menge $$ K=\Bigg\{ \Bigg[\frac{x_1}{y_1}\Bigg], \Bigg[\frac{x_2}{y_2}\Bigg], \dots, \Bigg[\frac{x_k}{y_k}\Bigg] \Bigg\} $$ wobei $x_i$ und $y_i$ nicht leere Wörter über einem endlichen Alphabet $\Sigma$ sind. Es soll entschieden werden, ob es eine korrespondierende Folge von Indizes $i_1,\dots,i_n \in \{ 1,\dots,k \}, n \geq 1$ gibt, sodass $x_{i_1}x_{i_2}x_{i_3}\dots x_{i_n} = y_{i_1}y_{i_2}y_{i_3}\dots y_{i_n}$.
+
+\paragraph*{Def. Modifiziertes PKP (MPKP)} entspricht dem PKP aber erzwingt $i_1 = 1$.
+
+\para{} Wir werden folgende Lemmas beweisen:
+
+\paragraph*{Lemma 2.31} MPKP $\leq$ PKP
+
+\paragraph*{Lemma 2.32} $H \leq$ MPKP
+
+\paragraph*{Beweis 2.31} Konstruktion der Funktion $f$ für Reduktion. Seien $\#,\$ \in \Sigma$ (neue Symbole). Wir bilden sie MPKP-Instanz $$ K=\Bigg( \Bigg[ \frac{x_1}{y_1} \Bigg], \dots, \Bigg[ \frac{x_k}{y_k} \Bigg]\Bigg) $$ ab auf eine PKP-Instanz $$ f(k)=\Bigg( \Bigg[ \frac{x_0'}{y_0'} \Bigg], \Bigg[ \frac{x_1'}{y_1'} \Bigg], \dots, \Bigg[ \frac{x_k'}{y_k'} \Bigg], \Bigg[ \frac{x_{k+1}'}{y_{k+1}'} \Bigg] \Bigg) $$ wobei
+\begin{itemize}
+	\item $x_i'$ aus $x_i (1 \leq i \leq k)$ entsteht, indem wir hinter jedem Zeichen ein \# $x_1'$ und $x_{k+1}'=\$$
+	\item $y_i'$ aus $y_i (1 \leq i \leq k)$ entsteht, indem wir vor jedem Zeichen ein \# einfügen und $y_0'=y_1'$ und $y_{k+1}'=\#\$$
+\end{itemize}
+Syntaktisch inkorrekte Eingaben (keine Kodierung aus MPKP) werden auf das leere Wort $\epsilon \not\in PKP$ abgebildet.
+
+\paragraph*{Bsp.} $$K=\Bigg( \Bigg[ \frac{ab}{a} \Bigg]_1, \Bigg[ \frac{c}{abc} \Bigg]_2, \Bigg[ \frac{a}{b} \Bigg]_3 \Bigg)$$ $$ f(k)=\Bigg( \Bigg[ \frac{\#a\#b\#}{\#a} \Bigg]_0, \Bigg[ \frac{a\#b\#}{\#a} \Bigg]_1, \Bigg[ \frac{c\#}{\#a\#b\#c} \Bigg]_2, \Bigg[ \frac{a\#}{\#b} \Bigg]_3, \Bigg[ \frac{\$}{\#\$} \Bigg]_4 \Bigg) $$
+MPKP-Instanz hat Lösung:
+$$ \Bigg[ \frac{ab}{a} \Bigg]_1 \Bigg[ \frac{a}{b} \Bigg]_3 \Bigg[ \frac{ab}{a} \Bigg]_1 \Bigg[ \frac{c}{abc} \Bigg]_2 = \frac{abaabc}{abaabc} $$
+PKP-Instanz hat Lösung:
+$$ \Bigg[\frac{\#a\#b\#}{\#a}  \Bigg]_0, \Bigg[\frac{a\#}{\#b}  \Bigg]_3, \Bigg[\frac{a\#b\#}{\#a}  \Bigg]_1, \Bigg[\frac{c\#}{\#a\#b\#c}  \Bigg]_2, \Bigg[\frac{\$}{\#\$}  \Bigg]_4 $$
+
+\paragraph*{Zu zeigen} $k \in MPKP \Rightarrow f(k) \in PKP$
+
+Sei $(1,i_2,\dots,i_n)$ eine MPKP Lösung für $k$, d.h. $x_1 x_{i_2} x_{i_3} \dots x_{i_n} = y_1 y_{i_2} y_{i_3} \dots y_{i_n} = a_1 a_2 \dots a_s$ für entsprechende Symbole $a_i \in \Sigma$. Dann ist $(0,i_2,i_3,\dots,i_n,k+1)$ eine Lösung für $f(k)$ da $x_0' x_{i_2}' x_{i_3}' \dots x_{i_n}'\$ = \#a_1\#a_2 \dots \#a_s\#\$ = y_0' y_{i_2}' \dots y_{i_n}'\#\$$
+
+\para{} Wenn es also eine Lösung für die MPKP-Instanz $k$ gibt, dann auch für die PKP-Instanz $f(k)$.
