@@ -97,7 +97,7 @@ $M_1$ ist korrekt, da
 
 \paragraph*{Beweis} Idee: Wir suchen uns eine Sprache, von der wir wissen, dass sie \textbf{nicht} semi-entscheidbar ist und zeigen dann $L \leq H_{all}$.
 
-\para{} Sprache $L$, welche nicht semi-entscheidbar ist: $L=\overline{H_\epsilon}$ (falls $\overline{H_\epsilon}$ semi-entscheidbar wäre, wäre $H_\epsilon$ entscheidbar !). %TODO blitz bei !
+\para{} Sprache $L$, welche nicht semi-entscheidbar ist: $L=\overline{H_\epsilon}$ (falls $\overline{H_\epsilon}$ semi-entscheidbar wäre, wäre $H_\epsilon$ entscheidbar $\lightning$).
 Wir berechnen eine Funktion $f$, welche die JA-Instanzen von $H_\epsilon$ auf JA-Instanzen von $H_{all}$ abbildet und NEIN-Instanzen von $M_\epsilon$ auf NEIN-Instanzen von $H_{all}$ abbildet, wie folgt:
 
 \para{} Sei $w$ eine Eingabe für $H_\epsilon$
@@ -105,6 +105,7 @@ Wir berechnen eine Funktion $f$, welche die JA-Instanzen von $H_\epsilon$ auf JA
 	\item falls $w$ keine gültige Kodierung einer Turingmaschine, setze $f(w)=w$
 	\item falls $w=<M>$ einer Turingmaschine $M$, dann setze $f(w)=<M_\epsilon^*>$ für eine Turingmaschine $M_\epsilon^*$ mit folgender Eigenschaft: $$ M_\epsilon^* \text{ ignoriert die Eingabe und simuliert } M \text{ mit der Eingabe} \epsilon $$
 \end{itemize}
+\note{$\overline{H_\epsilon} \leq \overline{H_{all}}$ fi $w \in H_\epsilon \Leftrightarrow f(w) \in \overline{H_{all}} \leftrightarrow$ fi $w \in H_\epsilon \Leftrightarrow f(w) \in H_{all}$}
 Berechenbarkeit von $f$ klar, Korrektheit muss noch gezeigt werden. Falls $w$ keine gültige Kodierung einer Turingmaschine, $w \not\in H_\epsilon \Rightarrow f(w)=w \not\in H_{all}$. Sei nun $w=<M>$ eine gültige Kodierung einer Turingmaschine, dann gilt $f(w)=<M_\epsilon^*>$.
 \begin{itemize}
 	\item[] $w \in H_\epsilon$
@@ -120,4 +121,4 @@ Berechenbarkeit von $f$ klar, Korrektheit muss noch gezeigt werden. Falls $w$ ke
 		\item[$\Rightarrow$] $f(w)=<M_\epsilon^*> \in H_{all}$
 	\end{itemize}
 \end{itemize}
-Also gilt $w \in H_\epsilon \Leftrightarrow f(w) \in H_{all}$, also ist Funktion $f$ korrekt konstruiert und es gilt $L \leq H_{all}$ $\Box$ %TODO notiz
+Also gilt $w \in H_\epsilon \Leftrightarrow f(w) \in H_{all}$, also ist Funktion $f$ korrekt konstruiert und es gilt $L \leq H_{all}$ $\Box$
