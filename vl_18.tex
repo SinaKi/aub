@@ -13,3 +13,61 @@
 	\item[$\Rightarrow$] $f(k) \in PKP \Rightarrow k \in MPKP$
 	\item[$\Rightarrow$] $k \in MPKP \Leftrightarrow f(k) \in PKP$ $\Box$
 \end{itemize}
+
+\note{Konfig.: Konfiguration einer Turingmaschine}
+
+\begin{table}[htb!]
+\begin{tabular}{l|l l l l l}
+oben: & & Konfig. 1 & Konfig. 2 & Konfig. 3 & \dots \\
+unten: & Konfig. 1 & Konfig. 2 & Konfig. 3 & Konfig. 4 & \dots \\
+\end{tabular}
+\end{table}
+
+\paragraph*{Noch zu zeigen} $H \leq MPKP$ (Lemma 2.32)
+
+\paragraph*{Idee} Simuliere durch Kärtchen gültige Berechnung der Turingmaschine.
+
+\paragraph*{Bsp.} Betrachte Turingmaschine $M$:
+\begin{itemize}
+	\item[$\Sigma$] $\{ 0,1 \}$
+	\item[$\Gamma$] $\{ 0,1,B \}$
+	\item[$Q$] $\{ q_0,q_1,q_2,\overline{q} \}$
+	\item[$q_0$] Anfangszustand
+	\item[$\overline{q}$] Endzustand
+	\item[$\delta$] Übergangsfunktionen
+\end{itemize}
+
+\begin{table}[htb!] %TODO besser anordnen
+\centering
+\begin{tabular}{c|c c c}
+$\delta$ & 0 & 1 & B \\
+\hline
+$q_0$ & $(q_0,0,R)$ & $(q_1,1,R)$ & $(\overline{q},1,N)$ \\
+$q_1$ & $(q_2,0,R)$ & $(q_1,1,R)$ & $(\overline{q},1,N)$ \\
+$q_2$ & $(q_2,0,R)$ & $(q_2,1,R)$ & $(q_2,B,R)$ \\
+\end{tabular}
+\end{table}
+
+\paragraph*{Semantik} $M$ testet, ob Eingabe die Form $0î1^j;i,j \geq 0$ hat.
+
+\para{} Die Berechnung einer Turingmaschine kann durch eine Folge von Konfigurationen beschrieben werden.
+
+\paragraph*{Notation} <BandinhaltLinksDesKopfs><Zustand><BandinhaltAbKopfNachRechts>
+
+\para{} Im Beispiel ist die Konfiguration für Eingabe $w=0011$ wie folgt $$ \underbrace{q_0 0011}_{\text{Startkonfig.}} \mapsto 0 q_0 011 \mapsto 00q_0 11 \mapsto 001q_1 1 \mapsto 0011q_1 \mapsto 0011\overline{q}1 $$
+
+\note{Nächste Konfiguration muss durch Anwendung der Übergangsfunktion aus der vorherigen Konfig. entstehen.}
+\paragraph*{Idee des Beweis} Erzeuge MPKP-Instanz welche die Berechnung der Turingmaschine $\overset{\wedge}{=}$ Sequenz gültiger Konfigurationen Simulieren.
+
+\para{} Das Startkärtchen sieht wie folgt aus: $$\Big[ \frac{\#}{\#\#q_0 0011} \Big]$$ Unten steht die Startkonfiguration.
+
+\para{} Es gibt des weiteren 'Kopierkärtchen' $$\Big[ \frac{0}{0} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{B}{B} \Big], \Big[ \frac{\#}{\#} \Big]$$ und 'Übergangskärtchen' $$\Big[ \frac{q_0 0}{0q_0} \Big], \Big[ \frac{q_0 1}{1q_1} \Big], \Big[ \frac{q_0 B}{\overline{q}1} \Big], \Big[ \frac{q_1 0}{0q_2} \Big], \Big[ \frac{q_1 1}{1q_1} \Big], \Big[ \frac{q_1 B}{\overline{q}1} \Big], \Big[ \frac{q_2 0}{0q_2} \Big], \Big[ \frac{q_2 1}{1q_2} \Big], \Big[ \frac{q_2 B}{Bq_2} \Big], \Big[ \frac{q_0\#}{\overline{q}1\#} \Big], \Big[ \frac{q_1\#}{\overline{q}1\#} \Big]$$
+
+\paragraph*{Beispiel} $$ \Big[ \frac{\#}{\#\#q_0 0011\#} \Big]\Big[ \frac{\#}{\#} \Big]\Big[ \frac{q_0 0}{0 q_0} \Big]\Big[ \frac{0}{0} \Big]\Big[ \frac{1}{1} \Big]\Big[ \frac{1}{1} \Big]\Big[ \frac{\#}{\#} \Big] $$
+$$ \Big[ \frac{\#}{\#} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{q_0 0}{0q_0} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{\#}{\#} \Big] $$
+$$ \Big[ \frac{\#}{\#} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{q_0 1}{1q_1} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{\#}{\#} \Big] $$
+$$ \Big[ \frac{\#}{\#} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{q_1 1}{1q_1} \Big], \Big[ \frac{\#}{\#} \Big] $$
+$$ \Big[ \frac{\#}{\#} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{q_1\#}{\overline{q}1\#} \Big] $$
+Die Berechnung oben hängt einen Berechnungsschritt hinterher, folgende 'Aufräumkärtchen' gleichen die Strings unten aus: $$ \Big[ \frac{\overline{q}0}{\overline{q}} \Big], \Big[ \frac{\overline{q}1}{\overline{q}} \Big], \Big[ \frac{\overline{q}B}{\overline{q}} \Big], \Big[ \frac{0\overline{q}}{\overline{q}} \Big], \Big[ \frac{1\overline{q}}{\overline{q}} \Big], \Big[ \frac{B\overline{q}}{\overline{q}} \Big] $$ sowie $$\Big[ \frac{\#\overline{q}\#\#}{\#} \Big]$$
+$$ \Big[ \frac{\#}{\#} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{\overline{q}1}{\overline{q}} \Big], \Big[ \frac{\#}{\#} \Big] $$
+$$ \Big[ \frac{\#}{\#} \Big], \Big[ \frac{0\overline{q}}{\overline{q}} \Big], \Big[ \frac{\#}{\#} \Big], \Big[ \frac{\#\overline{q}\#\#}{\#} \Big] $$
