@@ -1,0 +1,77 @@
+\paragraph*{Beweis von $H \leq MPKP$} (analog zum Beispiel) Wir konstruieren eine Funktion $f$, welche Instanzen von $H$ der Form $(<M>,w)$ auf Instanzen für $MPKP k=f((<M>,w))$ abbildet, sodass $$ M \text{ hält auf } w \Leftrightarrow k \text{ hat eine Lösung.}$$ Syntaktisch nicht korrekte Eingaben für $H$ werden auf syntaktisch nicht korrekte Eingaben für MPKP abgebildet.
+
+\para{} Alphabet für MPKP-Instanz, $\Gamma \cup Q \cup \{\#\}$ wobei $\#\in\Gamma Q$
+
+\para{} Konstruktion von $f$: Die Funktion f erzeugt für $(<M>,w)$ folgende Kärtchen:
+
+\begin{itemize}
+	\item[] Startkärtchen: $\Big[ \frac{\#}{\#\#q_0 w\#} \Big]$
+	\item[] Kopierkärtchen: $\Big[ \frac{a}{a} \Big]$ für alle $a \in \Gamma \cup \{\#\}$
+	\item[] Übergangskärtchen: 
+	\begin{itemize}
+		\item[] $\Big[ \frac{qa}{q'c} \Big]$ falls $\delta(q,a)=(q',c,N)$ für $q \in Q\backslash\{\overline{q}\}$ mit $a \in \Gamma$
+		\item[] $\Big[ \frac{qa}{c\overline{q}} \Big]$ falls $\delta(q,a)=(\overline{q},c,R)$ für $q \in Q\backslash\{\overline{q}\}$ mit $a \in \Gamma$
+		\item[] $\Big[ \frac{bqa}{q'bc} \Big]$ falls $\delta(q,a)=(q',c,L)$ für $q \in Q\backslash\{\overline{q}\}$ mit $a,b \in \Gamma$
+	\end{itemize}
+	\item[] Spezielle Randübergangskärtchen:
+	\begin{itemize}
+		\item[] $\Big[ \frac{\#qa}{\#q'Bc} \Big]$ falls $\delta(q,a)=(q',c,L)$
+		\item[] $\Big[ \frac{q\#}{\overline{q}c\#} \Big]$ falls $\delta(q,B)=(q',c,N)$
+		\item[] $\Big[ \frac{q\#}{cq'\#} \Big]$ falls $\delta(q,B)=(q',c,R)$
+		\item[] $\Big[ \frac{bq\#}{q'bc\#} \Big]$ falls $\delta(q,B)=(q',c,L)$
+		\item[] $\Big[ \frac{\#q\#}{\#q'Bc\#} \Big]$ falls $\delta(q,B)=(q',c,L)$
+	\end{itemize}
+	\item[] Löschkärtchen: $\Big[ \frac{a\overline{q}}{\overline{q}} \Big]$ und $\Big[ \frac{\overline{q}a}{\overline{q}} \Big]$ für $a \in \Gamma$
+	\item[] Abschlusskärtchen: $\Big[ \frac{\#\overline{q}\#\#}{\#} \Big]$
+\end{itemize}
+
+\paragraph*{Zu zeigen} $M$ hält auf $w \Rightarrow k \in MPKP$
+
+\para{} Wenn die Berechnung von $M$ auf $w$ hält, existiert eine endliche Sequenz von Konfigurationen. $$ k_0 \vdash k_1 \vdash k_2 \vdash \dots \vdash k_{t-1} \vdash k_t $$ wobei $k_0$ die Startkonfiguration und $k_t$ die Endkonfiguration im Zustand $\overline{q}$ sind.
+
+\para{} Beginnend mit dem Startkärtchen können wir Kopier- und Übergangskärtchen so legen, dass
+\begin{itemize}
+	\item der untere String die Vollständige Konfigurationsfolge von $M$ auf $w$ wie folgt darstellen $$ \#\#k_0\#\#k_1\#\#k_2 \dots \#\#k_{t-1}\#\#k_t\# $$
+	\item der obere String ein Präfix des unteren, also $$ \#\#k_0\#\#k_1\#\#k_2 \dots \#\#k_{t-1}\# $$
+\end{itemize}
+
+\para{} Durch Anlegen von Löschkärtchen kann der Vorsprung des unteren Strings fast eliminiert werden (immer 1 Zeichen Verringerung pro Kopieren einer ggf. schon gekürzten Konfiguration). An Ende dieser Phase ist der untere String nur um $\#\overline{q}\#$ länger als der obere. Dieser letzte Unterschied wird durch das Abschlusskärtchen ausgeglichen.
+
+\paragraph*{Noch zu zeigen} $M$ hält nicht auf $w \Rightarrow k$ hat keine Lösung bzw. zum Widerspruch Annahme, dass $k$ eine Lösung hat und $M$ auf $w$ hält.
+
+\paragraph*{Beobachtung} Wenn es eine Lösung für $k$ gibt, so hat diese Lösung mindestens ein Lösch- oder Abschlusskärtchen, da sonst der untere String länger als der obere wäre.
+
+\para{} Sei $1,i_1,i_2,\dots,i_n$ eine Lösung für $k$, und $1,i_2,\dots,i_{s-1}$ das Präfix, welches nur aus Start-, Kopier, Überführungskärtchen besteht. $i_s$ das erste Lösch- oder Abschlusskärtchen:
+
+\begin{itemize}
+	\item Kopier- und Überführungskärtchen sind so definiert, dass die Konfigurationsreihenfolge von $M$ auf $w$ entstehen muss
+	\item oberer String folgt dem unteren mit einem Konfigurationsrückstand
+	\item Da $M$ auf $w$ nicht hält, kann in den Konfigurationen, die durch $1,i_1,\dots,i_{s-1}$ dargestellt werden, kein Endzustand vorkommen
+	\item Lösch- oder Abschlusskärtchen kann aber nur benutzt werden, wenn $\overline{q}$ vorkommt
+	\begin{itemize}
+
+	\exam{kein Beweis dazu, aber Aufgabe mit TM um Verständnis zu zeigen}
+	\exam{eher kein RAM-Zeug}
+	
+		\item[$\lightning$] $k$ hat eine Lösung $\Box$
+		\item[$\Rightarrow$] $H \leq MPKP \leq PKP$
+		\item[$\Rightarrow$] $PKP$ und $MPKP$ unentscheidbar
+	\end{itemize}
+\end{itemize}
+
+
+
+\part{Komplexität}
+
+Im Gegensatz zu 'Berechenbarkeit' beschäftigen wir uns jetzt mit Problemen, die man berechnen/entscheiden kann, uns interessiert aber die Laufzeit, die dafür nötig ist.
+
+\paragraph*{Def} Die worst-case Laufzeit $t_A(n)$ eines Algorithmus $A$ entspricht der maximalen Anzahl an Operationen auf der RAM bei einer Eingabe der Länge $n$.
+
+\paragraph*{Def} Die worst-case Laufzeit $t_A(n)$ eines Algorithmus $A$ ist polynomiell beschränkt, falls $\exists\alpha\in\mathbb{N}:t_A(n)=O(n^\alpha)$
+
+\paragraph*{Def} Die Komplexitätsklasse $P$ ist die Klasse der Probleme, für die es polynomiell beschränkte Algorithmen gibt.
+
+\paragraph*{Beispiele}
+\begin{itemize}
+	\item Sortierer (MergeSort, BubbleSort)
+\end{itemize}
