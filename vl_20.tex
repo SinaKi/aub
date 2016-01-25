@@ -1,0 +1,53 @@
+\paragraph*{Anmerkung} Wir nehmen an, dass ein Rechenschritt auf einer Zahl $x$ $O(\log x)$ Zeit benötigt und die Größe der Eingabe in Bits angegeben wird; Zahlen sind binär kodiert.
+
+\paragraph*{Def.} $P$ ist die Klasse der Probleme, für die es Algorithmen mit polynomieller worst-case Laufzeit gibt.
+
+\paragraph*{Bsp. für Probleme in $P$}
+\begin{itemize}
+	\item Sortierer
+	\item Kürzeste Wege
+	\item Minimaler Spannbaum
+	\item Minimaler Schnitt
+	\item Entscheidung ob Graph zusammenhängend
+\end{itemize}
+
+
+\section*{Die Komplexitätsklasse NP}
+
+\paragraph*{Def. Nicht-deterministische Turingmaschine (NTM)} Eine NTM ist eine Turingmaschine, bei der die Übergangsfunktion ersetzt wird durch eine Übergangsrelation: $$ \delta\leq \Big( (Q\backslash\{\overline{q}\} \times \Gamma) \times (Q \times \Gamma \times \{ L,R,N \}) \Big) $$
+
+Eine Konfiguration $k'$ kann aus einer  Konfiguration $k$ entstehen, falls es ein entsprechendes Tupel in der Übergangsrelation gibt: $$ \delta(q_5,\#)=(q_6,1,L) \text{(deterministisch)} $$ Es gibt keine Wahl, wenn wir in $q_5$ sind und \# lesen.
+$$ (q_5,\#,q_6,1,L) \in \delta \text{ und } (q_5,\#,q_7,\#,R) \in \delta \text{(nicht deterministisch)}$$ Es besteht die Wahl, wenn wir in $q_5$ sind und \# lesen, entweder in $q_6$ zu gehen, 1 zu schreiben und den Kopf nach links zu bewegen oder in $q_7$ zu gehen, \# zu schreiben und den Kopf nach rechts zu bewegen.
+
+\paragraph*{Def.} Eine NTM $M$ akzeptiert eine Eingabe $x\in\Sigma^*$, falls es eine Sequenz von gültigen (d.h. durch die Übergangsrelation $\delta$ ermöglicht) Konfigurationen gibt, welche in einer akzeptierenden Endkonfiguration endet. Die von $M$ erkannte Sprache $L(M)$ besteht aus allen von $M$ akzeptierten Wörtern.
+
+\paragraph*{Def.} Sei $M$ eine NTM $M$. Die Laufzeit von $M$ auf $x\in\Sigma^*$ ist definiert als $$ T_M(x):= \text{ Länge des kürzesten akzeptierenden Rechnungsweg von } M \text{ auf } x $$ Für $x \not\in L(M)$ definiere $T_M(x)=0.$ Die worst-case Laufzeit $t_M(n)$ für $M$ auf Eingaben der Länge $n\in\mathbb{N}$ ist definiert durch $$ t_M(n):=max\{ T_M(x) \| x\in\Sigma^n \} $$
+
+\note{$NP$ nicht deterministisch polynomiell}
+\paragraph*{Def.} $NP$ ist die Klasse der Entscheidungsprobleme, welche durch eine NTM $M$ erkannt werden, deren worst-case Laufzeit $t_M(n)$ polynomiell beschränkt ist.
+
+\paragraph*{Bsp. Das Cliqueproblem (CLIQUE)} Gegeben ist ein Graph $G(V,E), k \in \{1,\dots,|V|\}$. Gibt es eine k-Clique in $G$?
+
+\paragraph*{Satz} CLIQUE $\in$ NP
+
+%TODO bild
+
+\paragraph*{Beweis} Wir konstruieren eine Turingmaschine $M$ mit $L(M)=CLIQUE$, d.h. für alle $x=<G><k>$ mit $G$ enthält Clique der Größe k sagt NTM $M$ JA, für kein anderes $x$ sagt NTM $M$ JA.
+\begin{enumerate}
+	\item Falls Eingabe nicht der Form $<G><k>$, verwerfe.
+	\item Sei $|V|=N$. $M$ schreibt hinter die Eingabe den String $\#^N$. Kopf bewegt sich unter erstes \#.
+	\item $M$ läuft von links nach rechts über $\#^N$ und ersetzt nicht-deterministisch jedes \# durch 0 oder 1. Sei der resultierende String $y=(y_1,\dots,y_N)$
+	\item Sei $C=\{ i \in V \| y_i = 1 \} \subseteq V$. $M$ akzeptiert, falls $C$ eine k-Clique ist.
+\end{enumerate}
+Offensichtlich ist nur Schritt 3 nicht-deterministisch.
+
+\paragraph*{Zu zeigen} $L(M)=CLIQUE$.
+\begin{enumerate}
+	\item Fall: $x \in CLIQUE$, d.h. $\alpha=<G><k>$ und $G$ hat k-Clique $\Rightarrow$ gibt es mindestens ein $y$ für welches Schritt 4 erfolgreich ist
+	\item Fall: $x \not\in CLIQUE$, dann ist egal, welche $k$ Knoten NTM in Schritt 3 rät, es kann nie in Schritt 4 zur Akzeptanz kommen. %TODO wirklich Knoten?
+\end{enumerate}
+Laufzeit offensichtlich polynomiell. $\Box$
+
+\paragraph*{Anmerkung} Nicht-determinismus wurde hier nur genutzt, um ein Zertifikat für das JA-Sagen der NTM zu erzeugen. Man kann diese Idee erweitern zu einer alternativen Charakterisierung der Klasse NP.
+
+\paragraph*{NP kann auch charakterisiert werden, ohne NTM zu verwenden} Eine Sprache $L$ gehört genau dann zu NP, wenn es für die Eingaben $x \in L$ ein Zertifikat polynomieller Länge in $|x|$ gibt, mit welchem sich Zugehörigkeit zu $L$ in polynomieller Zeit beweisen lässt.
