@@ -1,3 +1,5 @@
 \par\smallskip	% erzeugt einen kleinen Abstand
 \par\medskip	% erzeugt einen mittleren Abstand
 \par\bigskip	% erzeugt einen großen Abstand
+
+\varepsilon

@@ -16,7 +16,7 @@
 
 \note{bin() Binärkodierung}\note{$\{ 0,1 \}^*$ endliches Wort}
 \par\medskip
-Das Problem samt Lösungen entspricht der Relation $R \subseteq \{ 0,1 \}^* \times \{ 0,1 \}$ mit $R=\{ (x,y) \in \{ 0,1 \}^* \times \{ 0,1 \}^* | x=bin(q), y=bin(q); p,q \in \mathbb{N}, q \geq 2, p$ prim, $p$ teilt $q \}$. Relation, da für gegebene Eingabe mehrere Ergebnisse möglich sind.
+Das Problem samt Lösungen entspricht der Relation $R \subseteq \{ 0,1 \}^* \times \{ 0,1 \}$ mit $R=\{ (x,y) \in \{ 0,1 \}^* \times \{ 0,1 \}^* \| x=bin(q), y=bin(q); p,q \in \mathbb{N}, q \geq 2, p$ prim, $p$ teilt $q \}$. Relation, da für gegebene Eingabe mehrere Ergebnisse möglich sind.
 \par\medskip
 
 \subsection*{Problem 1.2 (Multiplikation)}
@@ -26,12 +26,12 @@ Das Problem samt Lösungen entspricht der Relation $R \subseteq \{ 0,1 \}^* \tim
 \par\medskip
 Um die Zahl $a$ und $b$ in der Eingabe unterscheiden zu können, führen wir ein Trennsymbol ein, also $\Sigma = \{ 0,1,\# \}$. Die kodierte Eingabe ist dann $bin(a)\#bin(b)$ die kodierte Ausgabe ist $f(bin(a)\#bin(b))=bin(c)$
 \par\bigskip
-Wir werden uns im folgenden meistens mit Ja/Nein-Fragen beschäftigen, sogenannte Entscheidungsprobleme. Diese haben die Form $$ f:\Sigma^* \rightarrow \{ 0,1 \} $$ wobei wir '0' als NEIN interpretieren, '1' als JA. $ L=f^{-1}(1) \subseteq \sum^* $ \dots Menge der Eingaben, die mit 1 beantwortet werden. $L$ nennen wir auch eine Sprache.
+Wir werden uns im folgenden meistens mit Ja/Nein-Fragen beschäftigen, sogenannte Entscheidungsprobleme. Diese haben die Form $$ f:\Sigma^* \rightarrow \{ 0,1 \} $$ wobei wir '0' als NEIN interpretieren und '1' als JA. $ L=f^{-1}(1) \subseteq \sum^* $ ist die Menge der Eingaben, die mit 1 beantwortet werden. $L$ nennen wir auch eine Sprache.
 \par\medskip
 
 \subsection*{Problem 1.3 (Graphzusammenhang)}
 \paragraph*{Eingabe} Kodierung eines Graphen $G(V,E)$ (gerichtet).
-\paragraph*{Ausgabe} Das Zeichen 1, falls $G$ zusammenhängend, ansonsten 0. Graphen könnte man kodieren als $$ \underbrace{bin(n)}_{\# Knoten = |V|}\# \underbrace{010 \dots}_{\substack{|V| \cdot |V| \text{ bits entsprechend} \\ \text{der Adjazenzmatrix von } G} } $$ %TODO matrix
+\paragraph*{Ausgabe} Das Zeichen 1, falls $G$ zusammenhängend, sonst 0. Graphen könnte man kodieren als $$ \underbrace{bin(n)}_{\# Knoten = |V|}\# \underbrace{010 \dots}_{\substack{|V| \cdot |V| \text{ bits entsprechend} \\ \text{der Adjazenzmatrix von } G} } $$ %TODO matrix
 
 \par\medskip
 Es sind natürlich nicht alle Wörter über $\Sigma^*$ eine gültige Kodierung eines Graphen. Sei $\mathcal{G}$ die Menge aller Graphen, $\mathcal{G}_z \subseteq \mathcal{G}$ die Menge aller zusammenhängenden Graphen, und $code(G)$ für $G \in \mathcal{G}$ die Kodierung eines Graphen. Dann ist die entsprechende Sprache $$ L=\{ w \in \{ 0,1,\# \}^* \| \exists G(V,E) \in \mathcal{G}_z, w=code(G) \} $$ Die Sprache $L$ enthält alle Eingaben, die einen zusammenhängenden Graphen kodieren.
@@ -43,10 +43,10 @@ Das Komplement von $L$ ist definiert als $$ \overline{L} := \Sigma^* \textbacksl
 
 \subsection{Turingmaschine (TM)}
 Eine Turingmaschine arbeitet auf einem beidseitig unendlichen Speicherband, %TODO bild
-welches aus Zellen besteht. Jede Zelle enthält ein Element des sogenannten Bandalphabets $\Gamma$, z.B. $\Gamma=\{ 0,1,B \}$. Des Weiteren hat eine Turingmaschine einen Schreib-/Lesekopf, der über das Band wandern kann und jeweils den Inhalt der Zelle, über der er steht, lesen und schreiben kann. Daneben besitzt eine Turingmaschine auch noch eine Zustand $q \in Q$ aus einer endlichen Zustandsmenge $Q$.
+welches aus Zellen besteht. Jede Zelle enthält ein Element des sogenannten Bandalphabets $\Gamma$, z.B. $\Gamma=\{ 0,1,B \}$. Des Weiteren hat eine Turingmaschine einen Schreib-/Lesekopf, der über das Band wandern kann und jeweils den Inhalt der Zelle, über der er steht, lesen und schreiben kann. Daneben besitzt eine Turingmaschine auch noch einen Zustand $q \in Q$ aus einer endlichen Zustandsmenge $Q$.
 
 \par\medskip
-Per Konvention befindet sich TM am Anfang einer Rechnung im Anfangszustand $q_0 \in Q$, auf dem Band steht -- startend mit der Zelle, auf die der Schreib-/Lesekopf zeigt -- von links nach rechts die Eingabe, alle anderen Zellen enthalten das Leerzeichen ($B$).
+Per Konvention befindet sich die Turingmaschine am Anfang einer Rechnung im Anfangszustand $q_0 \in Q$, auf dem Band steht (startend mit der Zelle, auf die der Schreib-/Lesekopf zeigt) von links nach rechts die Eingabe, alle anderen Zellen enthalten das Leerzeichen ($B$).
 \par\medskip
 Das Eingabealphabet $\Sigma \subseteq \Gamma \backslash \{B\}$. Die Arbeitsweise der Turingmaschine wird durch eine Übergangsrelation: $$ \delta : (Q \backslash \{ \overline{q}\} \times \Gamma \times Q \times \Delta \times \{ R,L,N \}) $$ ausgedrückt. Hierbei ist $\overline{q} \in Q$ ein besonderer Zustand, der Stoppzustand.
 \par\medskip
@@ -58,9 +58,9 @@ Das Eingabealphabet $\Sigma \subseteq \Gamma \backslash \{B\}$. Die Arbeitsweise
 \end{itemize}
 
 \par\medskip
-Falls für geg. Zustand und Zeichen unter dem Schreib-/Lesekopf nur eine Aktion möglich ist, reden wir von einer Übergangsfunktion. $$ \delta : (Q \backslash \{ \overline{q}\}) \times \Gamma \rightarrow Q \times \Gamma \times \{R,L,N\} $$ $\delta(q,a)=(q',a',d)$ bedeutet: wenn die Turingmaschine im Zustand $q$ Zeichen $a'$ an diese Stelle, bewege Kopf nach $s \in \{L,R,N\}$ und nimm Zustand $a'$ ein. %TODO satz verbessern
+Falls für gegebenen Zustand und Zeichen unter dem Schreib-/Lesekopf nur eine Aktion möglich ist, reden wir von einer Übergangsfunktion. $$ \delta : (Q \backslash \{ \overline{q}\}) \times \Gamma \rightarrow Q \times \Gamma \times \{R,L,N\} $$ $\delta(q,a)=(q',a',d)$ bedeutet: wenn die Turingmaschine im Zustand $q$ ist und Zeichen $a$ ließt, schreibe Zeichen $a'$ an diese Stelle, bewege Kopf nach $d \in \{L,R,N\}$ und nimm Zustand $q'$ ein.
 \par\medskip
-Eine Turingmaschine führt so lange Rechenschritte aus, bis stopp-Zustand $\overline{q}$ erreicht wird.
+Eine Turingmaschine führt so lange Rechenschritte aus, bis der stopp-Zustand $\overline{q}$ erreicht wird.
 \par\medskip
 
 \paragraph*{Bsp.} Übergangsfunktion $\delta$ %TODO tabelle
@@ -72,24 +72,24 @@ Eine Turingmaschine führt so lange Rechenschritte aus, bis stopp-Zustand $\over
 	\item endliches Bandalphabet $\Gamma \supset \Sigma$
 	\item $B \in \Gamma\backslash\Sigma$ (Leerzeichen)
 	\item $q_0 \in Q$ (Anfangszeichen)
-	\item $\overline{q} \in Q$ (Stoppzustand)
+	\item $\overline{q} \in Q$ (stopp-Zustand)
 	\item Übergangsfunktion $\delta : (Q \backslash \{ \overline{q} \}) \times \Gamma \rightarrow Q \times \Gamma \times \{ R,L,N \}$
 \end{itemize}
 
-\par\medskip
-Eine Turingmaschine ist also durch ein 7-Tupel ($Q,\Sigma,\Gamma,B,q_0,\overline{q},\delta$) definiert. Eine Konfiguration einer Turingmaschine ist ein Schnappschuss den Rechnung, zu einem bestimmten Zeitpunkt und beschreibt vollständig alle Details, die notwendig sind, um die Rechnung fortzusetzen, d.h. Bandinhalt, Zustand, Kopfposition. Formel:
-\par\medskip
+\par\medskip Eine Turingmaschine ist also durch ein 7-Tupel ($Q,\Sigma,\Gamma,B,q_0,\overline{q},\delta$) definiert. Eine Konfiguration einer Turingmaschine ist ein Schnappschuss der Rechnung, zu einem bestimmten Zeitpunkt und beschreibt vollständig alle Details, die notwendig sind, um die Rechnung fortzusetzen, d.h. Bandinhalt, Zustand, Kopfposition.\par\medskip
+Formel:
 \begin{itemize}
 	\item Konfiguration ist ein String $\alpha q \beta$ mit $q \in Q$, $\alpha,\beta \in \gamma^*$ welche bedeutet, dass auf Band $\alpha\beta$ steht (eingerahmt von Blanks), Zustand $q$ ist und LS-Kopf auf erstem Zeichen von $B$ steht.
-	\item $\alpha'q'\beta'$, ist direkte Nachfolgeonfiguration $\alpha q \beta$, falls $\alpha'q'\beta'$ in einem Rechenschritt aus $\alpha q \beta$ entsteht, wir schreiben $\alpha q \beta \vdash \alpha'q'\beta'$.
+	\item $\alpha'q'\beta'$, ist direkte Nachfolgekonfiguration $\alpha q \beta$, falls $\alpha'q'\beta'$ in einem Rechenschritt aus $\alpha q \beta$ entsteht, wir schreiben $\alpha q \beta \vdash \alpha'q'\beta'$.
 	\item $\alpha''q''\beta''$ ist Nachfolgekonfiguration von $\alpha'q'\beta'$, falls $\alpha''q''\beta''$ in endlich vielen Rechenschritten aus $\alpha q \beta$ entspricht. Wir schreiben $\alpha q \beta \vdash^* \alpha''q''\beta''$.
 \end{itemize}
 
 \par\medskip
-Die Rechnung terminiert sobald der Stoppzustand $\overline{q}$ erreicht ist. Dann gibt es keine Nachfolgekonfiguration. Die Laufzeit einer TM-Rechnung ist Zahl der Rechenschritte, die Turingmaschine bis zur Terminierung ausführt. Falls die Rechnung nicht terminiert, ist Laufzeit unbeschränkt. Der Platzverbrauch einer TM-Rechnung ist die Anzahl besuchter Bandzellen (kann auch unbeschränkt sein).
+Die Rechnung terminiert sobald der stopp-Zustand $\overline{q}$ erreicht ist. Dann gibt es keine Nachfolgekonfiguration. Die Laufzeit einer TM-Rechnung ist Zahl der Rechenschritte, die Turingmaschine bis zur Terminierung ausführt. Falls die Rechnung nicht terminiert, ist Laufzeit unbeschränkt. Der Platzverbrauch einer TM-Rechnung ist die Anzahl besuchter Bandzellen (kann auch unbeschränkt sein).
 \par\medskip
 
 \section{TM-berechenbare Funktionen und Sprachen}
-Eine Turingmaschine $M$, die für jede Eingabe terminiert, berechnet eine totale Funktion $f_M:\sum^* \rightarrow \sum^*$. Wenn der Stoppzustand $\overline{q}$ erreicht ist, kann das Ergebnis $f_M(x)$ rechts vom LS-Kopf vom Band gelesen werden (bis zum ersten Zeichen nicht in $\sum$). Das Ergebnis kann auch $E$\footnote{leeres Wort} sein, falls LS-Kopf nach Beendung auf ein Zeichen nicht aus $\sum$ ist. Manche Turingmaschinen terminieren nicht, wir erweitern deshalb die Funktion $f_M$ wie folgt: $$ f_M:\sum\limits^* \rightarrow \sum\limits^* \cup \{ \perp \} $$ $'\perp'$ (Bottom) steht für 'nicht definiert', d.h. wenn $M$ auf die Eingabe nicht terminiert.
 
-\paragraph*{Def.} Eine Funktion $f:\sum\limits^* \rightarrow \sum\limits^* \cup \{ \perp \}$ heißt TM-berechenbar (rekursiv), wenn es eine Turingmaschine $M$ gibt, mit $f=f_M$.
+Eine Turingmaschine $M$, die für jede Eingabe terminiert, berechnet eine totale Funktion $$f_M:\sum\limits^* \rightarrow \sum\limits^*$$ Wenn der stopp-Zustand $\overline{q}$ erreicht ist, kann das Ergebnis $f_M(x)$ rechts vom LS-Kopf vom Band gelesen werden (bis zum ersten Zeichen nicht in $\Sigma$). Das Ergebnis kann auch $\varepsilon$ sein, \note{$\varepsilon$ Das leere Wort} falls LS-Kopf nach Beendung auf einem Zeichen nicht aus $\Sigma$ ist. Manche Turingmaschinen terminieren nicht, wir erweitern deshalb die Funktion $f_M$ wie folgt: $$ f_M:\sum\limits^* \rightarrow \sum\limits^* \cup \{ \perp \} $$ $'\perp'$ (Bottom) steht für 'nicht definiert', d.h. wenn $M$ auf die Eingabe nicht terminiert.
+
+\paragraph*{Def.} Eine Funktion $f:\Sigma^* \rightarrow \Sigma^* \cup \{ \perp \}$ heißt TM-berechenbar (rekursiv), wenn es eine Turingmaschine $M$ gibt, mit $f=f_M$.
