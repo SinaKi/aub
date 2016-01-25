@@ -25,12 +25,14 @@ Je kleiner $V$ desto platzineffizienter wird das Wörterbuch (aber dann evtl. ei
 \paragraph*{Beweis} $l_i =$ Anzahl Elemente aus $S$, die in $L_i$ gespeichert werden, $i=0,\dots,m-1$. Es gilt $\sum\limits_{i=0}^{m-1} l_i = n$. Die erwartete Suchzeit ist $$\bigg(\sum\limits_{i=0}^{m-1} Pr(h(x)=i) \cdot l_i\bigg)+1$$
 
 \note{$U_i \subseteq U$ = Menge aus $U_i$ welche von $h$ auf $i$ gemappet wird}
-\para{$Pr(h(x)=i) = \frac{|U_i \backslash S|}{|U \backslash S|} \leq \frac{|U_i|}{|U \backslash S|} \leq\lceil \frac{\frac{N}{m}}{\frac{N}{2}} \rceil \leq \frac{\frac{N}{m+1}}{\frac{N}{2}} = \frac{2}{m} + \frac{2}{N} \leq \frac{2}{m} + \frac{1}{n}$}
+\par\medskip
+$Pr(h(x)=i) = \frac{|U_i \backslash S|}{|U \backslash S|} \leq \frac{|U_i|}{|U \backslash S|} \leq\lceil \frac{\frac{N}{m}}{\frac{N}{2}} \rceil \leq \frac{\frac{N}{m+1}}{\frac{N}{2}} = \frac{2}{m} + \frac{2}{N} \leq \frac{2}{m} + \frac{1}{n}$\par\medskip
 
 $$\Rightarrow E = \big( \sum\limits_{i=0}^m Pr(h(x)=i) - l_i \big) + 1 \leq 1+ \sum\limits_{i=0}^{m-1}(\frac{2}{m}+\frac{1}{n}) - l_i = 1+\frac{2}{m} \cdot \underbrace{\sum l_i}_{n} + \frac{1}{n} \underbrace{\sum l_i}_{n}$$ %TODO - oder mal?
 $$= 1+\frac{2n}{m}+1 = 2+\frac{2n}{m} = O(1+\frac{n}{m}) = O(1+B) \hspace{5cm} \Box$$
 
-\para{Das heißt für zufällige Elemente nicht aus $s$ ist erwartete Zugriffszeit OK.}
+\par\medskip
+Das heißt für zufällige Elemente nicht aus $s$ ist erwartete Zugriffszeit OK.\par\medskip
 
 \paragraph*{Problem} In der Praxis sind Zugriffe nicht zufällig.
 
@@ -44,7 +46,8 @@ $$= 1+\frac{2n}{m}+1 = 2+\frac{2n}{m} = O(1+\frac{n}{m}) = O(1+B) \hspace{5cm} \
 
 \paragraph*{Beweis} nicht klausurrelevant
 
-\para{Wieder unbefriedigend: In Anwendung ist weder $S \subseteq U$ zufällig noch greift man zufällig auf die Elemente in $S$ zu.}
+\par\medskip
+Wieder unbefriedigend: In Anwendung ist weder $S \subseteq U$ zufällig noch greift man zufällig auf die Elemente in $S$ zu.\par\medskip
 
 
 \subsection{Universelles Hashing}
@@ -68,6 +71,7 @@ $$ \frac{\big|\{ h \in H : h(x) = h(y) \}\big|}{|H|} \leq \frac{c}{m} $$
 \note{* Anzahl der Hashfunktionen $h \in H$, die $x$ in gleichen Hashtafeleintrag mappen wie $y$; falls $x\not=y$ sonst: |H|}
 $$ \leq\footnote{da c-universell} \sum\limits_{y\in S}[\text{falls } x=y:1|\text{ sonst: } \frac{c}{m}] \leq \begin{cases} x\in S & 1+\frac{c(n-1)}{m}\\ x\not\in S & \frac{c}{m} \cdot n \end{cases} \leq 1+c \cdot B $$
 
-\para{Noch besser wäre nicht nur erwartete Zugriffszeit $O(1)$, sondern Worst-Case Zugriffszeit $O(1)$}
+\par\medskip
+Noch besser wäre nicht nur erwartete Zugriffszeit $O(1)$, sondern Worst-Case Zugriffszeit $O(1)$\par\medskip
 
-\para{$\Rightarrow$ Perfektes Hashing}
+$\Rightarrow$ Perfektes Hashing\par\medskip

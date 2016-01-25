@@ -25,17 +25,18 @@ Die gleiche Hashfunktion ist für ein $S = \{ 12,22,17,32,52 \}$ sehr schlecht. 
 \subsection{Anwendungsbeispiele}
 
 \subsubsection{Telefonbuch}
-\para{Man möchte für Name + Vornamedie zugehörige Telefonnummer herausfinden.}
+\par\medskip
+Man möchte für Name + Vornamedie zugehörige Telefonnummer herausfinden.\par\medskip
 
-\para{$U \overset{\wedge}{=}$ Menge aller Zahlen die irgendeiner Name-Vorname-Kombination entsprechen.}
+$U \overset{\wedge}{=}$ Menge aller Zahlen die irgendeiner Name-Vorname-Kombination entsprechen.\par\medskip
 
-\para{$S \leq U \overset{\wedge}{=}$ Name-Vorname in Stuttgart. Mit $|n| = 500000$ und $m = 500 000$}
+$S \leq U \overset{\wedge}{=}$ Name-Vorname in Stuttgart. Mit $|n| = 500000$ und $m = 500 000$\par\medskip
 
-\para{Könnten wir eine Hashfunktion: $h:U \rightarrow \{ 0,\dots m-1 \}$ abbildet mit $\forall 0 \leq i < m ; \big| \{ x\in S | h(x)=i \} \big| \leq \frac{n}{m} = 1$} %TODO ; richtig
+Könnten wir eine Hashfunktion: $h:U \rightarrow \{ 0,\dots m-1 \}$ abbildet mit $\forall 0 \leq i < m ; \big| \{ x\in S | h(x)=i \} \big| \leq \frac{n}{m} = 1$ \par\medskip %TODO ; richtig
 
-\para{Das ist Toll!}
+Das ist Toll!\par\medskip
 
-\para{Wir können ein Array anlegen mit 500000 Einträgen. Die Telefonnummer eines 'Name+Vorname' speichern wir an positiven $h$(Name+Vorname) des Arrays.}
+Wir können ein Array anlegen mit 500000 Einträgen. Die Telefonnummer eines 'Name+Vorname' speichern wir an positiven $h$(Name+Vorname) des Arrays.\par\medskip
 
 \subsubsection{Stowasser (Latein-Deutsch Wörterbuch)}
 $U$ \dots Menge aller Wörter. $S$ \dots Menge aller lateinischen Wörter.
@@ -46,7 +47,7 @@ $U$ \dots Menge aller Paare $(i,j)$, $i \in \mathbb{Z}$, $j \in \mathbb{Z}$. $S$
 \subsubsection{Open-Street-Map-Daten}
 Basiert auf Knoten und Kanten. Anzahl der Knoten ungefähr 4-5 Milliarden. $U \dots \mathbb{N}$. $S$ \dots Menge der KnotenIDs im aktuellen Kartenausschnitt.
 
-\para{Bei guter Hashfunktion $h$ könnte man in $O(1)$ Informationen mit $S$ assoziieren/auslesen.}
+\par\medskip Bei guter Hashfunktion $h$ könnte man in $O(1)$ Informationen mit $S$ assoziieren/auslesen.
 
 \subsubsection{Datenstruktur Beispiel}
 Wir betrachten ein Wörterbuch als abstrakte Datenstruktur. Diese sollte folgende Operationen unterstützen:
@@ -87,10 +88,12 @@ Vorteile: Einfach, Platzsparend
 	\item O(n) Platzverbrauch garantiert
 \end{itemize}
 
-\para{Idealerweise hätten wir gerne für ein gegebenes $S \subseteq U = \{ 0,\dots,2^{64}-1 \}$ mit $|S|=n$ eine Hashfunktion $h$, welche $S$ injektiv auf $\{ 0,\dots,n-1 \}$ abbildet, d.h. $\forall x,y \in S: h(x) \not= h(y)$.}
+\par\medskip
+Idealerweise hätten wir gerne für ein gegebenes $S \subseteq U = \{ 0,\dots,2^{64}-1 \}$ mit $|S|=n$ eine Hashfunktion $h$, welche $S$ injektiv auf $\{ 0,\dots,n-1 \}$ abbildet, d.h. $\forall x,y \in S: h(x) \not= h(y)$.\par\medskip
 
 
-\para{Mit einem solchen $h$ könnten wir $S$ wie folgt verwalten.}
+\par\medskip
+Mit einem solchen $h$ könnten wir $S$ wie folgt verwalten.\par\medskip
 \begin{itemize}
 	\item lege Array mit $n$, Einträgen für die Items an
 	\item Item mit Schlüssel $x$ wird an Position $h(x)$ gespeichert. (an keiner Stelle werden $>1$ Items gespeichert)
@@ -103,17 +106,19 @@ Vorteile: Einfach, Platzsparend
 	\item Größe $O(|S|)$
 \end{itemize}
 
-\para{$U$ \dots Schlüsseluniversum}
+\par\medskip
+$U$ \dots Schlüsseluniversum\par\medskip
 
-\para{$T[0,\dots,t-1]$ \dots Feld, auch Hashtafel genannt}
+$T[0,\dots,t-1]$ \dots Feld, auch Hashtafel genannt\par\medskip
 
-\para{$S \subseteq U$ \dots Teilmenge von Schlüsseluniversum, welche gehasht werden soll}
+$S \subseteq U$ \dots Teilmenge von Schlüsseluniversum, welche gehasht werden soll\par\medskip
 
 \paragraph*{Gesucht} $h:U \rightarrow [0,\dots,t-1]$
 
-\para{$c_x^h(S) := \{ y \in S | h(y) = h(x) \}$ \dots die Menge an elementen in $S$, die von $h$ auf den selben Hashfeldeintrag gemappt werden wie $x$}
+\par\medskip
+$c_x^h(S) := \{ y \in S | h(y) = h(x) \}$ \dots die Menge an elementen in $S$, die von $h$ auf den selben Hashfeldeintrag gemappt werden wie $x$\par\medskip
 
-\para{Idealerweise $|c_x^h(S) \leq 1|$ ($\Rightarrow h$ injektiv für $S$). Falls $t<|S|$, hätte man gerne $|c_x^h(S)| \leq \lceil\frac{|S|}{t}\rceil$}
+Idealerweise $|c_x^h(S) \leq 1|$ ($\Rightarrow h$ injektiv für $S$). Falls $t<|S|$, hätte man gerne $|c_x^h(S)| \leq \lceil\frac{|S|}{t}\rceil$\par\medskip
 
 \paragraph*{Frage} Gibt es eine Superhashfunktion $h^*$, welche für jedes $S \subseteq U$ garantiert, dass $$ |c_x^h(S)| \leq \lceil \frac{|S|}{t} \rceil $$
 
@@ -124,4 +129,5 @@ Vorteile: Einfach, Platzsparend
 
 \paragraph*{Beweis} Nach Schubfachprinzip existiert ein $i$ mit $0 \leq i < t$ sodass $$ |\underbrace{h^{-1}(i)}_{\{ x \in U | h(x)=i \}}| \geq \frac{|U|}{t} $$ $\Rightarrow \frac{|U|}{t} = \frac{h}{t} \geq n$. Wähle $S$ aus ${h^{-1}(i) \choose n}$ \hspace{8cm} $\Box$
 
-\para{$\Rightarrow$ Es gibt also keine Superhashfunktion die für jedes $S$ gut ist; man sollte also die Hashfunktion $h$ randomisiert oder unter Berücksichtigung von $S$ bestimmen}
+\par\medskip
+$\Rightarrow$ Es gibt also keine Superhashfunktion die für jedes $S$ gut ist; man sollte also die Hashfunktion $h$ randomisiert oder unter Berücksichtigung von $S$ bestimmen.\par\medskip

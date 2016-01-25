@@ -1,6 +1,3 @@
-%new paragraph
-\newcommand{\para}[1]{\vspace{4pt}\setlength{\parindent}{0cm} #1 \vspace{4pt}}
-
 %note
 \newcommand{\note}[1]{\marginpar{\textcolor{blue}{\scriptsize #1}}}
 
@@ -11,3 +8,6 @@
 \def\clap#1{\hbox to 0pt{\hss#1\hss}}
 \def\mathclap{\mathpalette\mathclapinternal}
 \def\mathclapinternal#1#2{\clap{$\mathsurround=0pt#1{#2}$}}
+
+%|
+\def\|{\ \big|\ }

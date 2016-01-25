@@ -80,27 +80,30 @@ $\Pi = p_1 p_2 p_3 \cdots p_n = s_{20} s_{10} s_{25} s_{5} \cdots$
 
 \framebox[1.1\width]{$s_i$ wird mit $s_j$ verglichen genau dann wenn $s_i$ oder $s_j$ das erste Element aus $\{ s_i,s_{i-1},s_{i-2},\dots,s_j \}$ in $\Pi$ ist.}
 
-\para{Mit gleicher Wahrscheinlichkeit ist jedes Element $\{ s_i,\dots,s_j \}$ das erste Element, welches in $\Pi$ auftaucht. $\Rightarrow$ Pr($s_i$ mit $s_j$ verglichen wird) $= \frac{2}{j-i+1}$}
+\par\medskip Mit gleicher Wahrscheinlichkeit ist jedes Element $\{ s_i,\dots,s_j \}$ das erste Element, welches in $\Pi$ auftaucht. $\Rightarrow$ Pr($s_i$ mit $s_j$ verglichen wird) $= \frac{2}{j-i+1}$
 
 \paragraph*{Auch interessant} die Wahrscheinlichkeit, dass Quicksort deutlich länger als $~n \log n$ Schritte braucht.
 
 %TODO graphen
 
-\para{Quicksort hat eine erwartete Laufzeit von $O(n \log n)$, aber es besteht immer die Möglichkeit, dass Quicksort $\sim n^2$ Schritte braucht. Man hätte gerne eine Aussage, wie wahrscheinlich das ist. Allgemein interessiert uns für eine Zufallsvariable $X$ (nicht-negativ) mit Erwartungswert $E(X)$, mit welcher Wahrscheinlichkeit $X$ stark (nach oben) von $E(X)$ abweicht.}
+\par\medskip
+Quicksort hat eine erwartete Laufzeit von $O(n \log n)$, aber es besteht immer die Möglichkeit, dass Quicksort $\sim n^2$ Schritte braucht. Man hätte gerne eine Aussage, wie wahrscheinlich das ist. Allgemein interessiert uns für eine Zufallsvariable $X$ (nicht-negativ) mit Erwartungswert $E(X)$, mit welcher Wahrscheinlichkeit $X$ stark (nach oben) von $E(X)$ abweicht.\par\medskip
 
 \paragraph*{1. Versuch} Markov Ungleichung $(Pr(X \geq t) \leq \frac{E(X)}{t})$ also $Pr(X \geq \alpha \cdot E(X)) \leq \frac{1}{\alpha}$ mit $\alpha \geq 1$.
 
-\para{Für einen Algorithmus mit $E(X) = n \log n$
+\par\medskip
+Für einen Algorithmus mit $E(X) = n \log n$
 \begin{itemize}
 	\item haben wir mindestens Konstante Wahrscheinlichkeit, dass wir nicht mehr als einen konstanten Faktor vom Erwartungswert abweichen, z.B. $Pr(X \geq 10 \cdot n \log n) \leq \frac{1}{10}$.
 	\item haben wir \underline{hohe} Wahrscheinlichkeit, dass wir vom Erwartungswert nicht mehr als Faktor $n$ abweichen.
 	\item haben wir \underline{sehr hohe} Wahrscheinlichkeit, dass wir vom Erwartungswert nicht mehr als Faktor $2^n$ abweichen.
 \end{itemize}
-}
+\par\medskip
 
 $$ Pr(X > 2^n \cdot \log n) \leq \frac{1}{2^n} $$
 
-\para{Diese Schranken für Konzentration um den Erwartungswert sind schlecht, da die Markov- Ungleichung \underline{nur} den Erwartungswert einbezieht, nicht die Verteilung der Zufallsvariablen.}
+\par\medskip
+Diese Schranken für Konzentration um den Erwartungswert sind schlecht, da die Markov- Ungleichung \underline{nur} den Erwartungswert einbezieht, nicht die Verteilung der Zufallsvariablen.\par\medskip
 
 \paragraph*{Bsp.:}
 \begin{tabular}{l l}
@@ -112,7 +115,8 @@ $X_2 :$ & $Pr(X_2 = 1) = \frac{1}{2}$ \\
  & $E(X_2) = 3000$ \\
 \end{tabular} 
 
-\para{Man kann beweisen, dass z.B. bei Random Quicksort die Laufzeit $X$ stark um den Erwartungswert konzentriert ist,  \underline{aber schwierig}.}
+\par\medskip
+Man kann beweisen, dass z.B. bei Random Quicksort die Laufzeit $X$ stark um den Erwartungswert konzentriert ist,  \underline{aber schwierig}.\par\medskip
 
 \paragraph*{Jetzt} Zeige generische Modifikation für beliebige Las Vegas Algorithmen, welche starke Konzentration um den Erwartungswert sicherstellt.
 

@@ -1,8 +1,8 @@
 \paragraph*{Beweis von $H \leq MPKP$} (analog zum Beispiel) Wir konstruieren eine Funktion $f$, welche Instanzen von $H$ der Form $(<M>,w)$ auf Instanzen für $MPKP k=f((<M>,w))$ abbildet, sodass $$ M \text{ hält auf } w \Leftrightarrow k \text{ hat eine Lösung.}$$ Syntaktisch nicht korrekte Eingaben für $H$ werden auf syntaktisch nicht korrekte Eingaben für MPKP abgebildet.
 
-\para{} Alphabet für MPKP-Instanz, $\Gamma \cup Q \cup \{\#\}$ wobei $\#\in\Gamma Q$
+\par\medskip Alphabet für MPKP-Instanz, $\Gamma \cup Q \cup \{\#\}$ wobei $\#\in\Gamma Q$
 
-\para{} Konstruktion von $f$: Die Funktion f erzeugt für $(<M>,w)$ folgende Kärtchen:
+\par\medskip Konstruktion von $f$: Die Funktion f erzeugt für $(<M>,w)$ folgende Kärtchen:
 
 \begin{itemize}
 	\item[] Startkärtchen: $\Big[ \frac{\#}{\#\#q_0 w\#} \Big]$
@@ -27,21 +27,21 @@
 
 \paragraph*{Zu zeigen} $M$ hält auf $w \Rightarrow k \in MPKP$
 
-\para{} Wenn die Berechnung von $M$ auf $w$ hält, existiert eine endliche Sequenz von Konfigurationen. $$ k_0 \vdash k_1 \vdash k_2 \vdash \dots \vdash k_{t-1} \vdash k_t $$ wobei $k_0$ die Startkonfiguration und $k_t$ die Endkonfiguration im Zustand $\overline{q}$ sind.
+\par\medskip Wenn die Berechnung von $M$ auf $w$ hält, existiert eine endliche Sequenz von Konfigurationen. $$ k_0 \vdash k_1 \vdash k_2 \vdash \dots \vdash k_{t-1} \vdash k_t $$ wobei $k_0$ die Startkonfiguration und $k_t$ die Endkonfiguration im Zustand $\overline{q}$ sind.
 
-\para{} Beginnend mit dem Startkärtchen können wir Kopier- und Übergangskärtchen so legen, dass
+\par\medskip Beginnend mit dem Startkärtchen können wir Kopier- und Übergangskärtchen so legen, dass
 \begin{itemize}
 	\item der untere String die Vollständige Konfigurationsfolge von $M$ auf $w$ wie folgt darstellen $$ \#\#k_0\#\#k_1\#\#k_2 \dots \#\#k_{t-1}\#\#k_t\# $$
 	\item der obere String ein Präfix des unteren, also $$ \#\#k_0\#\#k_1\#\#k_2 \dots \#\#k_{t-1}\# $$
 \end{itemize}
 
-\para{} Durch Anlegen von Löschkärtchen kann der Vorsprung des unteren Strings fast eliminiert werden (immer 1 Zeichen Verringerung pro Kopieren einer ggf. schon gekürzten Konfiguration). An Ende dieser Phase ist der untere String nur um $\#\overline{q}\#$ länger als der obere. Dieser letzte Unterschied wird durch das Abschlusskärtchen ausgeglichen.
+\par\medskip Durch Anlegen von Löschkärtchen kann der Vorsprung des unteren Strings fast eliminiert werden (immer 1 Zeichen Verringerung pro Kopieren einer ggf. schon gekürzten Konfiguration). An Ende dieser Phase ist der untere String nur um $\#\overline{q}\#$ länger als der obere. Dieser letzte Unterschied wird durch das Abschlusskärtchen ausgeglichen.
 
 \paragraph*{Noch zu zeigen} $M$ hält nicht auf $w \Rightarrow k$ hat keine Lösung bzw. zum Widerspruch Annahme, dass $k$ eine Lösung hat und $M$ auf $w$ hält.
 
 \paragraph*{Beobachtung} Wenn es eine Lösung für $k$ gibt, so hat diese Lösung mindestens ein Lösch- oder Abschlusskärtchen, da sonst der untere String länger als der obere wäre.
 
-\para{} Sei $1,i_1,i_2,\dots,i_n$ eine Lösung für $k$, und $1,i_2,\dots,i_{s-1}$ das Präfix, welches nur aus Start-, Kopier, Überführungskärtchen besteht. $i_s$ das erste Lösch- oder Abschlusskärtchen:
+\par\medskip Sei $1,i_1,i_2,\dots,i_n$ eine Lösung für $k$, und $1,i_2,\dots,i_{s-1}$ das Präfix, welches nur aus Start-, Kopier, Überführungskärtchen besteht. $i_s$ das erste Lösch- oder Abschlusskärtchen:
 
 \begin{itemize}
 	\item Kopier- und Überführungskärtchen sind so definiert, dass die Konfigurationsreihenfolge von $M$ auf $w$ entstehen muss

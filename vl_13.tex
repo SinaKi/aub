@@ -7,7 +7,8 @@
 \paragraph*{Beweis Idee} k-Band Turingmaschine %TODO bild
 Simulation eines Übergangs der k-Band Turingmaschine erfolgt durch 'Sweep' von links nach rechts um alle Zeichen unter den S/L-Köpfen aufzusammeln. In einem Sweep von rechts nach links werden die entsprechenden Zeichen geschrieben / Köpfe bewegt.
 
-\para{Sweeps dauern $O(t(n))$, da nicht mehr als $t(n)$ Positionen der k-Band Turingmaschine beschrieben sein können.}
+\par\medskip
+Sweeps dauern $O(t(n))$, da nicht mehr als $t(n)$ Positionen der k-Band Turingmaschine beschrieben sein können.\par\medskip
 
 \section{Die Universelle Turingmaschine}
 
@@ -24,12 +25,14 @@ Die universelle Turingmaschine $U$ simuliert jede andere Turingmaschine $M$ auf 
 \end{itemize}
 Die Turingmaschine $M$ wird nun kodiert als Binärkodierung der Übergangsfunktion. Der Übergang $\delta(q_i,X_j)=(q_k,X_l,D_m)$ wird kodiert als $$0^i10^j10^k10^l10^m$$ Wir bezeichnen die Kodierung des t-ten Übergangs als $code(t)$. Die Gödelnummer einer Turingmaschine $M$ mit $s$ übergängen ist somit $$code(1)11code(2)11code(3)11 \dots 11code(s)111$$ %TODO notizen
 
-\para{Die universelle Turingmaschine $U$ erhält als Eingabe $<M>w$. Wir implementieren $U$ als 3-Band Turingmaschine:
+\par\medskip
+Die universelle Turingmaschine $U$ erhält als Eingabe $<M>w$. Wir implementieren $U$ als 3-Band Turingmaschine:
 \begin{itemize}
 	\item Check ob $<M>$ korrekte Kodierung einer Turingmaschine hat (falls nein Fehlerausgabe)
 	\item kopiere $<M>$ auf Band 2
 	\item lösche $<M>$ von Band 1, sodass nur noch $w$ dort steht
-\end{itemize}}
+\end{itemize}
+\par\medskip
 
 \paragraph*{In Simulation} enthält Band \dots
 \begin{itemize}
@@ -51,12 +54,13 @@ Wir gehen davon aus, dass $<M>$ konstant groß ist, d.h. wir können einen Schri
 \section{Die Registermaschine (RAM)}
 Die RAM ist ein Maschinenmodell, welches assemblerähnliche Programmierung erlaubt. Der Speicher der RAM ist unbeschränkt und besteht aus Registern $c(0),c(1),c(2),\dots$ Der $c(0)$ ist besonders und heißt Akkumulator. \textbf{Inhalte der Register sind beliebig große ganze Zahlen.}
 
-\para{Des Weiteren enthält die RAM einen Befehlszähler $b$ (initial auf 1) %TODO bild
-Ein Programm für die RAM ist endlich, in jedem Schritt wird die Zeile auf die $b$ zeigt abgearbeitet. Die Eingabe der RAM steht zu Beginn in $c(1),c(2),\dots,c(k)$ für $k \in \mathbb{N}$}
+\par\medskip
+Des Weiteren enthält die RAM einen Befehlszähler $b$ (initial auf 1) %TODO bild
+Ein Programm für die RAM ist endlich, in jedem Schritt wird die Zeile auf die $b$ zeigt abgearbeitet. Die Eingabe der RAM steht zu Beginn in $c(1),c(2),\dots,c(k)$ für $k \in \mathbb{N}$\par\medskip
 
-\para{Die Ausgabe steht in $c(1)\dots c(l), l \in \mathbb{N}$ unter der Annahme, dass $l,k$ fix, berechnet RAM eine Funktion: $$\delta:\mathbb{Z}^k \rightarrow \mathbb{Z}^l \cup \{ \perp \}$$} %TODO notiz
+Die Ausgabe steht in $c(1)\dots c(l), l \in \mathbb{N}$ unter der Annahme, dass $l,k$ fix, berechnet RAM eine Funktion: $$\delta:\mathbb{Z}^k \rightarrow \mathbb{Z}^l \cup \{ \perp \}$$\par\medskip %TODO notiz
 
-\para{Syntax und Bedeutung einiger RAM-Befehle:}
+Syntax und Bedeutung einiger RAM-Befehle:\par\medskip
 
 \begin{table}[htb!]
 \centering

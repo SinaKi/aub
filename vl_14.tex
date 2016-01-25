@@ -2,13 +2,13 @@
 
 \paragraph*{Behauptung} RAM und Turingmaschine sind gleichmächtig.
 
-\para{} Offensichtlich ist RAM mindestens so mächtig wie die Turingmaschine. Nicht ganz so offensichtlich ist, dass die Turingmaschine mindestens so mächtig ist wie die RAM.
+\par\medskip Offensichtlich ist RAM mindestens so mächtig wie die Turingmaschine. Nicht ganz so offensichtlich ist, dass die Turingmaschine mindestens so mächtig ist wie die RAM.\par\medskip
 
 \paragraph*{Satz} Jede $t(n)$ zeitbeschränkte RAM kann durch eine $O(q(n+t(n)))$-zeitbeschränkte Turingmaschine simuliert werden für ein Polynom $q()$.
 
 \paragraph*{Uns interessiert nun die Frage} Was kann man (mit Rechnern von Heute) berechnen, was ist prinzipiell nicht berechenbar?
 
-\para{} Wir werden dazu über die Turingmaschine argumentieren, von denen wir uns überzeugt haben, dass sie gleichmächtig wie Registermaschinen (und 'echte' aktuelle Rechner) sind.
+\par\medskip Wir werden dazu über die Turingmaschine argumentieren, von denen wir uns überzeugt haben, dass sie gleichmächtig wie Registermaschinen (und 'echte' aktuelle Rechner) sind.\par\medskip
 
 \section{Church-Turing-These}
 
@@ -29,7 +29,7 @@ Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv
 \paragraph*{Beweis} Annahme $P(\mathbb{N})$ sei abzählbar, sei dabei $s_i$ die i-te Teilmenge gemäß dieser Nummerierung. Definiere folgende Matrix($A_{i,j}$) mit $i\in\mathbb{N},j\in\mathbb{N}$ mit $$ A_{i,j} = \begin{cases}1&\text{falls } j\in s_i \\ 0 & \text{sonst}\end{cases} $$ \note{i: Zeile; j: Spalte}
 %TODO bild
 
-\para{} Basierend auf dieser Matrix definieren wir diene Teilmenge $S_{DIAG}=\{ i\in\mathbb{N}|A_{i,j}=1 \}$. Das Komplement davon ist $$ \overline{S_{DIAG}}=\{i\in\mathbb{N}|A_{i,j}=0\} $$ Auch $\overline{S_{DIAG}}$ sollte in der Menge der Teilmengen auftreten. Angenommen $\overline{S_{DIAG}} = S_K$. Betrachte die Fälle
+\par\medskip Basierend auf dieser Matrix definieren wir diene Teilmenge $S_{DIAG}=\{ i\in\mathbb{N}|A_{i,j}=1 \}$. Das Komplement davon ist $$ \overline{S_{DIAG}}=\{i\in\mathbb{N}|A_{i,j}=0\} $$ Auch $\overline{S_{DIAG}}$ sollte in der Menge der Teilmengen auftreten. Angenommen $\overline{S_{DIAG}} = S_K$. Betrachte die Fälle \par\medskip
 \begin{enumerate}
 	\item Falls $A_{K,K}=1 \Rightarrow K \in S_L = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\} \lightning$ 
 	\item Falls $A_{K,K}=0 \Rightarrow K \not\in S_K = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\} \lightning$
@@ -37,11 +37,11 @@ Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv
 
 \paragraph*{Beobachtung} Die Menge $\{0,1\}^*$ hat dieselbe Mächtigkeit wie $\mathbb{N}$, somit hat die Menge aller Sprachen über $\{0,1\}$ die selbe Mächtigkeit wie $P(\mathbb{N})$.
 
-\para{} An dieser Stelle ist eigentlich schon klar, dass man nicht jede Sprache mit einer Turingmaschine entscheiden kann, da es überabzählbar viele Sprachen gibt, aber nur abzählbar viele Turingmaschinen.
+\par\medskip An dieser Stelle ist eigentlich schon klar, dass man nicht jede Sprache mit einer Turingmaschine entscheiden kann, da es überabzählbar viele Sprachen gibt, aber nur abzählbar viele Turingmaschinen.\par\medskip
 
 \paragraph*{Konkretes Bsp.} für eine nicht-entscheidbare Sprache. Sei $w_i$ das i-te Wort in der Aufzählung aller Wörter über $\{0,1\}$. Sei $M_i$ die i-te Turingmaschine in der Aufzählung aller Turingmaschinen. Betrachte folgende Sprache $$ \text{Diagonalsprache } D=\{ w\in\{0,1\}^*|w=w_i \text{ und } M_i \text{ akzeptiert } w \text{ nicht} \} $$ Also ein $w$ ist in der Sprache $D$ genau dann wenn $w$ das i-te Wort ist und von der i-ten Turingmaschine nicht akzeptiert wird.
 
-\para{} Wie vorher könnte man diese Sprache mit Hilfe einer Matrix darstellen
+\par\medskip Wie vorher könnte man diese Sprache mit Hilfe einer Matrix darstellen\par\medskip
 \begin{table}[htb!]
 \centering
 \begin{tabular}{c|c c c c c c}

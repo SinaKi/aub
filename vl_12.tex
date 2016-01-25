@@ -1,8 +1,9 @@
 \paragraph*{Def.} Eine Funktion $f:\sum^* \rightarrow\sum^* \cup \{ \perp \}$ heißt Turing-berechenbar, wenn es eine Turingmaschine $M$ gibt mit $f=f_M$.
 
-\para{Insbesondere schließt das 'Funktionen' ein, die für manche Eingaben keine wohldefinierte Ausgabe haben bzw. auf $\perp$ abgebildet werden.}
+\par\medskip
+Insbesondere schließt das 'Funktionen' ein, die für manche Eingaben keine wohldefinierte Ausgabe haben bzw. auf $\perp$ abgebildet werden.\par\medskip
 
-\para{Im Spezialfall, dass $f:\sum^* \rightarrow \{ 0,1 \}$, d.h. wir haben ein Entscheidungsproblem, sagen wir, dass eine Turingmaschine eine Eingabe $w \in \sum^*$ akzeptiert, wenn dieser terminiert wird die Ausgabe mit einer $1$ beginnt. Die Turingmaschine verwirft eine Eingabe $w \in \sum^*$, falls sie terminiert, aber die Ausgabe nicht mit einer $1$ beginnt.}
+Im Spezialfall, dass $f:\sum^* \rightarrow \{ 0,1 \}$, d.h. wir haben ein Entscheidungsproblem, sagen wir, dass eine Turingmaschine eine Eingabe $w \in \sum^*$ akzeptiert, wenn dieser terminiert wird die Ausgabe mit einer $1$ beginnt. Die Turingmaschine verwirft eine Eingabe $w \in \sum^*$, falls sie terminiert, aber die Ausgabe nicht mit einer $1$ beginnt.\par\medskip
 
 \paragraph*{Def.} Eine $L \subseteq \sum^*$ heißt Turing-entscheidbar, wenn es eine Turingmaschine gibt, die auf allen Eingaben stoppt und die Eingabe $w$ akzeptiert falls $w \in L$ und die Eingabe $w$ verwirft falls $w \not\in L$.
 
@@ -48,7 +49,8 @@ $q_1$ & $(\overline{q},0,N)$ & $(q_1,1,R)$ & $(q_2,B,L)$ \\
 \end{tabular}
 \end{table}
 
-\para{2. Phase überprüft, dass \# 0en = \# 1en. Sie startet in Zustand $q_2$.}
+\par\medskip
+2. Phase überprüft, dass \# 0en = \# 1en. Sie startet in Zustand $q_2$.\par\medskip
 
 \begin{table}[htb!]
 \centering
@@ -74,7 +76,7 @@ $q_6$ & $(q_6,0,R)$ & $(q_6,1,R)$ & $(q_2,B,L)$ \\
 	\item[$q_6$] Laufe zum rechtesten Nicht-Blank und dann $q_2$.
 \end{itemize}
 
-\para{Die 'Programmierung' einer Turingmaschine ist recht mühsam über die Übergangsfunktionen.}
+\par\medskip Die 'Programmierung' einer Turingmaschine ist recht mühsam über die Übergangsfunktionen.
 
 \paragraph*{Einige Tricks}
 \begin{itemize}

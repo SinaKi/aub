@@ -1,6 +1,6 @@
 \paragraph*{Jetzt zu zeigen} Falls $f(k) \in PKP \Rightarrow k \in MPKP$
 
-\para{} Sei $(i_1,\dots,i_n)$ eine Lösung für die PKP-Instanz $f(k)$.
+\par\medskip Sei $(i_1,\dots,i_n)$ eine Lösung für die PKP-Instanz $f(k)$.
 
 \paragraph*{Beobachtung 1} Es gilt $i_1=0$ und $i_n=k+1$ da nur $x_0'$ und $y_0'$ mit dem selben Zeichen anfangen und $x_{k+1}'$ und $y_{k+1}'$ mit demselben Zeichen enden.
 
@@ -8,7 +8,7 @@
 
 \paragraph*{Beobachtung 3} Es gilt $\forall_j=2,\dots,n-1; i_j \not= k+1$, d.h. das $(k+1)$-te Kärtchen taucht nur an letzter Stelle auf, da wir sonst eine kürzere Lösung des PKP finden könnten (nämlich bis zum ersten Auftreten des $(k+1)$-ten Kärtchens).
 
-\para{} Daraus folgt, dass die PKP-Lösung für $f(k)$ folgende Struktur hat: $$ x_0'x_{i_2}'\dots x_{i_n}' = \#a_1\#a_2\dots\#a_s\#\$ = y_0'y_{i_2}'\dots y_{i_n}' $$ für entsprechende Zeichen $a_l \in \Sigma$. Die MPKP-Instanz $k$ hat somit die Lösung: $$ x_1x_{i_2}x_{i_3}\dots x_{i_{n-1}} = a_1,\dots,a_s = y_1y_{i_2}y_{i_3}\dots y_{i_{n-1}} $$
+\par\medskip Daraus folgt, dass die PKP-Lösung für $f(k)$ folgende Struktur hat: $$ x_0'x_{i_2}'\dots x_{i_n}' = \#a_1\#a_2\dots\#a_s\#\$ = y_0'y_{i_2}'\dots y_{i_n}' $$ für entsprechende Zeichen $a_l \in \Sigma$. Die MPKP-Instanz $k$ hat somit die Lösung: $$ x_1x_{i_2}x_{i_3}\dots x_{i_{n-1}} = a_1,\dots,a_s = y_1y_{i_2}y_{i_3}\dots y_{i_{n-1}} $$
 \begin{itemize}
 	\item[$\Rightarrow$] $f(k) \in PKP \Rightarrow k \in MPKP$
 	\item[$\Rightarrow$] $k \in MPKP \Leftrightarrow f(k) \in PKP$ $\Box$
@@ -50,18 +50,18 @@ $q_2$ & $(q_2,0,R)$ & $(q_2,1,R)$ & $(q_2,B,R)$ \\
 
 \paragraph*{Semantik} $M$ testet, ob Eingabe die Form $0î1^j;i,j \geq 0$ hat.
 
-\para{} Die Berechnung einer Turingmaschine kann durch eine Folge von Konfigurationen beschrieben werden.
+\par\medskip Die Berechnung einer Turingmaschine kann durch eine Folge von Konfigurationen beschrieben werden.
 
 \paragraph*{Notation} <BandinhaltLinksDesKopfs><Zustand><BandinhaltAbKopfNachRechts>
 
-\para{} Im Beispiel ist die Konfiguration für Eingabe $w=0011$ wie folgt $$ \underbrace{q_0 0011}_{\text{Startkonfig.}} \mapsto 0 q_0 011 \mapsto 00q_0 11 \mapsto 001q_1 1 \mapsto 0011q_1 \mapsto 0011\overline{q}1 $$
+\par\medskip Im Beispiel ist die Konfiguration für Eingabe $w=0011$ wie folgt $$ \underbrace{q_0 0011}_{\text{Startkonfig.}} \mapsto 0 q_0 011 \mapsto 00q_0 11 \mapsto 001q_1 1 \mapsto 0011q_1 \mapsto 0011\overline{q}1 $$
 
 \note{Nächste Konfiguration muss durch Anwendung der Übergangsfunktion aus der vorherigen Konfig. entstehen.}
 \paragraph*{Idee des Beweis} Erzeuge MPKP-Instanz welche die Berechnung der Turingmaschine $\overset{\wedge}{=}$ Sequenz gültiger Konfigurationen Simulieren.
 
-\para{} Das Startkärtchen sieht wie folgt aus: $$\Big[ \frac{\#}{\#\#q_0 0011} \Big]$$ Unten steht die Startkonfiguration.
+\par\medskip Das Startkärtchen sieht wie folgt aus: $$\Big[ \frac{\#}{\#\#q_0 0011} \Big]$$ Unten steht die Startkonfiguration.
 
-\para{} Es gibt des weiteren 'Kopierkärtchen' $$\Big[ \frac{0}{0} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{B}{B} \Big], \Big[ \frac{\#}{\#} \Big]$$ und 'Übergangskärtchen' $$\Big[ \frac{q_0 0}{0q_0} \Big], \Big[ \frac{q_0 1}{1q_1} \Big], \Big[ \frac{q_0 B}{\overline{q}1} \Big], \Big[ \frac{q_1 0}{0q_2} \Big], \Big[ \frac{q_1 1}{1q_1} \Big], \Big[ \frac{q_1 B}{\overline{q}1} \Big], \Big[ \frac{q_2 0}{0q_2} \Big], \Big[ \frac{q_2 1}{1q_2} \Big], \Big[ \frac{q_2 B}{Bq_2} \Big], \Big[ \frac{q_0\#}{\overline{q}1\#} \Big], \Big[ \frac{q_1\#}{\overline{q}1\#} \Big]$$
+\par\medskip Es gibt des weiteren 'Kopierkärtchen' $$\Big[ \frac{0}{0} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{B}{B} \Big], \Big[ \frac{\#}{\#} \Big]$$ und 'Übergangskärtchen' $$\Big[ \frac{q_0 0}{0q_0} \Big], \Big[ \frac{q_0 1}{1q_1} \Big], \Big[ \frac{q_0 B}{\overline{q}1} \Big], \Big[ \frac{q_1 0}{0q_2} \Big], \Big[ \frac{q_1 1}{1q_1} \Big], \Big[ \frac{q_1 B}{\overline{q}1} \Big], \Big[ \frac{q_2 0}{0q_2} \Big], \Big[ \frac{q_2 1}{1q_2} \Big], \Big[ \frac{q_2 B}{Bq_2} \Big], \Big[ \frac{q_0\#}{\overline{q}1\#} \Big], \Big[ \frac{q_1\#}{\overline{q}1\#} \Big]$$
 
 \paragraph*{Beispiel} $$ \Big[ \frac{\#}{\#\#q_0 0011\#} \Big]\Big[ \frac{\#}{\#} \Big]\Big[ \frac{q_0 0}{0 q_0} \Big]\Big[ \frac{0}{0} \Big]\Big[ \frac{1}{1} \Big]\Big[ \frac{1}{1} \Big]\Big[ \frac{\#}{\#} \Big] $$
 $$ \Big[ \frac{\#}{\#} \Big], \Big[ \frac{0}{0} \Big], \Big[ \frac{q_0 0}{0q_0} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{1}{1} \Big], \Big[ \frac{\#}{\#} \Big] $$

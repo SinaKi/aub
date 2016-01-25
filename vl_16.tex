@@ -91,16 +91,16 @@ $M_1$ ist korrekt, da
 
 \paragraph*{Beispiele für Nutzung der Reduktion,} Sprache $$ H_{all} = \{ <M>|M \text{hält auf allen Eingaben} \} $$ das 'allgemeine Halteproblem'.
 
-\para{} Wir zeigen, dass weder $H_{all}$ noch $\overline{H_{all}}$ semi-entscheidbar sind. Bislang war bei allen unentscheidbaren Problemen eins von $L$ und $\overline{L}$ immerhin semi-entscheidbar.
+\par\medskip Wir zeigen, dass weder $H_{all}$ noch $\overline{H_{all}}$ semi-entscheidbar sind. Bislang war bei allen unentscheidbaren Problemen eins von $L$ und $\overline{L}$ immerhin semi-entscheidbar.
 
 \paragraph*{Satz} Die Sprache $\overline{H_{all}}$ ist nicht semi-entscheidbar.
 
 \paragraph*{Beweis} Idee: Wir suchen uns eine Sprache, von der wir wissen, dass sie \textbf{nicht} semi-entscheidbar ist und zeigen dann $L \leq H_{all}$.
 
-\para{} Sprache $L$, welche nicht semi-entscheidbar ist: $L=\overline{H_\epsilon}$ (falls $\overline{H_\epsilon}$ semi-entscheidbar wäre, wäre $H_\epsilon$ entscheidbar $\lightning$).
+\par\medskip Sprache $L$, welche nicht semi-entscheidbar ist: $L=\overline{H_\epsilon}$ (falls $\overline{H_\epsilon}$ semi-entscheidbar wäre, wäre $H_\epsilon$ entscheidbar $\lightning$).
 Wir berechnen eine Funktion $f$, welche die JA-Instanzen von $H_\epsilon$ auf JA-Instanzen von $H_{all}$ abbildet und NEIN-Instanzen von $M_\epsilon$ auf NEIN-Instanzen von $H_{all}$ abbildet, wie folgt:
 
-\para{} Sei $w$ eine Eingabe für $H_\epsilon$
+\par\medskip Sei $w$ eine Eingabe für $H_\epsilon$
 \begin{itemize}
 	\item falls $w$ keine gültige Kodierung einer Turingmaschine, setze $f(w)=w$
 	\item falls $w=<M>$ einer Turingmaschine $M$, dann setze $f(w)=<M_\epsilon^*>$ für eine Turingmaschine $M_\epsilon^*$ mit folgender Eigenschaft: $$ M_\epsilon^* \text{ ignoriert die Eingabe und simuliert } M \text{ mit der Eingabe} \epsilon $$
