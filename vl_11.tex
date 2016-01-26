@@ -91,5 +91,3 @@ Die Rechnung terminiert sobald der stopp-Zustand $\overline{q}$ erreicht ist. Da
 \section{TM-berechenbare Funktionen und Sprachen}
 
 Eine Turingmaschine $M$, die für jede Eingabe terminiert, berechnet eine totale Funktion $$f_M:\sum\limits^* \rightarrow \sum\limits^*$$ Wenn der stopp-Zustand $\overline{q}$ erreicht ist, kann das Ergebnis $f_M(x)$ rechts vom LS-Kopf vom Band gelesen werden (bis zum ersten Zeichen nicht in $\Sigma$). Das Ergebnis kann auch $\varepsilon$ sein, \note{$\varepsilon$ Das leere Wort} falls LS-Kopf nach Beendung auf einem Zeichen nicht aus $\Sigma$ ist. Manche Turingmaschinen terminieren nicht, wir erweitern deshalb die Funktion $f_M$ wie folgt: $$ f_M:\sum\limits^* \rightarrow \sum\limits^* \cup \{ \perp \} $$ $'\perp'$ (Bottom) steht für 'nicht definiert', d.h. wenn $M$ auf die Eingabe nicht terminiert.
-
-\paragraph*{Def.} Eine Funktion $f:\Sigma^* \rightarrow \Sigma^* \cup \{ \perp \}$ heißt TM-berechenbar (rekursiv), wenn es eine Turingmaschine $M$ gibt, mit $f=f_M$.
