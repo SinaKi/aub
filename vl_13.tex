@@ -1,6 +1,6 @@
 \section{Mehrband-Turingmaschine (mit variablen Köpfen)}
 
-\paragraph*{Def. (k-Band TM)} Eine k-Band Turingmaschine ist eine Verallgemeinerung der Turingmaschine, welche über $k$ Speicherbänder mit jeweils unabhängigem Kopf verfügt. Die Zustandsübergangsfunktion hat die Form: $$ \delta : (Q\backslash\{\overline{q}\}) \times \Gamma^k \rightarrow Q \times \Gamma^k \times \{L,RlN\}^k $$ Hierbei ist Band 1 Ein-/Ausgabe, die Bänder $2,\dots,k$ sind initial mit lauter $B$s beschrieben.
+\paragraph*{Def. (k-Band TM)} Eine k-Band Turingmaschine ist eine Verallgemeinerung der Turingmaschine, welche über $k$ Speicherbänder mit jeweils unabhängigem Kopf verfügt. Die Zustandsübergangsfunktion hat die Form: $$ \delta : (Q\backslash\{\overline{q}\}) \times \Gamma^k \rightarrow Q \times \Gamma^k \times \{L,R,N\}^k $$ Hierbei ist Band 1 das Ein-/Ausgabeband und die Bänder $2,\dots,k$ sind initial mit lauter $B$s beschrieben.
 
 \paragraph*{Satz} Eine k-Band Turingmaschine, die mit Rechenzeit $t(n)$ und platz $s(n)$ auskommt, kann von einer 1-Band Turingmaschine $M'$ mit Zeitbedarf $O(t^2(n))$ und Platzbedarf $O(s(n))$ simuliert werden.
 
@@ -12,7 +12,7 @@ Sweeps dauern $O(t(n))$, da nicht mehr als $t(n)$ Positionen der k-Band Turingma
 
 \section{Die Universelle Turingmaschine}
 
-Die universelle Turingmaschine $U$ simuliert jede andere Turingmaschine $M$ auf beliebiger Eingabe $w$. Als Eingabe erhält$U$ einen String der Form $$<M>w$$ $<M>$ heißt auch Gödelnummer. Als Gödelnummerierung bezeichnet man eine injektive Abbildung von der Menge aller Turingmaschinen in die Menge $\{0,1\}^*$ %TODO notiz
+Die universelle Turingmaschine $U$ simuliert jede andere Turingmaschine $M$ auf beliebiger Eingabe $w$. Als Eingabe erhält $U$ einen String der Form $$<M>w$$ $<M>$ heißt auch Gödelnummer. Als Gödelnummerierung bezeichnet man eine injektive Abbildung von der Menge aller Turingmaschinen in die Menge $\{0,1\}^*$ %TODO notiz
 
 \subsection{'Unsere Gödelnummerierung'}
 
@@ -58,7 +58,9 @@ Die RAM ist ein Maschinenmodell, welches assemblerähnliche Programmierung erlau
 Des Weiteren enthält die RAM einen Befehlszähler $b$ (initial auf 1) %TODO bild
 Ein Programm für die RAM ist endlich, in jedem Schritt wird die Zeile auf die $b$ zeigt abgearbeitet. Die Eingabe der RAM steht zu Beginn in $c(1),c(2),\dots,c(k)$ für $k \in \mathbb{N}$\par\medskip
 
-Die Ausgabe steht in $c(1)\dots c(l), l \in \mathbb{N}$ unter der Annahme, dass $l,k$ fix, berechnet RAM eine Funktion: $$\delta:\mathbb{Z}^k \rightarrow \mathbb{Z}^l \cup \{ \perp \}$$\par\medskip %TODO notiz
+Die Ausgabe steht in $c(1)\dots c(l), l \in \mathbb{N}$ unter der Annahme, dass $l,k$ fix sind, berechnet die RAM eine Funktion: $$\delta:\mathbb{Z}^k \rightarrow \mathbb{Z}^l \cup \{ \perp \}$$\par\medskip %TODO notiz
+
+\newpage
 
 Syntax und Bedeutung einiger RAM-Befehle:\par\medskip
 

@@ -24,12 +24,12 @@ Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv
 	\item die Menge der Turingmaschinen ist abzählbar, da sie eine Teilmenge aller Wörter über $\{0,1\}$ ist (wenn z.B. Kodiert wie für universelle TM-Gödelnr.)
 \end{itemize}
 
-\paragraph*{Satz} Die Menge $P(\mathbb{N})$\footnote{Menge aller Teilmengen aus $\mathbb{N}$} ist überabzählbar.
+\paragraph*{Satz} Die Menge $P(\mathbb{N})$ \note{$P(\mathbb{N})$ Menge aller Teilmengen aus $\mathbb{N}$} ist überabzählbar.
 
 \paragraph*{Beweis} Annahme $P(\mathbb{N})$ sei abzählbar, sei dabei $s_i$ die i-te Teilmenge gemäß dieser Nummerierung. Definiere folgende Matrix($A_{i,j}$) mit $i\in\mathbb{N},j\in\mathbb{N}$ mit $$ A_{i,j} = \begin{cases}1&\text{falls } j\in s_i \\ 0 & \text{sonst}\end{cases} $$ \note{i: Zeile; j: Spalte}
 %TODO bild
 
-\par\medskip Basierend auf dieser Matrix definieren wir diene Teilmenge $S_{DIAG}=\{ i\in\mathbb{N}|A_{i,j}=1 \}$. Das Komplement davon ist $$ \overline{S_{DIAG}}=\{i\in\mathbb{N}|A_{i,j}=0\} $$ Auch $\overline{S_{DIAG}}$ sollte in der Menge der Teilmengen auftreten. Angenommen $\overline{S_{DIAG}} = S_K$. Betrachte die Fälle \par\medskip
+\par\medskip Basierend auf dieser Matrix definieren wir die Teilmenge $S_{DIAG}=\{ i\in\mathbb{N} \| A_{i,j}=1 \}$. Das Komplement davon ist $$ \overline{S_{DIAG}}=\{i\in\mathbb{N} \| A_{i,j}=0\} $$ Auch $\overline{S_{DIAG}}$ sollte in der Menge der Teilmengen auftreten. Angenommen $\overline{S_{DIAG}} = S_K$. Betrachte die Fälle \par\medskip
 \begin{enumerate}
 	\item Falls $A_{K,K}=1 \Rightarrow K \in S_L = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\} \lightning$ 
 	\item Falls $A_{K,K}=0 \Rightarrow K \not\in S_K = \overline{S_{DIAG}}$ aber: $\overline{S_{DIAG}}$ ist definiert als Menge $\{i\in\mathbb{N}|A_{i,j}=0\} \lightning$
@@ -37,9 +37,9 @@ Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv
 
 \paragraph*{Beobachtung} Die Menge $\{0,1\}^*$ hat dieselbe Mächtigkeit wie $\mathbb{N}$, somit hat die Menge aller Sprachen über $\{0,1\}$ die selbe Mächtigkeit wie $P(\mathbb{N})$.
 
-\par\medskip An dieser Stelle ist eigentlich schon klar, dass man nicht jede Sprache mit einer Turingmaschine entscheiden kann, da es überabzählbar viele Sprachen gibt, aber nur abzählbar viele Turingmaschinen.\par\medskip
+\par\medskip An dieser Stelle ist eigentlich schon klar, dass man nicht jede Sprache mit einer Turingmaschine entscheiden kann, da es überabzählbar viele Sprachen gibt, aber nur abzählbar viele Turingmaschinen.
 
-\paragraph*{Konkretes Bsp.} für eine nicht-entscheidbare Sprache. Sei $w_i$ das i-te Wort in der Aufzählung aller Wörter über $\{0,1\}$. Sei $M_i$ die i-te Turingmaschine in der Aufzählung aller Turingmaschinen. Betrachte folgende Sprache $$ \text{Diagonalsprache } D=\{ w\in\{0,1\}^*|w=w_i \text{ und } M_i \text{ akzeptiert } w \text{ nicht} \} $$ Also ein $w$ ist in der Sprache $D$ genau dann wenn $w$ das i-te Wort ist und von der i-ten Turingmaschine nicht akzeptiert wird.
+\paragraph*{Konkretes Bsp.} für eine nicht-entscheidbare Sprache. Sei $w_i$ das i-te Wort in der Aufzählung aller Wörter über $\{0,1\}$. Sei $M_i$ die i-te Turingmaschine in der Aufzählung aller Turingmaschinen. Betrachte folgende Sprache $$ \text{Diagonalsprache } D=\{ w\in\{0,1\}^* \| w=w_i \text{ und } M_i \text{ akzeptiert } w \text{ nicht} \} $$ Also ein $w$ ist in der Sprache $D$ genau dann wenn $w$ das i-te Wort ist und von der i-ten Turingmaschine nicht akzeptiert wird.
 
 \par\medskip Wie vorher könnte man diese Sprache mit Hilfe einer Matrix darstellen\par\medskip
 \begin{table}[htb!]
@@ -55,7 +55,7 @@ $M_2$ & 0 & $A_{i,j}$ & 1 & 0 &  &  \\
 \end{tabular}
 \end{table}
 $$ A_{i,j} = \begin{cases}1&\text{falls } M_i\ w_i \text{ akzeptiert} \\ 0 & \text{sonst}\end{cases} $$
-$$ D=\{ w_i | A_{ii}=0 \}$$
+$$ D=\{ w_i \| A_{ii}=0 \}$$
 
 \paragraph*{Satz} $D$ ist nicht Turing-entscheidbar.
 
@@ -65,7 +65,7 @@ $$ D=\{ w_i | A_{ii}=0 \}$$
 	\item[Fall 2] Falls $w_j \not\in D$, damit $M_j$ $w_j$ nicht akzeptieren $\Rightarrow A_{j,j}=0 \lightning$ $A_{j,j}=1$ gemäß Definition von $D$. $\Box$
 \end{description}
 
-\paragraph*{Lemma} Sei $L$ eine unentscheidbare Sprache. Dann ist auch $\overline{L}$ -- das Komplement von $L$ -- nicht entscheidbar.
+\paragraph*{Lemma} Sei $L$ eine unentscheidbare Sprache. Dann ist auch $\overline{L}$ (das Komplement von $L$) nicht entscheidbar.
 
 \paragraph*{Beweis} Annahme, es gibt eine Turingmaschine $M_{\overline{L}}$, welche $\overline{L}$ entscheidet, d.h. auf jede Eingabe $w$ hält und genau dann akzeptiert, falls $w \in \overline{L}$. Wir konstruieren eine Turingmaschine $M$, welche $L$ entscheidet (und $M_{\overline{L}}$ als Unterprogramm benutzt). Maschine $M$ startet $M_{\overline{L}}$ auf $w$. Falls $M_{\overline{L}}$ akzeptiert, verwirft $M$, falls $M_{\overline{L}}$ verwirft, akzeptiert $M$. $M$ entscheidet somit $L \lightning$ zu Annahme, dass $L$ unentscheidbar. $\Box$
 
