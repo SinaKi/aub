@@ -28,16 +28,29 @@ unten: & Konfig. 1 & Konfig. 2 & Konfig. 3 & Konfig. 4 & \dots \\
 \paragraph*{Idee} Simuliere durch Kärtchen gültige Berechnung der Turingmaschine.
 
 \paragraph*{Bsp.} Betrachte Turingmaschine $M$:
-\begin{itemize}
-	\item[$\Sigma$] $\{ 0,1 \}$
-	\item[$\Gamma$] $\{ 0,1,B \}$
+
+\begin{tabular}{lll}
+\parbox{5cm}{
+	\begin{itemize}
+		\item[$\Sigma$] $\{ 0,1 \}$
+		\item[$\Gamma$] $\{ 0,1,B \}$
+	\end{itemize}
+} &
+\parbox{5cm}{
+	\begin{itemize}
 	\item[$Q$] $\{ q_0,q_1,q_2,\overline{q} \}$
 	\item[$q_0$] Anfangszustand
+	\end{itemize}
+} &
+\parbox{5cm}{
+	\begin{itemize}
 	\item[$\overline{q}$] Endzustand
 	\item[$\delta$] Übergangsfunktionen
-\end{itemize}
+	\end{itemize}
+}
+\end{tabular}
 
-\begin{table}[htb!] %TODO besser anordnen
+\begin{table}[htb!]
 \centering
 \begin{tabular}{c|c c c}
 $\delta$ & 0 & 1 & B \\

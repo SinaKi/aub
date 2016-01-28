@@ -54,7 +54,7 @@ Diese neue Turingmaschine $M$ akzeptiert, sobald $M_1$ (auf Band 1) oder $M_2$ (
 
 \paragraph*{Beweis} Das Halteproblem ist ein Beispiel dafür, dass $H$ semi-entscheidbar, aber $\overline{H}$ nicht semi-entscheidbar (da sonst $H$ entscheidbar wäre, siehe gleich). $\Box$
 
-\paragraph{Lemma} Sind $L \subset \sum^*$ und $\overline{L}=\sum^*\backslash L$ semi-entscheidbar, so ist $L$ entscheidbar.
+\paragraph{Lemma} Sind $L \subseteq \Sigma^*$ und $\overline{L}=\Sigma^*\backslash L$ semi-entscheidbar, so ist $L$ entscheidbar.
 
 \paragraph*{Beweis} Seien $M$ und $\overline{M}$ Turingmaschinen, welche $L$ bzw. $\overline{L}$ akzeptieren/erkennen. Die folgende Turingmaschine $M°'$ entscheidet $L$ durch Parallelsimulation von $M$ und $\overline{M}$ auf Eingabe $w$:
 \begin{itemize}
@@ -63,12 +63,12 @@ Diese neue Turingmaschine $M$ akzeptiert, sobald $M_1$ (auf Band 1) oder $M_2$ (
 \end{itemize}
 Da entweder $w\in L$ oder $w\in \overline{L}$ muss eines von beiden irgendwann (in endlicher Zeit) passieren. $\Box$
 
-\paragraph*{Korollar} Eine Sprache $L$ ist genau dann nicht entscheidbar, wenn mindestens eine Sprache $L$ und $\overline{L}$ nitch semi-entscheidbar sind.
+\paragraph*{Korollar} Eine Sprache $L$ ist genau dann nicht entscheidbar, wenn mindestens eine Sprache $L$ und $\overline{L}$ nicht semi-entscheidbar sind.
 
 
 \section{Die Technik der Reduktion}
 
-\paragraph*{Def.} Seien $L_1$ und $L_2$ Sprachen über $\sum$. Dann heißt $L_1$ auf $L_2$ reduzierbar -- $L_1 \leq L_2$ --, wenn es eine berechenbare Funktion. $$ f: \sum^* \rightarrow \sum^* $$ gibt mit $\forall x \in \sum^*$ $$ x_1 \in L_1 \Leftrightarrow f(x_1) \in L_2 $$
+\paragraph*{Def.} Seien $L_1$ und $L_2$ Sprachen über $\Sigma$. Dann heißt $L_1$ auf $L_2$ reduzierbar ($L_1 \leq L_2$), wenn es eine berechenbare Funktion. $$ f: \sum^* \rightarrow \sum^* $$ gibt mit $\forall x \in \Sigma^*$ $$ x_1 \in L_1 \Leftrightarrow f(x_1) \in L_2 $$
 
 \paragraph*{Intuitiv} '$L_1$ bezüglich Berechenbarkeit nicht schwieriger als $L_2$.'
 
