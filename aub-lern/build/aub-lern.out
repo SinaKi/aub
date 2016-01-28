@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section.1}{Chomsky-Hierarchie}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Abschlusseigenschaften}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Typen}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Typ-0 \(rekursiv aufz\344hlbar\)}{subsection.1.2}% 4
+\BOOKMARK [3][-]{subsubsection.1.2.2}{Typ-1 \(kontextsensitiv\)}{subsection.1.2}% 5
+\BOOKMARK [3][-]{subsubsection.1.2.3}{Typ-2 \(kontextfrei\)}{subsection.1.2}% 6
+\BOOKMARK [3][-]{subsubsection.1.2.4}{Typ-3 \(regul\344r\)}{subsection.1.2}% 7
+\BOOKMARK [1][-]{section.2}{Entscheidbarkeit}{}% 8
+\BOOKMARK [2][-]{subsection.2.1}{Semi-entscheidbar}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.2}{co-semi-entscheidbar}{section.2}% 10
+\BOOKMARK [1][-]{section.3}{Turingmaschine}{}% 11
+\BOOKMARK [1][-]{section.4}{Reduktion}{}% 12
+\BOOKMARK [1][-]{section.5}{PKP und MPKP}{}% 13

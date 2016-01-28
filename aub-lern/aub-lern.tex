@@ -1,0 +1,137 @@
+\input{base.tex}
+\input{commands.tex}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\clearpage
+
+\section{Chomsky-Hierarchie}
+
+Einteilung von Sprachen in Typen (Typ 0-3). Entscheidbare Sprachen sind Typ 1 bis Typ 3 und Teile von Typ 0.
+
+$$ \text{Typ 3} \subset \text{ Typ 2} \subset \text{ Typ 1} \subset \text{ Typ 0} \subset \text{ alle Sprachen} $$
+
+\begin{table}[htb!]
+\centering
+\begin{tabular}{l|l}
+Typ 3 & DFA und NFA \\
+\hline
+Typ 2 & Kellerautomat (PDA) \\
+\hline
+Typ 1 & linear beschränkter Automat (LBA) \\
+\hline
+Typ 0 & Turingmaschine (TM) \\
+\end{tabular} 
+\end{table}
+
+\subsection{Abschlusseigenschaften}
+
+\begin{table}[htb!]
+\centering
+\begin{tabular}{c|c|c|c}
+$L$ & Schnitt $\cap$ & Vereinigung $\cup$ & Komplement $\overline{L}$ \\
+\hline
+Typ 3 & \checked & \checked & \checked \\
+Typ 2 & $\times$ & \checked & $\times$ \\
+Typ 1 & \checked & \checked & \checked \\
+Typ 0 & \checked & \checked & $\times$ \\
+\end{tabular} 
+\end{table}
+
+\subsection{Typen}
+
+\subsubsection{Typ-0 (rekursiv aufzählbar)}
+
+\begin{itemize}
+	\item Nicht 'nur' rekursiv, die wären entscheidbar!
+	\item Rekursiv aufzählbare Sprachen sind semi-entscheidbar.
+	\item TM muss nicht halten wenn das Wort nicht in $L$ liegt
+	\item Jede entscheidbare Sprache ist rekursiv aufzählbar, aber es gibt rekursiv aufzählbare Sprache, die nicht entscheidbar sind.
+\end{itemize}
+
+\subsubsection{Typ-1 (kontextsensitiv)}
+
+\subsubsection{Typ-2 (kontextfrei)}
+
+\subsubsection{Typ-3 (regulär)}
+
+
+\section{Entscheidbarkeit}
+
+\begin{itemize}
+	\item Das Halteproblem $H$ ist nicht entscheidbar.
+	\item Ein Sprache $L$ heißt rekursiv aufzählbar, wenn es einen Aufzähler für $L$ gibt.
+	\item Sind $L \subset \Sigma^*$ und $\overline{L}=\Sigma^*\backslash L$ semi-entscheidbar, so ist $L$ entscheidbar.
+	\item Falls $L_1 \leq L_2$ und $L_2$ entscheidbar ist, so ist auch $L_1$ entscheidbar.
+	\item Eine Sprache $L$ ist genau dann nicht entscheidbar, wenn mindestens eine Sprache $L$ und $\overline{L}$ nicht semi-entscheidbar sind.
+\end{itemize}
+
+\begin{table}[htb!]
+\centering
+\begin{tabular}{l|l|l|l}
+$L$ bzw. $L_1$ und $L_2$ & $L_1 \cap L_2$ (Schnitt) & $L_1 \cup L_2$ (Vereinigung) & $\overline{L}$ \\
+\hline
+entscheidbar & entscheidbar & entscheidbar & entscheidbar \\
+semi-entscheidbar & semi-entscheidbar & semi-entscheidbar & nicht entscheidbar \\
+co-semi-entscheidbar & • & • & • \\
+nicht entscheidbar & • & • & • \\
+\end{tabular} 
+\end{table}
+
+\subsection{Semi-entscheidbar}
+
+\begin{itemize}
+	\item Die Sprachen $H_{all}$ und $\overline{H_{all}}$ sind nicht semi-entscheidbar.
+	\item Eine Sprache $L$ ist genau dann semi-entscheidbar, wenn $L$ rekursiv aufzählbar ist.
+	\item Eine Sprache heißt semi-entscheidbar, falls es eine Turingmaschine $M$ gibt, welche $L$ erkennt.
+	\item Falls $L_1 \leq L_2$ und $L_2$ semi-entscheidbar ist, so ist auch $L_1$ semi-entscheidbar.
+\end{itemize}
+
+\subsection{co-semi-entscheidbar}
+
+\begin{itemize}
+	\item Eine Sprache $L$ heißt co-semi-entscheidbar genau dann wenn $\overline{L}$ semi-entscheidbar ist.
+\end{itemize}
+
+
+\section{Turingmaschine}
+\paragraph*{Def.} Eine Funktion $f:\Sigma^* \rightarrow\Sigma^* \cup \{ \perp \}$ heißt Turing-berechenbar, wenn es eine Turingmaschine $M$ gibt mit $f=f_M$.
+\paragraph*{Def.} Eine Sprache $L \subseteq \Sigma^*$ heißt Turing-entscheidbar, wenn es eine Turingmaschine gibt, die auf allen Eingaben stoppt und die Eingabe $w$ akzeptiert falls $w \in L$ und die Eingabe $w$ verwirft falls $w \not\in L$.
+\paragraph*{Def. (k-Band TM)} Eine k-Band Turingmaschine ist eine Verallgemeinerung der Turingmaschine, welche über $k$ Speicherbänder mit jeweils unabhängigem Kopf verfügt. Die Zustandsübergangsfunktion hat die Form: $$ \delta : (Q\backslash\{\overline{q}\}) \times \Gamma^k \rightarrow Q \times \Gamma^k \times \{L,R,N\}^k $$ Hierbei ist Band 1 das Ein-/Ausgabeband und die Bänder $2,\dots,k$ sind initial mit lauter $B$s beschrieben.
+\paragraph*{Def.} Eine Sprache $L$ wird von einer Turingmaschine $M$ entschieden, wenn $M$ auf jeder Eingabe hält und genau die Wörter aus $L$ akzeptiert.
+\paragraph*{Def.} Eine Sprache $L$ wird von einer Turingmaschine $M$ erkannt, wenn $M$ jedes Wort aus $L$ akzeptiert und kein Wort aus $\mathcal{E}^*\backslash L$ akzeptiert. Auf Eingabe nicht aus $L$ muss $M$ nicht halten.
+
+\paragraph*{Satz} Eine k-Band Turingmaschine, die mit Rechenzeit $t(n)$ und platz $s(n)$ auskommt, kann von einer 1-Band Turingmaschine $M'$ mit Zeitbedarf $O(t^2(n))$ und Platzbedarf $O(s(n))$ simuliert werden.
+\paragraph*{Satz} Jede $t(n)$ zeitbeschränkte RAM kann durch eine $O(q(n+t(n)))$-zeitbeschränkte Turingmaschine simuliert werden für ein Polynom $q()$.
+\paragraph*{Satz} $D$ ist nicht Turing-entscheidbar.
+\paragraph*{Satz} Das spezielle Halteproblem $H_E$ ist nicht Turing-entscheidbar.
+\paragraph*{Satz} Sei $S$ eine Teilmenge von $R$ mit $\emptyset\not=S\not=R$. Dann ist die Sprache $L(S)=\{<M>|M$ berechnet eine Funktion aus $S\}$ nicht Turing-entscheidbar.
+
+
+\section{Reduktion}
+\paragraph*{Def.} Seien $L_1$ und $L_2$ Sprachen über $\Sigma$. Dann heißt $L_1$ auf $L_2$ reduzierbar -- $L_1 \leq L_2$ --, wenn es eine berechenbare Funktion. $$ f: \sum^* \rightarrow \sum^* $$ gibt mit $\forall x \in \sum^*$ $$ x_1 \in L_1 \Leftrightarrow f(x_1) \in L_2 $$
+
+
+\section{PKP und MPKP}
+\paragraph*{Def. Postsches Korrespondenzproblem (PKP)} Eine Instanz des PKP besteht aus einer Menge $$ K=\Bigg\{ \Bigg[\frac{x_1}{y_1}\Bigg], \Bigg[\frac{x_2}{y_2}\Bigg], \dots, \Bigg[\frac{x_k}{y_k}\Bigg] \Bigg\} $$ wobei $x_i$ und $y_i$ nicht leere Wörter über einem endlichen Alphabet $\Sigma$ sind. Es soll entschieden werden, ob es eine korrespondierende Folge von Indizes $i_1,\dots,i_n \in \{ 1,\dots,k \}, n \geq 1$ gibt, sodass $x_{i_1}x_{i_2}x_{i_3}\dots x_{i_n} = y_{i_1}y_{i_2}y_{i_3}\dots y_{i_n}$.
+\paragraph*{Def. Modifiziertes PKP (MPKP)} entspricht dem PKP aber erzwingt $i_1 = 1$.
+
+\paragraph*{Lemma 2.31} MPKP $\leq$ PKP
+\paragraph*{Lemma 2.32} $H \leq$ MPKP
+
+
+
+\newpage
+\part*{Definitionen}
+\paragraph*{Def} Eine Menge $M$ heißt abzählbar, wenn es eine surjektive Funktion $c_\mathbb{N}\rightarrow M$ gibt. Nicht abzählbare Mengen heißen überabzählbar.
+
+\end{document}
+
+%\par			% Absatz ohne Abstand
+%\par\smallskip	% kleiner Abstand
+%\par\medskip	% mittlerer Abstand
+%\par\bigskip	% großer Abstand

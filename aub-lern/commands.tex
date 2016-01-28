@@ -1,0 +1,13 @@
+%note
+\newcommand{\note}[1]{\marginpar{\textcolor{blue}{\scriptsize #1}}}
+
+%Klausurthema
+\newcommand{\exam}[1]{\marginpar{\textcolor{red}{\scriptsize #1}}}
+
+%underbrace
+\def\clap#1{\hbox to 0pt{\hss#1\hss}}
+\def\mathclap{\mathpalette\mathclapinternal}
+\def\mathclapinternal#1#2{\clap{$\mathsurround=0pt#1{#2}$}}
+
+%|
+\def\|{\ \big|\ }
