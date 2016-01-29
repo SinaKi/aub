@@ -5,17 +5,18 @@
 \paragraph*{Satz} Eine k-Band Turingmaschine, die mit Rechenzeit $t(n)$ und platz $s(n)$ auskommt, kann von einer 1-Band Turingmaschine $M'$ mit Zeitbedarf $O(t^2(n))$ und Platzbedarf $O(s(n))$ simuliert werden.
 
 \paragraph*{Beweis Idee} k-Band Turingmaschine %TODO bild
+
 Simulation eines Übergangs der k-Band Turingmaschine erfolgt durch 'Sweep' von links nach rechts um alle Zeichen unter den S/L-Köpfen aufzusammeln. In einem Sweep von rechts nach links werden die entsprechenden Zeichen geschrieben / Köpfe bewegt.
 
 \par\medskip
 Sweeps dauern $O(t(n))$, da nicht mehr als $t(n)$ Positionen der k-Band Turingmaschine beschrieben sein können.\par\medskip
 
 \section{Die Universelle Turingmaschine}
-
-Die universelle Turingmaschine $U$ simuliert jede andere Turingmaschine $M$ auf beliebiger Eingabe $w$. Als Eingabe erhält $U$ einen String der Form $$<M>w$$ $<M>$ heißt auch Gödelnummer. Als Gödelnummerierung bezeichnet man eine injektive Abbildung von der Menge aller Turingmaschinen in die Menge $\{0,1\}^*$ %TODO notiz
+Die universelle Turingmaschine $U$ simuliert jede andere Turingmaschine $M$ auf beliebiger Eingabe $w$. Als Eingabe erhält $U$ einen String der Form $$<M>w$$ $<M>$ heißt auch Gödelnummer und ist die Kodierung von $M$. Als Gödelnummerierung bezeichnet man eine injektive Abbildung von der Menge aller Turingmaschinen in die Menge $\{0,1\}^*$
 
 \subsection{'Unsere Gödelnummerierung'}
 
+\note{Es gibt viele Gödelnummerierungen}
 \paragraph*{Annahme} über unsere Turingmaschine $M$, die zu kodieren ist.
 \begin{itemize}
 	\item $Q=\{q_1,q_2.\dots,q_t\}$
@@ -23,7 +24,8 @@ Die universelle Turingmaschine $U$ simuliert jede andere Turingmaschine $M$ auf 
 	\item Bandalphabet ist $\Gamma=\{0,1,B\}=\{x_1,x_2,x_3\}$
 	\item Die Kopfbewegungen $\{L,R,N\}$ werden nummeriert als $\{D_1,D_2,D_3\}$
 \end{itemize}
-Die Turingmaschine $M$ wird nun kodiert als Binärkodierung der Übergangsfunktion. Der Übergang $\delta(q_i,X_j)=(q_k,X_l,D_m)$ wird kodiert als $$0^i10^j10^k10^l10^m$$ Wir bezeichnen die Kodierung des t-ten Übergangs als $code(t)$. Die Gödelnummer einer Turingmaschine $M$ mit $s$ übergängen ist somit $$code(1)11code(2)11code(3)11 \dots 11code(s)111$$ %TODO notizen
+Die Turingmaschine $M$ wird nun kodiert als Binärkodierung der Übergangsfunktion. Der Übergang $\delta(q_i,X_j)=(q_k,X_l,D_m)$ wird kodiert als $$0^i10^j10^k10^l10^m$$ Wir bezeichnen die Kodierung des t-ten Übergangs als $code(t)$. Die Gödelnummer einer Turingmaschine $M$ mit $s$ übergängen ist somit $$code(1)11code(2)11code(3)11 \dots 11code(s)111$$ 
+Interpretation als Zahl (mit least-signifikant-Bit ganz links) ist die Gödelnummer.
 
 \par\medskip
 Die universelle Turingmaschine $U$ erhält als Eingabe $<M>w$. Wir implementieren $U$ als 3-Band Turingmaschine:
@@ -32,7 +34,6 @@ Die universelle Turingmaschine $U$ erhält als Eingabe $<M>w$. Wir implementiere
 	\item kopiere $<M>$ auf Band 2
 	\item lösche $<M>$ von Band 1, sodass nur noch $w$ dort steht
 \end{itemize}
-\par\medskip
 
 \paragraph*{In Simulation} enthält Band \dots
 \begin{itemize}
@@ -58,7 +59,8 @@ Die RAM ist ein Maschinenmodell, welches assemblerähnliche Programmierung erlau
 Des Weiteren enthält die RAM einen Befehlszähler $b$ (initial auf 1) %TODO bild
 Ein Programm für die RAM ist endlich, in jedem Schritt wird die Zeile auf die $b$ zeigt abgearbeitet. Die Eingabe der RAM steht zu Beginn in $c(1),c(2),\dots,c(k)$ für $k \in \mathbb{N}$\par\medskip
 
-Die Ausgabe steht in $c(1)\dots c(l), l \in \mathbb{N}$ unter der Annahme, dass $l,k$ fix sind, berechnet die RAM eine Funktion: $$\delta:\mathbb{Z}^k \rightarrow \mathbb{Z}^l \cup \{ \perp \}$$\par\medskip %TODO notiz
+Die Ausgabe steht in $c(1)\dots c(l), l \in \mathbb{N}$ unter der Annahme, dass $l,k$ fix sind, berechnet die RAM eine Funktion: $$\delta:\mathbb{Z}^k \rightarrow \mathbb{Z}^l \cup \{ \perp \}$$
+\note{$\perp$ keine Terminierung}\par\medskip
 
 \newpage
 
