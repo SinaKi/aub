@@ -68,6 +68,7 @@ Typ 0 & \checked & \checked & $\times$ \\
 	\item Sind $L \subset \Sigma^*$ und $\overline{L}=\Sigma^*\backslash L$ semi-entscheidbar, so ist $L$ entscheidbar.
 	\item Falls $L_1 \leq L_2$ und $L_2$ entscheidbar ist, so ist auch $L_1$ entscheidbar.
 	\item Eine Sprache $L$ ist genau dann nicht entscheidbar, wenn mindestens eine Sprache $L$ und $\overline{L}$ nicht semi-entscheidbar sind.
+	\item Eine Sprache ist genau dann entscheidbar, wenn sie semi-entscheidbar und co-semi-entscheidbar ist.
 \end{itemize}
 
 \begin{table}[htb!]
@@ -114,6 +115,7 @@ nicht entscheidbar & nicht entscheidbar & nicht entscheidbar & nicht entscheidba
 
 \section{Reduktion}
 \paragraph*{Def.} Seien $L_1$ und $L_2$ Sprachen über $\Sigma$. Dann heißt $L_1$ auf $L_2$ reduzierbar -- $L_1 \leq L_2$ --, wenn es eine berechenbare Funktion. $$ f: \sum^* \rightarrow \sum^* $$ gibt mit $\forall x \in \sum^*$ $$ x_1 \in L_1 \Leftrightarrow f(x_1) \in L_2 $$
+\paragraph*{Lemma} Falls $A \leq B$ und $B$ entscheidbar (bzw. semi-entscheidbar) ist, so ist auch $A$ entscheidbar (bzw. semi-entscheidbar).
 
 
 \section{PKP und MPKP}

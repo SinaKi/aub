@@ -8,15 +8,28 @@ Im Spezialfall, dass $f:\Sigma^* \rightarrow \{ 0,1 \}$, d.h. wir haben ein Ents
 \paragraph*{Def.} Eine Sprache $L \subseteq \Sigma^*$ heißt Turing-entscheidbar, wenn es eine Turingmaschine gibt, die auf allen Eingaben stoppt und die Eingabe $w$ akzeptiert falls $w \in L$ und die Eingabe $w$ verwirft falls $w \not\in L$.
 
 \paragraph*{Bsp. für Turingmaschine} $L=\{ w0\|w \in \{ 0,1 \}^* \}$ 'alle 01-Strings, die auf 0 enden.' Eine Turingmaschine die $L$ entscheidet: $$ M=\{ \{q_0,q_1,\overline{q}\}, \{0,1\}, \{0,1,B\}, B, q_1, \overline{q}, \delta \} $$
-\begin{description}
+
+\begin{tabular}{lll}
+\parbox{5cm}{
+	\begin{itemize}
 	\item[] $\{q_0,q_1,\overline{q}\}$ Zustände
 	\item[] $\{0,1\}$ Eingabealphabet
 	\item[] $\{0,1,B\}$ Bandalphabet
+	\end{itemize}
+} &
+\parbox{5cm}{
+	\begin{itemize}
 	\item[] $B$ Blank-Symbol
 	\item[] $q_1$ Startzustand
-	\item[] $\overline{q}$ Stoppzustand
+	\end{itemize}
+} &
+\parbox{5cm}{
+	\begin{itemize}
+	\item[] $\overline{q}$ stopp-Zustand
 	\item[] $\delta$ Übergangsfunktion
-\end{description}
+	\end{itemize}
+}
+\end{tabular}
 
 \begin{table}[htb!]
 \centering
