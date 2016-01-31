@@ -1,13 +1,13 @@
 \paragraph*{Beweisidee} Angenommen wir hätten eine Turingmaschine $M_H$, die das Halteproblem entscheidet, könnte $\overline{D}$ entscheiden (und das wissen wir, geht nicht). $M_H$ wird im Beweis als 'Unterprogramm' einer Turingmaschine aufgerufen welche $\overline{D}$ angeblich entscheidet.
 
 \par\medskip Jetzt betrachten wir das spezielle Halteproblem, d.h. gegeben eine Kodierung einer Turingmaschine $M$
-hält $M$ auf dem leeren Wort? Die zu entscheidende Sprache ist somit $$ H_E = \{ <M> | M \text{ hält auf Ergebnis }  E \} $$\par\medskip
+hält $M$ auf dem leeren Wort? Die zu entscheidende Sprache ist somit $$ H_E = \{ \kod{M} | M \text{ hält auf Ergebnis }  E \} $$\par\medskip
 
 \paragraph*{Satz} Das spezielle Halteproblem $H_E$ ist nicht Turing-entscheidbar.
 
-\paragraph*{Beweis} Angenommen wir hätten eine Turingmaschine $M_E$ welche $H_E$ entscheidet. Wir bauen eine Turingmaschine $M_H$, welche $H$ entscheidet und dabei $M_E$ als Unterprogramm benutzt. Da es $M_H$ nicht geben kann, kann es $M_S$ auch nicht geben. $M_H$ arbeitet wie folgt auf Eingabe $<M>w$:
+\paragraph*{Beweis} Angenommen wir hätten eine Turingmaschine $M_E$ welche $H_E$ entscheidet. Wir bauen eine Turingmaschine $M_H$, welche $H$ entscheidet und dabei $M_E$ als Unterprogramm benutzt. Da es $M_H$ nicht geben kann, kann es $M_S$ auch nicht geben. $M_H$ arbeitet wie folgt auf Eingabe $\kod{M}w$:
 \begin{enumerate}
-	\item Falls $<M>$ keine gültige TM-Kodierung, verwerfe
+	\item Falls $\kod{M}$ keine gültige TM-Kodierung, verwerfe
 	\item Andernfalls konstruiere eine Kodierung einer Turingmaschine $M_w^*$ mit folgenden Eigenschaften:
 	\begin{itemize}
 		\item Falls $M_w^*$ mit der leeren Eingabe startet schreibt sie $w$ aufs Band und simuliert die Turingmaschine $M$ auf $w$
@@ -18,17 +18,17 @@ hält $M$ auf dem leeren Wort? Die zu entscheidende Sprache ist somit $$ H_E = \
 
 \par\medskip Diese Konstruktion ist korrekt, da \note{$<?>$ ist die Kodierung von ?}\par\medskip
 \begin{itemize}
-	\item[$<M>$] $w \in H$
+	\item[$\kod{M}$] $w \in H$
 	\item[$\Rightarrow$] $M$ hält auf $w$
 	\item[$\Rightarrow$] $M_\epsilon^*$ hält auf $\epsilon$
-	\item[$\Rightarrow$] $M_\epsilon$ akzeptiert $<M_\epsilon^*>$
-	\item[$\Rightarrow$] $M_H$ akzeptiert $<M>w$
+	\item[$\Rightarrow$] $M_\epsilon$ akzeptiert $\kod{M_\epsilon^*}$
+	\item[$\Rightarrow$] $M_H$ akzeptiert $\kod{M}w$
 	
-	\item[$<M>$] $w \not\in H$
+	\item[$\kod{M}$] $w \not\in H$
 	\item[$\Rightarrow$] $<M>$ hält nicht auf $w$
 	\item[$\Rightarrow$] $M_\epsilon^*$ hält nicht auf $\epsilon$
 	\item[$\Rightarrow$] $M_\epsilon$ verwirft $M_\epsilon^*$
-	\item[$\Rightarrow$] $M_H$ akzeptiert $<M>w$ \hspace{1cm} $\Box$
+	\item[$\Rightarrow$] $M_H$ akzeptiert $\kod{M}w$ \hspace{1cm} $\Box$
 \end{itemize}
 
 
@@ -36,7 +36,7 @@ hält $M$ auf dem leeren Wort? Die zu entscheidende Sprache ist somit $$ H_E = \
 
 Turingmaschinen berechnen partielle Funktionen, da sie nicht auf jeder Eingabe halten, d.h. man könnte schreiben $$ f_M\{0,1\}^* \rightarrow \{0,1\}^*\cup\{\perp\} $$ Hierbei steht $\{\perp\}$ für 'nicht definiert' und bedeutet, dass die Maschine nicht terminiert. Für Entscheidungsprobleme haben wir $$ f_M=\{0,1\}^* \rightarrow \{0,1\}\cup\{\perp\}$$ Hierbei steht $'0'$ für akzeptieren und $'1'$ für verwerfen. $$ R=\{  f_M:\{0,1\}^* \rightarrow \{0,1\}^*\cup\{\perp\} \| M \text{ ist eine Turingmaschine}\} $$ \dots also die Menge der von Turingmaschinen berechenbaren Funktionen.
 
-\paragraph*{Satz} Sei $S$ eine Teilmenge von $R$ mit $\emptyset\not=S\not=R$. Dann ist die Sprache $$L(S)=\{<M>\|M \text{ berechnet eine Funktion aus } S\}$$ nicht Turing-entscheidbar.
+\paragraph*{Satz} Sei $S$ eine Teilmenge von $R$ mit $\emptyset\not=S\not=R$. Dann ist die Sprache $$L(S)=\{\kod{M}\|M \text{ berechnet eine Funktion aus } S\}$$ nicht Turing-entscheidbar.
 
 \paragraph*{Beweis} Wieder mittels Unterprogrammtechnik. Aus einer angeblichen Turingmaschine $M_{L(S)}$, die $L(S)$ entscheidet konstruieren wir eine Turingmaschine $M_\epsilon$, welche das spezielle Halteproblem $H_\epsilon$ entscheidet, das stünde im Widerspruch zur Unentscheidbarkeit von $H_\epsilon$. Sei $u$ die überall undefinierte Funktion. Für gegebenes $S$ gibt es zwei Fälle.
 \begin{itemize}
@@ -50,17 +50,17 @@ Turingmaschinen berechnen partielle Funktionen, da sie nicht auf jeder Eingabe h
 		\end{enumerate}
 		\item Benutze $M_{L(S)}$ als Unterprogramm um zu entscheiden, ob $M^*$ eine Funktion aus $S$ berechnet.
 	\end{enumerate}
-	\item[] Korrektheit folgt, da für Eingaben der Form $w=<M>$ gilt:
+	\item[] Korrektheit folgt, da für Eingaben der Form $w=\kod{M}$ gilt:
 	\begin{itemize}
 		\item[$w\in  H_\epsilon$] $\Rightarrow M$ hält auf $\epsilon$
 		\item[] $\Rightarrow M^*$ berechnet $f$
-		\item[] $\Rightarrow <M^*> \in L(S)$
-		\item[] $\Rightarrow M_{L(S)}$ akzeptiert $<M^*>$
+		\item[] $\Rightarrow \kod{M^*} \in L(S)$
+		\item[] $\Rightarrow M_{L(S)}$ akzeptiert $\kod{M^*}$
 		\item[] $\Rightarrow M_\epsilon$ akzeptiert $w$
 		\item[$w\not\in  H_\epsilon$] $\Rightarrow M$ hält nicht auf $\epsilon$
 		\item[] $\Rightarrow M^*$ berechnet $u$
-		\item[] $\Rightarrow <M^*> \in L(S)$
-		\item[] $\Rightarrow M_{L(S)}$ verwirft $<M^*>$
+		\item[] $\Rightarrow \kod{M^*} \in L(S)$
+		\item[] $\Rightarrow M_{L(S)}$ verwirft $\kod{M^*}$
 		\item[] $\Rightarrow M_\epsilon$ verwirft $w$
 	\end{itemize}
 	\item[2)] $u \in S$. Dann wähle $f$ aus $R \backslash S \not= \emptyset$ und invertiere Akzeptanzverhalten. $\Box$

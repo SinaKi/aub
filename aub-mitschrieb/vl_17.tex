@@ -4,7 +4,7 @@
 Sei $w$ eine Eingabe für $\overline{H_\epsilon}$
 \begin{itemize}
 	\item falls $w$ keine Turingmaschine kodiert, ist $w \in \overline{H_\epsilon}$. Daher bildet $f$ solche $w$ auf irgendein fixes $w' \in H_{all}$ ab.
-	\item falls $w=<M>$ für eine Turingmaschine $M$, so berechnet $f$ die Kodierung $<M_M'>$ einer Turingmaschine' $M_M'$, welche wie folgt funktioniert auf Eingabe $x$:
+	\item falls $w=<M>$ für eine Turingmaschine $M$, so berechnet $f$ die Kodierung $\kod{M_M'}$ einer Turingmaschine' $M_M'$, welche wie folgt funktioniert auf Eingabe $x$:
 	\begin{itemize}
 		\item[] Falls Eingabe $|x|=i$ (Eingabe ist $i$ lang), simuliert $M_M'$ die ersten $i$ Schritte von $M$ auf der leeren Eingabe $\epsilon$. Wenn $M$ innerhalb dieser $i$ Schritte hält, geht $M_M'$ in eine Endlosschleife, ansonsten hält $M_M'$.
 	\end{itemize}
@@ -17,14 +17,14 @@ $f$ ist offensichtlich berechenbar, zu zeigen, ist noch die Korrektheit.
 		\item[$\Rightarrow$] $M$ hält nicht auf Eingabe $\epsilon$
 		\item[$\Rightarrow$] $\lnot\exists i : M$ hält innerhalb $i$ Schritten auf $\epsilon$
 		\item[$\Rightarrow$] $\forall i : M_M'$ hält auf allen Eingaben der Länge $i$
-		\item[$\Rightarrow$] $f(w)=>M_M'>\ \in H_{all}$
+		\item[$\Rightarrow$] $f(w)=\kod{M_M'}\ \in H_{all}$
 	\end{itemize}
 	\item $w \not\in \overline{H_\epsilon}$
 	\begin{itemize}
 		\item[$\Rightarrow$] $M$ hält auf Eingabe $\epsilon$
 		\item[$\Rightarrow$] $\exists i : M$, hält innerhalb von $i$ Schritten auf $\epsilon$
 		\item[$\Rightarrow$] $\exists i : M_M'$ hält nicht auf Eingabe der Länge $i$
-		\item[$\Rightarrow$] $f(w)=<M_M'>\ \not \in H_{all}$
+		\item[$\Rightarrow$] $f(w)=\kod{M_M'}\ \not \in H_{all}$
 	\end{itemize}
 \end{itemize}
 Also gilt $w \in \overline{H_\epsilon} \Leftrightarrow f(w) \in H_{all}$.

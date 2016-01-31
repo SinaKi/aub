@@ -12,7 +12,7 @@ Simulation eines Übergangs der k-Band Turingmaschine erfolgt durch 'Sweep' von 
 Sweeps dauern $O(t(n))$, da nicht mehr als $t(n)$ Positionen der k-Band Turingmaschine beschrieben sein können.\par\medskip
 
 \section{Die Universelle Turingmaschine}
-Die universelle Turingmaschine $U$ simuliert jede andere Turingmaschine $M$ auf beliebiger Eingabe $w$. Als Eingabe erhält $U$ einen String der Form $$<M>w$$ $<M>$ heißt auch Gödelnummer und ist die Kodierung von $M$. Als Gödelnummerierung bezeichnet man eine injektive Abbildung von der Menge aller Turingmaschinen in die Menge $\{0,1\}^*$
+Die universelle Turingmaschine $U$ simuliert jede andere Turingmaschine $M$ auf beliebiger Eingabe $w$. Als Eingabe erhält $U$ einen String der Form $$\kod{M}w$$ $\kod{M}$ heißt auch Gödelnummer und ist die Kodierung von $M$. Als Gödelnummerierung bezeichnet man eine injektive Abbildung von der Menge aller Turingmaschinen in die Menge $\{0,1\}^*$
 
 \subsection{'Unsere Gödelnummerierung'}
 
@@ -28,11 +28,11 @@ Die Turingmaschine $M$ wird nun kodiert als Binärkodierung der Übergangsfunkti
 Interpretation als Zahl (mit least-signifikant-Bit ganz links) ist die Gödelnummer.
 
 \par\medskip
-Die universelle Turingmaschine $U$ erhält als Eingabe $<M>w$. Wir implementieren $U$ als 3-Band Turingmaschine:
+Die universelle Turingmaschine $U$ erhält als Eingabe $\kod{M}w$. Wir implementieren $U$ als 3-Band Turingmaschine:
 \begin{itemize}
-	\item Check ob $<M>$ korrekte Kodierung einer Turingmaschine hat (falls nein Fehlerausgabe)
-	\item kopiere $<M>$ auf Band 2
-	\item lösche $<M>$ von Band 1, sodass nur noch $w$ dort steht
+	\item Check ob $\kod{M}$ korrekte Kodierung einer Turingmaschine hat (falls nein Fehlerausgabe)
+	\item kopiere $\kod{M}$ auf Band 2
+	\item lösche $\kod{M}$ von Band 1, sodass nur noch $w$ dort steht
 \end{itemize}
 
 \paragraph*{In Simulation} enthält Band \dots
@@ -50,7 +50,7 @@ Die universelle Turingmaschine $U$ erhält als Eingabe $<M>w$. Wir implementiere
 	\item \dots Schreibe neuen Zustand auf Band 3
 \end{itemize}
 
-Wir gehen davon aus, dass $<M>$ konstant groß ist, d.h. wir können einen Schritt von $M$ in $O(|<M>|)=O(1)$ simulieren. Wenn wir die als 3-Band Turingmaschine implementierte universelle Turingmaschine $U$ als 1-Band Turingmaschine implementieren wollen, geht das mit quadratischem Zeitoverhead, oder besser.
+Wir gehen davon aus, dass $\kod{M}$ konstant groß ist, d.h. wir können einen Schritt von $M$ in $O(|\kod{M}|)=O(1)$ simulieren. Wenn wir die als 3-Band Turingmaschine implementierte universelle Turingmaschine $U$ als 1-Band Turingmaschine implementieren wollen, geht das mit quadratischem Zeitoverhead, oder besser.
 
 \section{Die Registermaschine (RAM)}
 Die RAM ist ein Maschinenmodell, welches assemblerähnliche Programmierung erlaubt. Der Speicher der RAM ist unbeschränkt und besteht aus Registern $c(0),c(1),c(2),\dots$ Der $c(0)$ ist besonders und heißt Akkumulator. \textbf{Inhalte der Register sind beliebig große ganze Zahlen.}
