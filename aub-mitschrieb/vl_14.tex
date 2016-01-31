@@ -10,7 +10,7 @@
 
 \par\medskip Wir werden dazu über die Turingmaschine argumentieren, von denen wir uns überzeugt haben, dass sie gleichmächtig wie Registermaschinen (und 'echte' aktuelle Rechner) sind.\par\medskip
 
-\section{Church-Turing-These}
+\subsection{Church-Turing-These}
 
 Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv berechenbaren Funktionen überein.
 
@@ -70,7 +70,7 @@ $$ D=\{ w_i \| A_{ii}=0 \}$$
 \paragraph*{Beweis} Annahme, es gibt eine Turingmaschine $M_{\overline{L}}$, welche $\overline{L}$ entscheidet, d.h. auf jede Eingabe $w$ hält und genau dann akzeptiert, falls $w \in \overline{L}$. Wir konstruieren eine Turingmaschine $M$, welche $L$ entscheidet (und $M_{\overline{L}}$ als Unterprogramm benutzt). Maschine $M$ startet $M_{\overline{L}}$ auf $w$. Falls $M_{\overline{L}}$ akzeptiert, verwirft $M$, falls $M_{\overline{L}}$ verwirft, akzeptiert $M$. $M$ entscheidet somit $L \lightning$ zu Annahme, dass $L$ unentscheidbar. $\Box$
 
 
-\section{Das Halteproblem}
+\subsection{Das Halteproblem}
 Entscheidung, ob ein Programm auf eine bestimmte Eingabe terminiert. Formal: $$ H=\{\kod{M} w \| M \text{ hält auf Eingabe } w \} $$
 
 \paragraph*{Satz} Das Halteproblem $H$ ist nicht entscheidbar.

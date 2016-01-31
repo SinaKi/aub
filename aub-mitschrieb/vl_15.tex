@@ -32,7 +32,7 @@ hält $M$ auf dem leeren Wort? Die zu entscheidende Sprache ist somit $$ H_E = \
 \end{itemize}
 
 
-\section{Der Satz von RICE}
+\subsection{Der Satz von RICE}
 
 Turingmaschinen berechnen partielle Funktionen, da sie nicht auf jeder Eingabe halten, d.h. man könnte schreiben $$ f_M\{0,1\}^* \rightarrow \{0,1\}^*\cup\{\perp\} $$ Hierbei steht $\{\perp\}$ für 'nicht definiert' und bedeutet, dass die Maschine nicht terminiert. Für Entscheidungsprobleme haben wir $$ f_M=\{0,1\}^* \rightarrow \{0,1\}\cup\{\perp\}$$ Hierbei steht $'0'$ für akzeptieren und $'1'$ für verwerfen. $$ R=\{  f_M:\{0,1\}^* \rightarrow \{0,1\}^*\cup\{\perp\} \| M \text{ ist eine Turingmaschine}\} $$ \dots also die Menge der von Turingmaschinen berechenbaren Funktionen.
 

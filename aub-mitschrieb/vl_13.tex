@@ -1,4 +1,4 @@
-\section{Mehrband-Turingmaschine (mit variablen Köpfen)}
+\subsection{Mehrband-Turingmaschine (mit variablen Köpfen)}
 
 \paragraph*{Def. (k-Band TM)} Eine k-Band Turingmaschine ist eine Verallgemeinerung der Turingmaschine, welche über $k$ Speicherbänder mit jeweils unabhängigem Kopf verfügt. Die Zustandsübergangsfunktion hat die Form: $$ \delta : (Q\backslash\{\overline{q}\}) \times \Gamma^k \rightarrow Q \times \Gamma^k \times \{L,R,N\}^k $$ Hierbei ist Band 1 das Ein-/Ausgabeband und die Bänder $2,\dots,k$ sind initial mit lauter $B$s beschrieben.
 
@@ -11,10 +11,10 @@ Simulation eines Übergangs der k-Band Turingmaschine erfolgt durch 'Sweep' von 
 \par\medskip
 Sweeps dauern $O(t(n))$, da nicht mehr als $t(n)$ Positionen der k-Band Turingmaschine beschrieben sein können.\par\medskip
 
-\section{Die Universelle Turingmaschine}
+\subsection{Die Universelle Turingmaschine}
 Die universelle Turingmaschine $U$ simuliert jede andere Turingmaschine $M$ auf beliebiger Eingabe $w$. Als Eingabe erhält $U$ einen String der Form $$\kod{M}w$$ $\kod{M}$ heißt auch Gödelnummer und ist die Kodierung von $M$. Als Gödelnummerierung bezeichnet man eine injektive Abbildung von der Menge aller Turingmaschinen in die Menge $\{0,1\}^*$
 
-\subsection{'Unsere Gödelnummerierung'}
+\subsubsection{'Unsere Gödelnummerierung'}
 
 \note{Es gibt viele Gödelnummerierungen}
 \paragraph*{Annahme} über unsere Turingmaschine $M$, die zu kodieren ist.
@@ -52,7 +52,7 @@ Die universelle Turingmaschine $U$ erhält als Eingabe $\kod{M}w$. Wir implement
 
 Wir gehen davon aus, dass $\kod{M}$ konstant groß ist, d.h. wir können einen Schritt von $M$ in $O(|\kod{M}|)=O(1)$ simulieren. Wenn wir die als 3-Band Turingmaschine implementierte universelle Turingmaschine $U$ als 1-Band Turingmaschine implementieren wollen, geht das mit quadratischem Zeitoverhead, oder besser.
 
-\section{Die Registermaschine (RAM)}
+\subsection{Die Registermaschine (RAM)}
 Die RAM ist ein Maschinenmodell, welches assemblerähnliche Programmierung erlaubt. Der Speicher der RAM ist unbeschränkt und besteht aus Registern $c(0),c(1),c(2),\dots$ Der $c(0)$ ist besonders und heißt Akkumulator. \textbf{Inhalte der Register sind beliebig große ganze Zahlen.}
 
 \par\medskip
