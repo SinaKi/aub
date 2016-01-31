@@ -65,7 +65,7 @@ $$ D=\{ w_i \| A_{ii}=0 \}$$
 	\item[Fall 2] Falls $w_j \not\in D$, damit $M_j$ $w_j$ nicht akzeptieren $\Rightarrow A_{j,j}=0 \lightning$ $A_{j,j}=1$ gemäß Definition von $D$. $\Box$
 \end{description}
 
-\paragraph*{Lemma} Sei $L$ eine unentscheidbare Sprache. Dann ist auch $\overline{L}$ (das Komplement von $L$) nicht entscheidbar.
+\paragraph*{Lemma} Sei $L$ eine unentscheidbare Sprache. Dann ist auch $\overline{L}$ (das Komplement von $L$) unentscheidbar.
 
 \paragraph*{Beweis} Annahme, es gibt eine Turingmaschine $M_{\overline{L}}$, welche $\overline{L}$ entscheidet, d.h. auf jede Eingabe $w$ hält und genau dann akzeptiert, falls $w \in \overline{L}$. Wir konstruieren eine Turingmaschine $M$, welche $L$ entscheidet (und $M_{\overline{L}}$ als Unterprogramm benutzt). Maschine $M$ startet $M_{\overline{L}}$ auf $w$. Falls $M_{\overline{L}}$ akzeptiert, verwirft $M$, falls $M_{\overline{L}}$ verwirft, akzeptiert $M$. $M$ entscheidet somit $L \lightning$ zu Annahme, dass $L$ unentscheidbar. $\Box$
 
