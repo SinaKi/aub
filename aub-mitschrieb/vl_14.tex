@@ -14,7 +14,7 @@
 
 Die Klasse der turingberechenbaren Funktionen stimmt mit der Klasse der Intuitiv berechenbaren Funktionen überein.
 
-\subsection{Berechen-/Entscheidbarkeit}
+\section{Berechen-/Entscheidbarkeit}
 \paragraph*{Def} Eine Menge $M$ heißt abzählbar, wenn es eine surjektive Funktion $c_\mathbb{N}\rightarrow M$ gibt. Nicht abzählbare Mengen heißen überabzählbar.
 
 \paragraph*{Bsp.} für abzählbare Mengen
@@ -71,7 +71,7 @@ $$ D=\{ w_i \| A_{ii}=0 \}$$
 
 
 \section{Das Halteproblem}
-Entscheidung, ob ein Programm auf eine bestimmte Eingabe terminiert. Formal: $$ H=\{ <M>w|M \text{ hält auf Eingabe } w \} $$
+Entscheidung, ob ein Programm auf eine bestimmte Eingabe terminiert. Formal: $$ H=\{\kod{M} w \| M \text{ hält auf Eingabe } w \} $$
 
 \paragraph*{Satz} Das Halteproblem $H$ ist nicht entscheidbar.
 
@@ -80,8 +80,8 @@ Entscheidung, ob ein Programm auf eine bestimmte Eingabe terminiert. Formal: $$ 
 \begin{itemize}
 	\item[$M_{\overline{D}}$:] \begin{enumerate}
 		\item Für $w$ berechne $i$, sodass $w_i=w$
-		\item Berechne die i-te  Turingmaschine $<M_i>$ \note{$<?>$ Kodierung von ?}
-		\item Starte $M_H$ mit Eingabe $<M_i>w$
+		\item Berechne die i-te  Turingmaschine $\kod{M_i}$ \note{$\kod{?}$ Kodierung von ?}
+		\item Starte $M_H$ mit Eingabe $\kod{M_i}w$
 		\item Falls $M_H$ akzeptiert, so simuliere das Verhalten von $M_i$ auf $w$ (mit universeller Turingmaschine) und übernehme das Ergebnis.
 		\item Falls $M_H$ verwirft, verwirf Eingabe.
 	\end{enumerate}
@@ -89,8 +89,8 @@ Entscheidung, ob ein Programm auf eine bestimmte Eingabe terminiert. Formal: $$ 
 
 \paragraph*{Zur Korrektheit dieser Konstruktion} Sei $w=w_i$
 \begin{itemize}
-	\item[$w\in\overline{D}$] $\Rightarrow M_H$ akzeptiert $<M_i>w$ und $M_i$ akzeptiert $w$
+	\item[$w\in\overline{D}$] $\Rightarrow M_H$ akzeptiert $\kod{M_i}w$ und $M_i$ akzeptiert $w$
 	\item[] $\Rightarrow M_{\overline{D}}$ akzeptiert $w$
-	\item[$w\not\in\overline{D}$] $\Rightarrow M_H$ verwirft $<M_i>w$ oder $M_i$ verwirft $w$
+	\item[$w\not\in\overline{D}$] $\Rightarrow M_H$ verwirft $\kod{M_i}w$ oder $M_i$ verwirft $w$
 	\item[] $\Rightarrow M_{\overline{D}}$ verwirft $w$ \hspace{1cm} $\Box$
 \end{itemize}
